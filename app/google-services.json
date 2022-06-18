@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "678224985264",
+    "project_id": "all-in-one-for-cats",
+    "storage_bucket": "all-in-one-for-cats.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678224985264:android:5d607946087a651e6dcf75",
+        "android_client_info": {
+          "package_name": "com.vnvj0033.allinoneforcats"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "678224985264-ftrrivgbfv2pndfatme9cctinltgrelp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6iqwBH3bb5EjkgYK3g0Mp66gt-zcvX6k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678224985264-ftrrivgbfv2pndfatme9cctinltgrelp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
