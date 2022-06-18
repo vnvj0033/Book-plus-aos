@@ -1,5 +1,6 @@
 package com.vnvj0033.allinoneforcats.push
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -13,7 +14,7 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.vnvj0033.allinoneforcats.MainActivity
+import com.vnvj0033.allinoneforcats.ui.MainActivity
 import com.vnvj0033.allinoneforcats.R
 
 
@@ -30,6 +31,7 @@ class CatsFirebaseMessagingService : FirebaseMessagingService() {
         Log.d(TAG, "onNewToken : $token")
     }
 
+
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
 
@@ -39,12 +41,13 @@ class CatsFirebaseMessagingService : FirebaseMessagingService() {
         sendNotification(title, body)
     }
 
+
     private fun sendNotification(title: String, body: String) {
         val intent = Intent(this, MainActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) // 액티비티 중복 생성 방지
         }
 
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent,PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent = createPendingIntent(intent)
 
         val channelId = "DEFAULT_NOTIFICATION_CHANNEL_ID"
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION) // 소리
@@ -69,4 +72,14 @@ class CatsFirebaseMessagingService : FirebaseMessagingService() {
 
         notificationManager.notify(0, notification)
     }
+
+    @SuppressLint("UnspecifiedImmutableFlag")
+    private fun createPendingIntent(intent: Intent) =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            PendingIntent.getActivity(this, 0, intent,PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PendingIntent.getActivity(this, 0, intent,PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        } else {
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
 }
