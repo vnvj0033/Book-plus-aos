@@ -1,4 +1,4 @@
-package com.vnvj0033.allinoneforcats
+package com.vnvj0033.allinoneforcats.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.FragmentSecondBinding
 
 /**
@@ -22,7 +23,7 @@ class SecondFragment : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
         return binding.root

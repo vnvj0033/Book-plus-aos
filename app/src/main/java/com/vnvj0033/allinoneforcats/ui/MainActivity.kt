@@ -1,4 +1,4 @@
-package com.vnvj0033.allinoneforcats
+package com.vnvj0033.allinoneforcats.ui
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
@@ -10,6 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
