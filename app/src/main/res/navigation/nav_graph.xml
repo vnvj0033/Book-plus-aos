@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.vnvj0033.allinoneforcats.ui.FirstFragment"
+        android:name="com.vnvj0033.allinoneforcats.ui.CatChoicesFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_cat_choices">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
