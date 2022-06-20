@@ -28,6 +28,8 @@ class CatChoicesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.recyclerviewCatChoices.adapter = CatListAdapter()
+
         binding.contentUserInfo.root.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
