@@ -23,10 +23,10 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:textSize="13sp"
+        android:text="@string/test_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageview_profile_user_profile_content"
-        tools:text="base user name text filed base user name text filed base user name text filed" />
+        app:layout_constraintTop_toBottomOf="@+id/imageview_profile_user_profile_content" />
 
 
     <TextView
@@ -36,9 +36,9 @@
         android:textSize="15sp"
         android:maxLines="6"
         android:ellipsize="end"
+        android:text="@string/test_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_name_user_profile_content"
-        tools:text="base user introduction text filed" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_name_user_profile_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
