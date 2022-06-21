@@ -6,31 +6,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.vnvj0033.allinoneforcats.R
-import com.vnvj0033.allinoneforcats.databinding.FragmentFirstBinding
+import com.vnvj0033.allinoneforcats.databinding.FragmentCatChoicesBinding
+import com.vnvj0033.allinoneforcats.model.Cat
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment() {
+class CatChoicesFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentCatChoicesBinding? = null
     private val binding get() = _binding!!
+
+    private val catListAdapter = CatListAdapter()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentCatChoicesBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonFirst.setOnClickListener {
+        binding.recyclerviewCatChoices.adapter = catListAdapter
+        binding.recyclerviewCatChoices.layoutManager = GridLayoutManager(requireContext(), 2)
+        catListAdapter.addCat(arrayListOf<Cat>().apply { for (i in 0..100) add(Cat()) })
+
+        binding.contentUserInfo.root.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
     }
