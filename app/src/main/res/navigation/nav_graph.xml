@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.vnvj0033.allinoneforcats.ui.CatChoicesFragment"
+        android:name="com.vnvj0033.allinoneforcats.ui.UserProfileFragment"
         android:label="AllInOneForCat"
-        tools:layout="@layout/fragment_cat_choices">
+        tools:layout="@layout/fragment_user_profile">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.vnvj0033.allinoneforcats.ui.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:name="com.vnvj0033.allinoneforcats.ui.CatDetailFragment"
+        android:label="CatDetail"
+        tools:layout="@layout/fragment_cat_detail">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
