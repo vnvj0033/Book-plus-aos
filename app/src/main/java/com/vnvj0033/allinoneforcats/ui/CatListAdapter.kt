@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vnvj0033.allinoneforcats.databinding.ContentCatListItemBinding
 import com.vnvj0033.allinoneforcats.model.Cat
 
-class CatListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CatListAdapter(private val userProfileEvent: UserProfileEvent) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val catList = ArrayList<Cat>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -15,10 +15,10 @@ class CatListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-//        val item = catList[position]
-//        if (holder is CatViewHolder) {
-//            holder.bind(item)
-//        }
+        val cat = catList[position]
+        if (holder is CatViewHolder) {
+            holder.bind(cat)
+        }
     }
 
     override fun getItemCount(): Int = catList.size
@@ -29,11 +29,9 @@ class CatListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyItemRangeInserted(positionStart, cats.size)
     }
 
-    inner class CatViewHolder(binding: ContentCatListItemBinding) : RecyclerView.ViewHolder(binding.root) {
-//        fun bind(item: Cat) {
-//            Glide.with(binding.root)
-//                .load(item.imageUrl)
-//                .into(binding.imageviewCatItem)
-//        }
+    inner class CatViewHolder(private val binding: ContentCatListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(cat: Cat) {
+            binding.imageviewCatCatDetail.setOnClickListener { userProfileEvent.goToCatDetail(cat) }
+        }
     }
 }
