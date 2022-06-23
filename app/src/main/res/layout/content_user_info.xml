@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:ignore="HardcodedText,SpUsage">
+    <data>
+        <variable
+            name="user"
+            type="com.vnvj0033.allinoneforcats.model.User" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <!-- 게시물 -->
     <LinearLayout
@@ -22,8 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="0"
-            android:textSize="22dp" />
+            android:text="@{user.posts.size()}"
+            android:textSize="22dp"
+            tools:text="0"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -50,8 +57,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="0"
-            android:textSize="22dp" />
+            android:text="@{user.follower}"
+            android:textSize="22dp"
+            tools:text="0"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -76,8 +84,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="0"
-            android:textSize="22dp" />
+            android:text="@{user.following}"
+            android:textSize="22dp"
+            tools:text="0"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -94,7 +103,8 @@
         android:adjustViewBounds="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_blank_profile"
+        app:srcCompat="@{user.profileImageUrl.empty ? @drawable/ic_blank_profile : user.profileImageUrl}"
+        tools:srcCompat="@drawable/ic_blank_profile"
         tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <TextView
@@ -105,10 +115,11 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:textSize="13sp"
-        android:text="@string/test_text"
+        android:text="@{user.name}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageview_profile_user_profile_content" />
+        app:layout_constraintTop_toBottomOf="@+id/imageview_profile_user_profile_content"
+        tools:text="@string/test_text" />
 
 
     <TextView
@@ -118,9 +129,11 @@
         android:textSize="15sp"
         android:maxLines="6"
         android:ellipsize="end"
-        android:text="@string/test_text"
+        android:text="@{user.description}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_name_user_profile_content" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_name_user_profile_content"
+        tools:text="@string/test_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
