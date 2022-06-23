@@ -1,10 +1,12 @@
-package com.vnvj0033.allinoneforcats.ui
+package com.vnvj0033.allinoneforcats.ui.catdetil
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.FragmentCatDetailBinding
 
 /**
@@ -19,7 +21,7 @@ class CatDetailFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCatDetailBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(layoutInflater, R.layout.activity_main, container, false)
         return binding.root
     }
 

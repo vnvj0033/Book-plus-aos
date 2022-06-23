@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="cat"
+            type="com.vnvj0033.allinoneforcats.model.Cat" />
+    </data>
+
+<androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CatDetailFragment"
+    tools:context=".ui.catdetil.CatDetailFragment"
     tools:ignore="ContentDescription" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,10 +24,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:src="@drawable/ic_blank_cat"
+            android:src="@{cat.imageUrl.empty ? @drawable/ic_blank_cat : cat.imageUrl}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_blank_cat"/>
 
         <TextView
             android:id="@+id/textview_cat_name_cat_detail"
@@ -29,22 +37,24 @@
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@string/test_text"
+            android:text="@{cat.name.empty ? @string/test_text : cat.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageview_cat_cat_detail" />
+            app:layout_constraintTop_toBottomOf="@+id/imageview_cat_cat_detail"
+            tools:text="@string/test_text"/>
 
         <TextView
             android:id="@+id/textview_cat_description_cat_detail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/test_text"
+            android:text="@{cat.description.empty ? @string/test_text : cat.description}"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_cat_name_cat_detail" />
-
+            app:layout_constraintTop_toBottomOf="@+id/textview_cat_name_cat_detail"
+            tools:text="@string/test_text"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
+</layout>

@@ -1,17 +1,25 @@
-package com.vnvj0033.allinoneforcats.ui
+package com.vnvj0033.allinoneforcats.ui.userprofile
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.ContentCatListItemBinding
 import com.vnvj0033.allinoneforcats.model.Cat
 
-class CatListAdapter(private val userProfileEvent: UserProfileEvent) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CatListAdapter(private val userProfileEvent: UserProfileEvent) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val catList = ArrayList<Cat>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = ContentCatListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CatViewHolder(view)
+        val binding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
+            R.layout.content_cat_list_item,
+            parent,
+            false
+        ) as ContentCatListItemBinding
+        return CatViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
