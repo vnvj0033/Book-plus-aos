@@ -7,6 +7,8 @@
         <variable
             name="user"
             type="com.vnvj0033.allinoneforcats.model.User" />
+
+        <import type="com.vnvj0033.allinoneforcats.model.binding.ContentUserBindingKt"/>
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -103,7 +105,7 @@
         android:adjustViewBounds="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@{user.profileImageUrl.empty ? @drawable/ic_blank_profile : user.profileImageUrl}"
+        loadImage="@{user.profileImageUrl.empty ? @drawable/ic_blank_profile : user.profileImageUrl}"
         tools:srcCompat="@drawable/ic_blank_profile"
         tools:ignore="ContentDescription,ImageContrastCheck" />
 
