@@ -24,11 +24,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:src="@{cat.imageUrl.empty ? @drawable/ic_blank_cat : cat.imageUrl}"
+            android:src="@drawable/ic_blank_cat"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_blank_cat"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textview_cat_name_cat_detail"
@@ -37,7 +36,7 @@
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@{cat.name.empty ? @string/test_text : cat.name}"
+            android:text="@{cat.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageview_cat_cat_detail"
@@ -48,7 +47,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@{cat.description.empty ? @string/test_text : cat.description}"
+            android:text="@{cat.description}"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
