@@ -19,10 +19,7 @@ class UserProfileFragment : Fragment(), UserProfileEvent {
 
     private val catListAdapter = CatListAdapter(userProfileEvent = this)
 
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_profile, container, false)
         return binding.root
     }

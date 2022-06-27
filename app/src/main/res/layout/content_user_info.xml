@@ -30,7 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@{user.posts.size()}"
+            intToText="@{user.posts.size()}"
+            android:text="0"
             android:textSize="22dp"
             tools:text="0"/>
 
@@ -59,7 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@{user.follower}"
+            intToText="@{user.follower}"
+            android:text="0"
             android:textSize="22dp"
             tools:text="0"/>
 
@@ -86,7 +88,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@{user.following}"
+            intToText="@{user.following}"
+            android:text="0"
             android:textSize="22dp"
             tools:text="0"/>
 
@@ -105,7 +108,7 @@
         android:adjustViewBounds="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        loadImage="@{user.profileImageUrl.empty ? @drawable/ic_blank_profile : user.profileImageUrl}"
+        loadImage="@{user.profileImageUrl}"
         tools:srcCompat="@drawable/ic_blank_profile"
         tools:ignore="ContentDescription,ImageContrastCheck" />
 
