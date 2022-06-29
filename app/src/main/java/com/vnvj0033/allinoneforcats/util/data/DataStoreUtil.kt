@@ -1,4 +1,4 @@
-package com.vnvj0033.allinoneforcats.util
+package com.vnvj0033.allinoneforcats.util.data
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
