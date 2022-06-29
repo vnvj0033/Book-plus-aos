@@ -13,12 +13,13 @@
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/CatDetailActivity" />
     </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailFragment"
+
+    <activity
+        android:id="@+id/CatDetailActivity"
+        android:name="com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailActivity"
         android:label="CatDetail"
-        tools:layout="@layout/fragment_cat_detail">
-    </fragment>
+        tools:layout="@layout/activity_cat_detail">
+    </activity>
 </navigation>
