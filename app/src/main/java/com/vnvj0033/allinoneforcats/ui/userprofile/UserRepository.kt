@@ -1,6 +1,5 @@
 package com.vnvj0033.allinoneforcats.ui.userprofile
 
-import android.content.Context
 import com.vnvj0033.allinoneforcats.App
 import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.model.Cat

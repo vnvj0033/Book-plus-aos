@@ -8,17 +8,11 @@ import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.ContentCatListItemBinding
 import com.vnvj0033.allinoneforcats.model.Cat
 
-class CatListAdapter(private val userPresenter: UserPresenter) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CatListAdapter(private val userPresenter: UserPresenter) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val catList = ArrayList<Cat>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val binding = DataBindingUtil.inflate(
-            LayoutInflater.from(parent.context),
-            R.layout.content_cat_list_item,
-            parent,
-            false
-        ) as ContentCatListItemBinding
+        val binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.content_cat_list_item, parent, false) as ContentCatListItemBinding
         return CatViewHolder(binding)
     }
 
@@ -32,9 +26,8 @@ class CatListAdapter(private val userPresenter: UserPresenter) :
     override fun getItemCount(): Int = catList.size
 
     fun addCats(cats: List<Cat>) {
-        val positionStart = itemCount
         catList.addAll(cats)
-        notifyItemRangeInserted(positionStart, cats.size)
+        notifyItemRangeInserted(itemCount - cats.size, cats.size)
     }
 
     inner class CatViewHolder(private val binding: ContentCatListItemBinding) : RecyclerView.ViewHolder(binding.root) {

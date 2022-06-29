@@ -38,10 +38,8 @@ class UserProfileFragment : Fragment(), UserProfileEvent {
         catListAdapter = CatListAdapter(userPresenter)
         binding.recyclerviewCatChoices.adapter = catListAdapter
 
-
         lifecycleScope.launch {
             userPresenter.loadUser()
-            delay(1000)
             userPresenter.loadCatList()
         }
 
