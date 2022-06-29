@@ -6,4 +6,5 @@ import com.vnvj0033.allinoneforcats.model.User
 interface UserProfileEvent{
     fun goToCatDetail(cat: Cat)
     fun updateUser(user: User)
+    fun updateCatList(cats: List<Cat>)
 }
