@@ -8,11 +8,22 @@
             name="user"
             type="com.vnvj0033.allinoneforcats.model.User" />
 
-        <import type="com.vnvj0033.allinoneforcats.model.binding.ContentUserBindingKt"/>
+        <import type="com.vnvj0033.allinoneforcats.model.binding.BindingContentUserInfo" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageview_profile_user_profile_content"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_blank_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        loadProfileImage="@{user.profileImageUrl}"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <!-- 게시물 -->
     <LinearLayout
@@ -32,13 +43,12 @@
             android:gravity="center"
             intToText="@{user.posts.size()}"
             android:text="0"
-            android:textSize="22dp"
-            tools:text="0"/>
+            android:textSize="22dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="2dp"
             android:gravity="center"
             android:text="게시물"
             tools:ignore="HardcodedText" />
@@ -62,13 +72,12 @@
             android:gravity="center"
             intToText="@{user.follower}"
             android:text="0"
-            android:textSize="22dp"
-            tools:text="0"/>
+            android:textSize="22dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="2dp"
             android:gravity="center"
             android:text="팔로워" />
     </LinearLayout>
@@ -90,27 +99,15 @@
             android:gravity="center"
             intToText="@{user.following}"
             android:text="0"
-            android:textSize="22dp"
-            tools:text="0"/>
+            android:textSize="22dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="2dp"
             android:gravity="center"
             android:text="팔로잉" />
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageview_profile_user_profile_content"
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        loadImage="@{user.profileImageUrl}"
-        tools:srcCompat="@drawable/ic_blank_profile"
-        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <TextView
         android:id="@+id/textview_name_user_profile_content"
