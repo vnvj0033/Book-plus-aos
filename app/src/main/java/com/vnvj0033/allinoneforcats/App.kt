@@ -1,6 +1,7 @@
 package com.vnvj0033.allinoneforcats
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import com.vnvj0033.allinoneforcats.util.data.SharedPreferencesData
 import com.vnvj0033.allinoneforcats.util.data.PreferencesDataStore
@@ -17,10 +18,12 @@ class App : Application() {
     companion object {
         lateinit var data: SharedPreferencesData
         lateinit var storeData: PreferencesDataStore
+        lateinit var context: Context
     }
 
     override fun onCreate() {
         super.onCreate()
+        context = applicationContext
         data = SharedPreferencesData(applicationContext)
         storeData = PreferencesDataStore(this@App)
 

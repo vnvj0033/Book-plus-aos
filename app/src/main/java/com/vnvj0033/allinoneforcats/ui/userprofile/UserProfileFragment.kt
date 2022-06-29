@@ -6,18 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.FragmentUserProfileBinding
 import com.vnvj0033.allinoneforcats.model.Cat
 import com.vnvj0033.allinoneforcats.model.User
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class UserProfileFragment : Fragment(), UserProfileEvent {
 
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
 
-    private val catListAdapter = CatListAdapter(userProfileEvent = this)
+    private lateinit var catListAdapter: CatListAdapter
+    private lateinit var userRepository: UserRepository
+    private lateinit var userPresenter: UserPresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_profile, container, false)
@@ -27,10 +32,19 @@ class UserProfileFragment : Fragment(), UserProfileEvent {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.recyclerviewCatChoices.adapter = catListAdapter
-        catListAdapter.addCat(arrayListOf<Cat>().apply { for (i in 0..100) add(Cat()) })
+        userRepository = UserRepository()
+        userPresenter = UserPresenter(userProfileEvent = this, userRepository)
 
-        updateUser(User())
+        catListAdapter = CatListAdapter(userPresenter)
+        binding.recyclerviewCatChoices.adapter = catListAdapter
+
+
+        lifecycleScope.launch {
+            userPresenter.loadUser()
+            delay(1000)
+            userPresenter.loadCatList()
+        }
+
     }
 
     override fun onDestroyView() {
@@ -44,6 +58,10 @@ class UserProfileFragment : Fragment(), UserProfileEvent {
 
     override fun updateUser(user: User) {
         binding.contentUserInfo.user = user
+    }
+
+    override fun updateCatList(cats: List<Cat>) {
+        catListAdapter.addCats(cats)
     }
 }
 

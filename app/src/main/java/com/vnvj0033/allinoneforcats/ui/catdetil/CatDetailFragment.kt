@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.FragmentCatDetailBinding
+import com.vnvj0033.allinoneforcats.model.Cat
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
 class CatDetailFragment : Fragment() {
 
     private var _binding: FragmentCatDetailBinding? = null
@@ -21,8 +19,14 @@ class CatDetailFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate(layoutInflater, R.layout.activity_main, container, false)
+        _binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_cat_detail, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.cat = Cat(name = requireContext().getString(R.string.test_text), description = requireContext().getString(R.string.test_text))
     }
 
     override fun onDestroyView() {

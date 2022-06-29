@@ -8,7 +8,7 @@ import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.ContentCatListItemBinding
 import com.vnvj0033.allinoneforcats.model.Cat
 
-class CatListAdapter(private val userProfileEvent: UserProfileEvent) :
+class CatListAdapter(private val userPresenter: UserPresenter) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val catList = ArrayList<Cat>()
 
@@ -31,7 +31,7 @@ class CatListAdapter(private val userProfileEvent: UserProfileEvent) :
 
     override fun getItemCount(): Int = catList.size
 
-    fun addCat(cats: List<Cat>) {
+    fun addCats(cats: List<Cat>) {
         val positionStart = itemCount
         catList.addAll(cats)
         notifyItemRangeInserted(positionStart, cats.size)
@@ -39,7 +39,7 @@ class CatListAdapter(private val userProfileEvent: UserProfileEvent) :
 
     inner class CatViewHolder(private val binding: ContentCatListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(cat: Cat) {
-            binding.imageviewCatCatDetail.setOnClickListener { userProfileEvent.goToCatDetail(cat) }
+            binding.imageviewCatCatDetail.setOnClickListener { userPresenter.goToCatDetail(cat) }
         }
     }
 }

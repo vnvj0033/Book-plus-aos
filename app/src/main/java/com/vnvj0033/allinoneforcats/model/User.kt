@@ -9,6 +9,3 @@ data class User(
     val posts: List<Post> = ArrayList()
 )
 
-data class Post(
-    val post: String = ""
-)
