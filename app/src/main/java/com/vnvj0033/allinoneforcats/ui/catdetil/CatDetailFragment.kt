@@ -15,10 +15,7 @@ class CatDetailFragment : Fragment() {
     private var _binding: FragmentCatDetailBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_cat_detail, container, false)
         return binding.root
     }
