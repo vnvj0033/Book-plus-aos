@@ -6,6 +6,8 @@
         <variable
             name="cat"
             type="com.vnvj0033.allinoneforcats.model.Cat" />
+
+        <import type="com.vnvj0033.allinoneforcats.model.binding.BindingFragmentCatDetail" />
     </data>
 
 <androidx.core.widget.NestedScrollView
@@ -24,6 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
+            loadCatImage="@{cat.imageUrl}"
             android:src="@drawable/ic_blank_cat"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
