@@ -12,7 +12,6 @@ import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.FragmentUserProfileBinding
 import com.vnvj0033.allinoneforcats.model.Cat
 import com.vnvj0033.allinoneforcats.model.User
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class UserProfileFragment : Fragment(), UserProfileEvent {

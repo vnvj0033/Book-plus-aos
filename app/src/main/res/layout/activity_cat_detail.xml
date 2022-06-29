@@ -7,7 +7,7 @@
             name="cat"
             type="com.vnvj0033.allinoneforcats.model.Cat" />
 
-        <import type="com.vnvj0033.allinoneforcats.model.binding.BindingFragmentCatDetail" />
+        <import type="com.vnvj0033.allinoneforcats.model.binding.BindingActivityCatDetail" />
     </data>
 
 <androidx.core.widget.NestedScrollView
