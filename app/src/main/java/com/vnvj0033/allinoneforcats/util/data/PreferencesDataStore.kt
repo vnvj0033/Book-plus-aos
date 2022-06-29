@@ -1,10 +1,9 @@
-package com.vnvj0033.allinoneforcats.model
+package com.vnvj0033.allinoneforcats.util.data
 
 import com.vnvj0033.allinoneforcats.App
-import com.vnvj0033.allinoneforcats.util.DataStoreUtil
 import kotlinx.coroutines.flow.Flow
 
-class DataStore(app: App) {
+class PreferencesDataStore(app: App) {
     var shared = DataStoreUtil(app)
 
     var counter: Flow<String>

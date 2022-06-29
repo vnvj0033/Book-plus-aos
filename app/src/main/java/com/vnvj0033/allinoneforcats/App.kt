@@ -2,8 +2,8 @@ package com.vnvj0033.allinoneforcats
 
 import android.app.Application
 import android.util.Log
-import com.vnvj0033.allinoneforcats.model.Data
-import com.vnvj0033.allinoneforcats.model.DataStore
+import com.vnvj0033.allinoneforcats.util.data.SharedPreferencesData
+import com.vnvj0033.allinoneforcats.util.data.PreferencesDataStore
 import com.vnvj0033.allinoneforcats.push.FirebaseMessagingHelper
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.GlobalScope
@@ -15,14 +15,14 @@ import kotlinx.coroutines.launch
 @HiltAndroidApp
 class App : Application() {
     companion object {
-        lateinit var data: Data
-        lateinit var storeData: DataStore
+        lateinit var data: SharedPreferencesData
+        lateinit var storeData: PreferencesDataStore
     }
 
     override fun onCreate() {
         super.onCreate()
-        data = Data(applicationContext)
-        storeData = DataStore(this@App)
+        data = SharedPreferencesData(applicationContext)
+        storeData = PreferencesDataStore(this@App)
 
         FirebaseMessagingHelper.updateToken()
 
