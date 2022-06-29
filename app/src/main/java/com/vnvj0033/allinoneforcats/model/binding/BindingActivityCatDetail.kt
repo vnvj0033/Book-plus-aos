@@ -5,7 +5,7 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.vnvj0033.allinoneforcats.R
 
-object BindingFragmentCatDetail {
+object BindingActivityCatDetail {
 
     @JvmStatic
     @BindingAdapter("loadCatImage")

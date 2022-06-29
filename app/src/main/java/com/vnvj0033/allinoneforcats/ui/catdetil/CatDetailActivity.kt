@@ -36,7 +36,5 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
         binding.cat = Cat(name = getString(R.string.test_text), description = getString(R.string.test_text))
     }
 
-    override fun loadList() {
-
-    }
+    override fun loadList() { }
 }
