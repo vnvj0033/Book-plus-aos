@@ -1,5 +1,6 @@
 package com.vnvj0033.allinoneforcats.ui.userprofile
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.FragmentUserProfileBinding
 import com.vnvj0033.allinoneforcats.model.Cat
 import com.vnvj0033.allinoneforcats.model.User
+import com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailActivity
 import kotlinx.coroutines.launch
 
 class UserProfileFragment : Fragment(), UserProfileEvent {
@@ -50,7 +52,8 @@ class UserProfileFragment : Fragment(), UserProfileEvent {
     }
 
     override fun goToCatDetail(cat: Cat) {
-        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+//        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        startActivity(Intent(requireContext(), CatDetailActivity::class.java))
     }
 
     override fun updateUser(user: User) {
