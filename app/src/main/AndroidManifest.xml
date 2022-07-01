@@ -25,9 +25,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.catdetil.CatDetailActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AllInOneForCats"/>
+        <activity android:name=".ui.catdetil.CatDetailActivity" />
 
         <service
             android:name=".push.CatsFirebaseMessagingService"
