@@ -11,4 +11,10 @@ class CatDetailPresent(
             catDetailEvent.updateCat(cat)
         }
     }
+
+    fun updateCatList() {
+        catDetailRepository.loadCatList().collect { list ->
+            catDetailEvent.updateList(list)
+        }
+    }
 }
