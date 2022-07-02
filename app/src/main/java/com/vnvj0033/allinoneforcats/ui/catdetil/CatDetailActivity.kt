@@ -1,7 +1,6 @@
 package com.vnvj0033.allinoneforcats.ui.catdetil
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -20,6 +19,8 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
     private lateinit var catDetailRepository: CatDetailRepository
     private lateinit var catDetailPresent: CatDetailPresent
 
+    private val  catDetailAdapter = CatDetailAdapter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("testsyyoo", "onCreate")
         super.onCreate(savedInstanceState)
@@ -30,8 +31,12 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
         catDetailRepository = CatDetailRepository()
         catDetailPresent = CatDetailPresent(catDetailEvent = this, catDetailRepository)
 
+        binding.recyclerviewCatListCatDetail.adapter = catDetailAdapter
+
+
         lifecycleScope.launch {
             catDetailPresent.updateCatProfile()
+            catDetailPresent.updateCatList()
         }
     }
 
@@ -39,5 +44,7 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
         binding.cat = Cat(name = getString(R.string.test_text), description = getString(R.string.test_text))
     }
 
-    override fun loadList() { }
+    override fun updateList(list: List<Cat>) {
+        catDetailAdapter.addData(list)
+    }
 }
