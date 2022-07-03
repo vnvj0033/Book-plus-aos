@@ -12,7 +12,7 @@ class CatDetailPresent(
         }
     }
 
-    fun updateCatList() {
+    suspend fun updateCatList() {
         catDetailRepository.loadCatList().collect { list ->
             catDetailEvent.updateList(list)
         }

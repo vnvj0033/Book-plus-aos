@@ -1,7 +1,6 @@
 package com.vnvj0033.allinoneforcats.ui.catdetil
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
@@ -22,7 +21,7 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
     private val  catDetailAdapter = CatDetailAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("testsyyoo", "onCreate")
+
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_cat_detail)
