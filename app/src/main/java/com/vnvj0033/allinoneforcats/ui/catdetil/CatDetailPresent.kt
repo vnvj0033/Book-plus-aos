@@ -1,7 +1,5 @@
 package com.vnvj0033.allinoneforcats.ui.catdetil
 
-import kotlinx.coroutines.flow.collect
-
 class CatDetailPresent(
     private val catDetailEvent: CatDetailEvent,
     private val catDetailRepository: CatDetailRepository

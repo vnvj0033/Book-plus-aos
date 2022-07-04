@@ -31,7 +31,6 @@ class CatDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyItemRangeInserted(itemCount - list.size, list.size)
     }
 
-
     inner class CatViewHolder(private val binding: ContentCatListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(cat: Cat) { }
 
