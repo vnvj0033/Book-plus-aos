@@ -11,7 +11,6 @@ import com.vnvj0033.allinoneforcats.model.Cat
 abstract class CatDatabase: RoomDatabase() {
     abstract fun catDao(): CatDAO
 
-
     companion object {
         private var instance: CatDatabase? = null
 
@@ -20,7 +19,7 @@ abstract class CatDatabase: RoomDatabase() {
             if (instance == null) {
                 synchronized(CatDatabase::class){
                     instance = Room.databaseBuilder(
-                        context.applicationContext,
+                        context,
                         CatDatabase::class.java,
                         "cat_database"
                     ).build()
