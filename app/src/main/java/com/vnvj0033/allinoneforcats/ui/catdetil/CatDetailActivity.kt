@@ -1,9 +1,12 @@
 package com.vnvj0033.allinoneforcats.ui.catdetil
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.ActivityCatDetailBinding
 import com.vnvj0033.allinoneforcats.model.Cat
@@ -45,5 +48,10 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
     override fun updateList(list: List<Cat>) {
         catDetailAdapter.addData(list)
+    }
+
+    override fun goToCatDetail(cat: Cat) {
+//        val intent = Intent(this, CatDetailActivity::class.java)
+//        startActivity(Intent(this, CatDetailActivity::class.java))
     }
 }

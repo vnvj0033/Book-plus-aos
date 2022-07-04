@@ -52,8 +52,7 @@ class UserProfileFragment : Fragment(), UserProfileEvent {
     }
 
     override fun goToCatDetail(cat: Cat) {
-//        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        startActivity(Intent(requireContext(), CatDetailActivity::class.java))
+        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
     }
 
     override fun updateUser(user: User) {
