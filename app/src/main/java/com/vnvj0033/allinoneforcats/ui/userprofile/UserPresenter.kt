@@ -1,7 +1,6 @@
 package com.vnvj0033.allinoneforcats.ui.userprofile
 
 import com.vnvj0033.allinoneforcats.model.Cat
-import kotlinx.coroutines.flow.collect
 
 class UserPresenter(
     private val userProfileEvent: UserProfileEvent,
@@ -12,16 +11,15 @@ class UserPresenter(
         userProfileEvent.goToCatDetail(cat)
     }
 
-    suspend fun loadCatList() {
+    suspend fun loadData() {
         userRepository.loadCats().collect { cats ->
-            userProfileEvent.updateCatList(cats)
-        }
-    }
+            userRepository.loadUser(cats).collect { user ->
 
-    suspend fun loadUser() {
-        userRepository.loadUser().collect { user ->
-            userProfileEvent.updateUser(user)
+                userProfileEvent.updateUser(user)
+                userProfileEvent.updateCatList(cats)
+            }
         }
+
     }
 
 }
