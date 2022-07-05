@@ -8,7 +8,7 @@ import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.ContentCatListItemBinding
 import com.vnvj0033.allinoneforcats.model.Cat
 
-class CatDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CatDetailAdapter(private val catDetailEvent: CatDetailEvent) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val item = ArrayList<Cat>()
 
@@ -32,7 +32,11 @@ class CatDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     inner class CatViewHolder(private val binding: ContentCatListItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(cat: Cat) { }
+        fun bind(cat: Cat) {
+            binding.imageviewCatCatDetail.setOnClickListener {
+                catDetailEvent.goToCatDetail(cat)
+            }
+        }
 
     }
 }

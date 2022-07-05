@@ -5,8 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.ActivityCatDetailBinding
 import com.vnvj0033.allinoneforcats.model.Cat
@@ -21,7 +19,7 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
     private lateinit var catDetailRepository: CatDetailRepository
     private lateinit var catDetailPresent: CatDetailPresent
 
-    private val  catDetailAdapter = CatDetailAdapter()
+    private lateinit var catDetailAdapter: CatDetailAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -32,6 +30,7 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
         catDetailRepository = CatDetailRepository()
         catDetailPresent = CatDetailPresent(catDetailEvent = this, catDetailRepository)
+        catDetailAdapter = CatDetailAdapter(this)
 
         binding.recyclerviewCatListCatDetail.adapter = catDetailAdapter
 
@@ -51,7 +50,9 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
     }
 
     override fun goToCatDetail(cat: Cat) {
-//        val intent = Intent(this, CatDetailActivity::class.java)
-//        startActivity(Intent(this, CatDetailActivity::class.java))
+        val intent = Intent(this, CatDetailActivity::class.java).apply {
+            putExtra("cat", cat)
+        }
+        startActivity(intent)
     }
 }
