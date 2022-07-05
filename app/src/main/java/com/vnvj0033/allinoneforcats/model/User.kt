@@ -6,6 +6,6 @@ data class User(
     val description: String = "",
     val follower: Int = 0,
     val following: Int = 0,
-    val posts: List<Post> = ArrayList()
+    val posts: List<Cat> = ArrayList()
 )
 

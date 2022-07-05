@@ -1,19 +1,17 @@
 package com.vnvj0033.allinoneforcats.ui.userprofile
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.FragmentUserProfileBinding
 import com.vnvj0033.allinoneforcats.model.Cat
 import com.vnvj0033.allinoneforcats.model.User
-import com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailActivity
 import kotlinx.coroutines.launch
 
 class UserProfileFragment : Fragment(), UserProfileEvent {
@@ -40,8 +38,7 @@ class UserProfileFragment : Fragment(), UserProfileEvent {
         binding.recyclerviewCatChoices.adapter = catListAdapter
 
         lifecycleScope.launch {
-            userPresenter.loadUser()
-            userPresenter.loadCatList()
+            userPresenter.loadData()
         }
 
     }
