@@ -49,7 +49,7 @@ class UserProfileFragment : Fragment(), UserProfileEvent {
     }
 
     override fun goToCatDetail(cat: Cat) {
-        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        findNavController().navigate(R.id.action_userProfile_to_catDetail)
     }
 
     override fun updateUser(user: User) {

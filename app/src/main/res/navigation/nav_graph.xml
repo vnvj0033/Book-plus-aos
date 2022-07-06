@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/UserProfileFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/UserProfileFragment"
         android:name="com.vnvj0033.allinoneforcats.ui.userprofile.UserProfileFragment"
         android:label="AllInOneForCat"
         tools:layout="@layout/fragment_user_profile">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            android:id="@+id/action_userProfile_to_catDetail"
             app:destination="@id/CatDetailActivity" />
     </fragment>
 
