@@ -15,6 +15,10 @@
         android:theme="@style/Theme.AllInOneForCats"
         tools:targetApi="31">
         <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_settings" />
+        <activity
             android:name=".ui.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AllInOneForCats">
@@ -24,7 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ui.catdetil.CatDetailActivity" />
 
         <service
