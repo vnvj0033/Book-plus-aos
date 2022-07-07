@@ -41,6 +41,10 @@ class UserProfileFragment : Fragment(), UserProfileEvent {
             userPresenter.loadData()
         }
 
+
+        binding.contentUserInfo.imageviewProfileUserProfileContent.setOnClickListener {
+            findNavController().navigate(R.id.action_UserProfileFragment_to_ScreenTestActivity)
+        }
     }
 
     override fun onDestroyView() {

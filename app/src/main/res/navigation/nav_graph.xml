@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_userProfile_to_catDetail"
             app:destination="@id/CatDetailActivity" />
+        <action
+            android:id="@+id/action_UserProfileFragment_to_ScreenTestActivity"
+            app:destination="@id/ScreenTestActivity" />
     </fragment>
 
     <activity
@@ -21,5 +24,13 @@
         android:name="com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailActivity"
         android:label="CatDetail"
         tools:layout="@layout/activity_cat_detail">
+    </activity>
+
+
+    <activity
+        android:id="@+id/ScreenTestActivity"
+        android:name="com.vnvj0033.allinoneforcats.ui.screentest.ScreenTestActivity"
+        android:label="ScreenTest"
+        tools:layout="@layout/activity_screen_test">
     </activity>
 </navigation>
