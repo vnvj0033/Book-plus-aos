@@ -15,6 +15,9 @@
         android:theme="@style/Theme.AllInOneForCats"
         tools:targetApi="31">
         <activity
+            android:name=".ui.screentest.ScreenTestActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.settings.SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings" />
