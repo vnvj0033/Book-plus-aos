@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.vnvj0033.allinoneforcats">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -13,14 +15,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AllInOneForCats"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
             android:name=".ui.screentest.ScreenTestActivity"
             android:exported="false" />
+
         <activity
             android:name=".ui.settings.SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings" />
+
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
@@ -31,6 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".ui.catdetil.CatDetailActivity" />
 
         <service
