@@ -35,13 +35,13 @@ class App : Application() {
         FirebaseMessagingHelper.updateToken()
 
 //        loadDB()
-        loadCat()
+//        loadCat()
     }
 
     private fun loadCat() {
         val requester = CatRequester.getCat("cream")
-        RetrofitCore.catApi.getCat(requester).enqueue(object : Callback<Unit> {
-            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+        RetrofitCore.catApi.getCat(requester).enqueue(object : Callback<Cat> {
+            override fun onResponse(call: Call<Cat>, response: Response<Cat>) {
                 if (response.isSuccessful) {
                     response.body() ?: return
 
@@ -49,7 +49,7 @@ class App : Application() {
                 }
             }
 
-            override fun onFailure(call: Call<Unit>, t: Throwable) { }
+            override fun onFailure(call: Call<Cat>, t: Throwable) { }
 
         })
     }

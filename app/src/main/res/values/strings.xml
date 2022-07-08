@@ -5,7 +5,7 @@
     <string name="test_text">base user name text filed base user name text filed base user name text filed</string>
 
     <!-- Settings string -->
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_settings">설정</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
