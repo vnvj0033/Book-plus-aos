@@ -16,4 +16,7 @@ interface CatDAO {
 
     @Query("SELECT * FROM cat")
     fun getAll(): List<Cat>
+
+    @Query("SELECT * FROM cat WHERE name = :name")
+    fun getCat(name: String): Cat?
 }
