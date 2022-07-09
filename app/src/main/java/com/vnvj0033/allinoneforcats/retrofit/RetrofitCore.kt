@@ -1,6 +1,7 @@
 package com.vnvj0033.allinoneforcats.retrofit
 
 import com.vnvj0033.allinoneforcats.retrofit.api.CatApi
+import com.vnvj0033.allinoneforcats.retrofit.api.UserApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,4 +23,5 @@ object RetrofitCore {
 
     // 통신 API 인터페이스 구현
     val catApi: CatApi = retrofit.create(CatApi::class.java)
+    val userApi: UserApi = retrofit.create(UserApi::class.java)
 }
