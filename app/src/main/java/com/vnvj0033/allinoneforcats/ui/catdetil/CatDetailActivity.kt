@@ -34,15 +34,15 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
         binding.recyclerviewCatListCatDetail.adapter = catDetailAdapter
 
-        val cat : Cat = intent.extras?.getParcelable("cat") ?: Cat()
+        val cat : Cat = intent.extras?.getParcelable("cat") ?: Cat(name = getString(R.string.test_text), description = getString(R.string.test_text))
         lifecycleScope.launch {
-            catDetailPresent.updateCatProfile(cat)
-            catDetailPresent.updateCatList()
+            updateCat(cat)
+            catDetailPresent.updateCatList(cat.name)
         }
     }
 
     override fun updateCat(cat: Cat) {
-        binding.cat = Cat(name = getString(R.string.test_text), description = getString(R.string.test_text))
+        binding.cat = cat
     }
 
     override fun updateList(list: List<Cat>) {

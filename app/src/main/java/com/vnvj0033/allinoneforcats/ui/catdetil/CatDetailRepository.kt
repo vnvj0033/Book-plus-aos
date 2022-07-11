@@ -1,7 +1,6 @@
 package com.vnvj0033.allinoneforcats.ui.catdetil
 
 import com.vnvj0033.allinoneforcats.App
-import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.db.CatDatabase
 import com.vnvj0033.allinoneforcats.model.Cat
 import com.vnvj0033.allinoneforcats.retrofit.RetrofitCore
@@ -12,29 +11,25 @@ import kotlinx.coroutines.flow.flowOf
 
 class CatDetailRepository {
 
-    suspend fun loadCat(): Flow<Cat> = coroutineScope {
+    suspend fun loadCatList(name: String): Flow<List<Cat>> = coroutineScope {
+
         val db = CatDatabase.getInstance(App.context)
 
-        val cat = db.catDao().getCat("")
+        val cats = db.catDao().getList(name)
 
-        db.close()
+        if (cats.isNotEmpty()) {
+            return@coroutineScope flowOf(cats)
+        }
 
-        if (cat != null) return@coroutineScope flowOf(cat)
 
-        val requester = CatRequester.getCat("")
-        val response = RetrofitCore.catApi.getCat(requester).execute()
+        val requester = CatRequester.getCatList(name)
+        val response = RetrofitCore.catApi.getCatList(requester).execute()
 
         if (response.isSuccessful) {
-            return@coroutineScope flowOf(response.body() ?: Cat())
+            return@coroutineScope flowOf(response.body() ?: ArrayList())
         } else {
-            return@coroutineScope flowOf(
-                Cat(name = App.context.getString(R.string.test_text), description = App.context.getString(R.string.test_text))
-            )
+            val list = ArrayList<Cat>().apply { for (i in 0..100) add(Cat()) }
+            return@coroutineScope flowOf(list)
         }
-    }
-
-    fun loadCatList(): Flow<List<Cat>> {
-        val list = ArrayList<Cat>().apply { for (i in 0..100) add(Cat()) }
-        return flowOf(list)
     }
 }
