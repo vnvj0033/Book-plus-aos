@@ -34,9 +34,9 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
         binding.recyclerviewCatListCatDetail.adapter = catDetailAdapter
 
-
+        val cat : Cat = intent.extras?.getParcelable("cat") ?: Cat()
         lifecycleScope.launch {
-            catDetailPresent.updateCatProfile()
+            catDetailPresent.updateCatProfile(cat)
             catDetailPresent.updateCatList()
         }
     }
