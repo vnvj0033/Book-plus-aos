@@ -9,6 +9,11 @@ object CatRequester {
             put("name", name)
         }
 
+    fun getCatList(name: String): Map<String, String> =
+        HashMap<String, String>().apply {
+            put("name", name)
+        }
+
     fun postCat(cat: Cat): Map<String, String> =
         HashMap<String, String>().apply {
             put("name", cat.name)

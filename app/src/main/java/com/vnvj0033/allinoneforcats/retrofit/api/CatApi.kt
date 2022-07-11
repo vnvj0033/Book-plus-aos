@@ -9,6 +9,10 @@ interface CatApi {
     @GET("")
     fun getCat(@QueryMap queryMap: Map<String, String>): Call<Cat>
 
+
+    @GET("")
+    fun getCatList(@QueryMap queryMap: Map<String, String>): Call<List<Cat>>
+
     @FormUrlEncoded
     @POST("")
     fun postCat(@FieldMap queryMap: Map<String, String>): Call<Unit>
