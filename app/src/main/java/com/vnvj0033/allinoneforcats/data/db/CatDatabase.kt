@@ -18,14 +18,10 @@ abstract class CatDatabase: RoomDatabase() {
         fun getInstance(context: Context): CatDatabase {
             if (instance == null) {
                 synchronized(CatDatabase::class){
-                    instance = Room.databaseBuilder(
-                        context,
-                        CatDatabase::class.java,
-                        "cat_database"
-                    ).build()
+                    instance = Room.databaseBuilder(context, CatDatabase::class.java, "cat_database").build()
                 }
             }
-            return instance!!
+            return instance ?: throw Exception("instance is not be null")
         }
     }
 }
