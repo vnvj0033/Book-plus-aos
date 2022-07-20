@@ -1,7 +1,7 @@
 package com.vnvj0033.allinoneforcats.ui.catdetil
 
 import com.vnvj0033.allinoneforcats.App
-import com.vnvj0033.allinoneforcats.db.CatDatabase
+import com.vnvj0033.allinoneforcats.data.db.CatDatabase
 import com.vnvj0033.allinoneforcats.model.Cat
 import com.vnvj0033.allinoneforcats.retrofit.RetrofitCore
 import com.vnvj0033.allinoneforcats.retrofit.requester.CatRequester

@@ -3,7 +3,7 @@ package com.vnvj0033.allinoneforcats
 import android.app.Application
 import android.content.Context
 import android.util.Log
-import com.vnvj0033.allinoneforcats.db.CatDatabase
+import com.vnvj0033.allinoneforcats.data.db.CatDatabase
 import com.vnvj0033.allinoneforcats.model.Cat
 import com.vnvj0033.allinoneforcats.push.FirebaseMessagingHelper
 import com.vnvj0033.allinoneforcats.retrofit.RetrofitCore

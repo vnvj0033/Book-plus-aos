@@ -1,10 +1,10 @@
-package com.vnvj0033.allinoneforcats.db
+package com.vnvj0033.allinoneforcats.data.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.vnvj0033.allinoneforcats.db.dao.CatDAO
+import com.vnvj0033.allinoneforcats.data.db.dao.CatDAO
 import com.vnvj0033.allinoneforcats.model.Cat
 
 @Database(entities = [Cat::class], version = 1)
