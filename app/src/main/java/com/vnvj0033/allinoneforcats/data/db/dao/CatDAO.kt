@@ -1,4 +1,4 @@
-package com.vnvj0033.allinoneforcats.db.dao
+package com.vnvj0033.allinoneforcats.data.db.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
