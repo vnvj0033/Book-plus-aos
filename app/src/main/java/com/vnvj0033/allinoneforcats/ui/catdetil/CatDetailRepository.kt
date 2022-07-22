@@ -9,40 +9,46 @@ import com.vnvj0033.allinoneforcats.retrofit.requester.CatRequester
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import java.lang.Exception
 
 class CatDetailRepository {
 
-    suspend fun loadCatList(name: String): Flow<List<Cat>> = coroutineScope {
+    suspend fun loadCatList(name: String): Flow<List<Cat>> = coroutineScope() {
 
         // 메모리 케시에 있는 경우
         if (!MemoryCache.catList[name].isNullOrEmpty()) {
             return@coroutineScope flowOf(MemoryCache.catList[name] ?: ArrayList())
         }
 
-        val db = CatDatabase.getInstance(App.context)
-        val cats = db.catDao().getList(name)
-
         // 디비에 있는 경우
-        if (cats.isNotEmpty()) {
-            MemoryCache.catList.put(name, cats)
-            return@coroutineScope flowOf(cats)
+        val db = CatDatabase.getInstance(App.context)
+        val dbCats = db.catDao().getList(name)
+
+        if (dbCats.isNotEmpty()) {
+            MemoryCache.catList.put(name, dbCats)
+            return@coroutineScope flowOf(dbCats)
         }
 
+        // 네트워크 통신
+        val result = runCatching {
+            val requester = CatRequester.getCatList(name)
+            val result = RetrofitCore.catApi.getCatList(requester).execute()
+            val body = result.body()
 
-        val requester = CatRequester.getCatList(name)
-        val response = RetrofitCore.catApi.getCatList(requester).execute()
+            if (result.isSuccessful && !body.isNullOrEmpty()) {
+                body
+            } else {
+                throw Exception("response is failed")
+            }
+        }.onSuccess { cats ->
+            MemoryCache.catList.put(name, cats)
 
-        // 네트워크 통신시
-        if (response.isSuccessful) {
-
-            response.body()?.forEach { cat->
-                MemoryCache.catList.put(name, cats)
+            cats.forEach { cat->
+                MemoryCache.cat.put(cat.name, cat)
                 db.catDao().addAll(cat)
             }
-            return@coroutineScope flowOf(response.body() ?: ArrayList())
-        } else {
-            val list = ArrayList<Cat>().apply { for (i in 0..100) add(Cat()) }
-            return@coroutineScope flowOf(list)
-        }
+        }.getOrNull()
+
+        flowOf(result ?: ArrayList())
     }
 }
