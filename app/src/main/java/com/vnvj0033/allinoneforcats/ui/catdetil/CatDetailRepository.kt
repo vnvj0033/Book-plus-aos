@@ -13,7 +13,7 @@ import java.lang.Exception
 
 class CatDetailRepository {
 
-    suspend fun loadCatList(name: String): Flow<List<Cat>> = coroutineScope() {
+    suspend fun loadCatList(name: String): Flow<List<Cat>> = coroutineScope {
 
         // 메모리 케시에 있는 경우
         if (!MemoryCache.catList[name].isNullOrEmpty()) {
@@ -22,7 +22,7 @@ class CatDetailRepository {
 
         // 디비에 있는 경우
         val db = CatDatabase.getInstance(App.context)
-        val dbCats = db.catDao().getList(name)
+        val dbCats = db.catDao().getAll()
 
         if (dbCats.isNotEmpty()) {
             MemoryCache.catList.put(name, dbCats)
