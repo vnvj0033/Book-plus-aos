@@ -10,16 +10,16 @@ import com.vnvj0033.allinoneforcats.databinding.ActivityCatDetailBinding
 import com.vnvj0033.allinoneforcats.model.Cat
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
     private lateinit var binding: ActivityCatDetailBinding
 
-    private lateinit var catDetailRepository: CatDetailRepository
-    private lateinit var catDetailPresent: CatDetailPresent
+    @Inject lateinit var catDetailPresent: CatDetailPresent
 
-    private lateinit var catDetailAdapter: CatDetailAdapter
+    @Inject lateinit var catDetailAdapter: CatDetailAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -27,10 +27,6 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_cat_detail)
         setContentView(binding.root)
-
-        catDetailRepository = CatDetailRepository()
-        catDetailPresent = CatDetailPresent(catDetailEvent = this, catDetailRepository)
-        catDetailAdapter = CatDetailAdapter(this)
 
         binding.recyclerviewCatListCatDetail.adapter = catDetailAdapter
 
