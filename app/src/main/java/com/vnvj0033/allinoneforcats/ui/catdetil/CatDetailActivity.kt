@@ -30,7 +30,7 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
         binding.recyclerviewCatListCatDetail.adapter = catDetailAdapter
 
-        val cat : Cat = intent.extras?.getParcelable("cat") ?: Cat(name = getString(R.string.test_text), description = getString(R.string.test_text))
+        val cat : Cat = intent.extras?.getParcelable("cat", Cat::class.java) ?: Cat(name = getString(R.string.test_text), description = getString(R.string.test_text))
         lifecycleScope.launch {
             updateCat(cat)
             catDetailPresent.updateCatList(cat.name)
