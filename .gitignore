@@ -86,3 +86,5 @@ lint/tmp/
 
 .idea/misc.xml
 .idea/git_toolbox_prj.xml
+.idea/deploymentTargetDropDown.xml
+.idea/jarRepositories.xml
