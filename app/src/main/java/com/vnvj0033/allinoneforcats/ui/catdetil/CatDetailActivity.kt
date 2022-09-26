@@ -16,7 +16,6 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
     private lateinit var binding: ActivityCatDetailBinding
 
-    private lateinit var catDetailRepository: CatDetailRepository
     private lateinit var catDetailPresent: CatDetailPresent
 
     private lateinit var catDetailAdapter: CatDetailAdapter
@@ -27,14 +26,14 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_cat_detail)
         setContentView(binding.root)
+        val repository = CatDetailRepository()
 
-        catDetailRepository = CatDetailRepository()
-        catDetailPresent = CatDetailPresent(catDetailEvent = this, catDetailRepository)
         catDetailAdapter = CatDetailAdapter(this)
+        catDetailPresent = CatDetailPresent(this, repository)
 
         binding.recyclerviewCatListCatDetail.adapter = catDetailAdapter
 
-        val cat : Cat = intent.extras?.getParcelable("cat") ?: Cat(name = getString(R.string.test_text), description = getString(R.string.test_text))
+        val cat : Cat = intent.extras?.getParcelable("cat", Cat::class.java) ?: Cat(name = getString(R.string.test_text), description = getString(R.string.test_text))
         lifecycleScope.launch {
             updateCat(cat)
             catDetailPresent.updateCatList(cat.name)
