@@ -15,6 +15,7 @@ object FirebaseMessagingHelper {
 
                 if (task.isSuccessful) {
                     val token = task.result
+                    App.data.fcmToken = token
                     Log.d(TAG, "updateToken : $token")
                 } else {
                     Log.w(TAG, "Fetching FCM registration token failed", task.exception)
