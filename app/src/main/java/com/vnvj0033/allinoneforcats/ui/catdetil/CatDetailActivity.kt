@@ -28,8 +28,8 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
         setContentView(binding.root)
         val repository = CatDetailRepository()
 
-        catDetailAdapter = CatDetailAdapter(this)
-        catDetailPresent = CatDetailPresent(this, repository)
+        catDetailAdapter = CatDetailAdapter().apply { catDetailEvent = this@CatDetailActivity }
+        catDetailPresent = CatDetailPresent(repository).apply { catDetailEvent = this@CatDetailActivity }
 
         binding.recyclerviewCatListCatDetail.adapter = catDetailAdapter
 
