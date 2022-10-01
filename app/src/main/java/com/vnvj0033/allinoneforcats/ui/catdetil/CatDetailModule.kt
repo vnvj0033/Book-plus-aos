@@ -13,8 +13,9 @@ class CatDetailModule {
     fun providesRepository() = CatDetailRepository()
 
     @Provides
-    fun providesPresent(event: CatDetailEvent, repository: CatDetailRepository) = CatDetailPresent(event, repository)
+    fun providesPresent(repository: CatDetailRepository) = CatDetailPresent(repository)
 
     @Provides
-    fun providesCatDetailAdapter(event: CatDetailEvent) = CatDetailAdapter(event)
+    fun providesCatDetailAdapter() = CatDetailAdapter()
+
 }
