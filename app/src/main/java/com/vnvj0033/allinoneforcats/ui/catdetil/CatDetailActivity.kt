@@ -22,6 +22,7 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        DaggerCatDetailComponent.build().setCatDetailEvent(this).inject(this)
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_cat_detail)
