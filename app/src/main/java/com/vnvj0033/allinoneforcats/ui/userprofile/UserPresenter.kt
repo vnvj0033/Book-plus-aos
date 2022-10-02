@@ -19,7 +19,5 @@ class UserPresenter(
                 userProfileEvent.updateCatList(cats)
             }
         }
-
     }
-
 }
