@@ -1,5 +1,8 @@
-package com.vnvj0033.allinoneforcats.ui.catdetil
+package com.vnvj0033.allinoneforcats.di
 
+import com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailAdapter
+import com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailPresent
+import com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
