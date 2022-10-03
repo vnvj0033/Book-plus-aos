@@ -20,12 +20,11 @@ interface CatDetailComponent {
         fun setEvent(@BindsInstance catDetailEvent: CatDetailEvent): CatDetailComponentBuilder
         fun build(): CatDetailComponent
     }
-
-    @EntryPoint
-    @InstallIn(CatDetailComponent::class)
-    interface CatDetailEventEntryPoint {
-        fun inject(): CatDetailActivity
-        fun putEvent(): CatDetailEvent
-    }
 }
 
+@EntryPoint
+@InstallIn(CatDetailComponent::class)
+interface CatDetailEventEntryPoint {
+    fun inject(): CatDetailActivity
+    fun putEvent(): CatDetailEvent
+}
