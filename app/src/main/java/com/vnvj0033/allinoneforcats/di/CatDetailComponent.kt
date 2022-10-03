@@ -10,20 +10,20 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.components.SingletonComponent
 
-@DefineComponent(parent = SingletonComponent::class)
+@Component(modules = [CatDetailModule::class])
 interface CatDetailComponent {
 
-//    fun inject(activity: CatDetailActivity)
+    fun inject(activity: CatDetailActivity)
 
-    @DefineComponent.Builder
+    @Component.Builder
     interface CatDetailComponentBuilder {
-        fun putEvent(@BindsInstance catDetailEvent: CatDetailEvent): CatDetailComponentBuilder
+        fun setEvent(@BindsInstance catDetailEvent: CatDetailEvent): CatDetailComponentBuilder
         fun build(): CatDetailComponent
     }
 }
 
-@EntryPoint
-@InstallIn(CatDetailComponent::class)
-interface CatDetailEventEntryPoint {
-    fun putEvent(): CatDetailEvent
-}
+//@EntryPoint
+//@InstallIn(CatDetailComponent::class)
+//interface CatDetailEventEntryPoint {
+//    fun putEvent(): CatDetailEvent
+//}
