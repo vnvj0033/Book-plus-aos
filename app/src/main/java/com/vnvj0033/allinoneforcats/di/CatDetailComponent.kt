@@ -4,17 +4,20 @@ import com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailActivity
 import com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailEvent
 import dagger.BindsInstance
 import dagger.Component
+import dagger.hilt.DefineComponent
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.components.SingletonComponent
 
-@Component(dependencies = [CatDetailEventEntryPoint::class])
+@DefineComponent(parent = SingletonComponent::class)
 interface CatDetailComponent {
 
-    fun inject(activity: CatDetailActivity)
+//    fun inject(activity: CatDetailActivity)
 
-    @Component.Builder
+    @DefineComponent.Builder
     interface CatDetailComponentBuilder {
-        fun setCatDetailEvent(@BindsInstance catDetailEvent: CatDetailEvent): CatDetailComponent
+        fun putEvent(@BindsInstance catDetailEvent: CatDetailEvent): CatDetailComponentBuilder
         fun build(): CatDetailComponent
     }
 }
@@ -22,5 +25,5 @@ interface CatDetailComponent {
 @EntryPoint
 @InstallIn(CatDetailComponent::class)
 interface CatDetailEventEntryPoint {
-    fun getEvent(): CatDetailEvent
+    fun putEvent(): CatDetailEvent
 }
