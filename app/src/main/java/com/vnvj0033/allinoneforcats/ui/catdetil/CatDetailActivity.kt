@@ -7,6 +7,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.ActivityCatDetailBinding
+import com.vnvj0033.allinoneforcats.di.CatDetailComponent
+import com.vnvj0033.allinoneforcats.di.CatDetailEventEntryPoint
 import com.vnvj0033.allinoneforcats.model.Cat
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -23,7 +25,8 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        DaggerCatDetailComponent.build().setCatDetailEvent(this).inject(this)
+        CatDetailComponent.CatDetailComponentBuilder.putEvent(this).build()
+
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_cat_detail)
@@ -31,7 +34,7 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
         binding.recyclerviewCatListCatDetail.adapter = catDetailAdapter
 
-        val cat : Cat = intent.extras?.getParcelable("cat", Cat::class.java) ?: Cat(name = getString(R.string.test_text), description = getString(R.string.test_text))
+        val cat : Cat = intent.extras?.getParcelable("cat") ?: Cat(name = getString(R.string.test_text), description = getString(R.string.test_text))
         lifecycleScope.launch {
             updateCat(cat)
             catDetailPresent.updateCatList(cat.name)
