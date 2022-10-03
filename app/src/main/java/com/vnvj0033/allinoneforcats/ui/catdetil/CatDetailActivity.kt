@@ -8,7 +8,6 @@ import androidx.lifecycle.lifecycleScope
 import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.ActivityCatDetailBinding
 import com.vnvj0033.allinoneforcats.di.CatDetailComponent
-import com.vnvj0033.allinoneforcats.di.CatDetailEventEntryPoint
 import com.vnvj0033.allinoneforcats.model.Cat
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -25,7 +24,7 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        CatDetailComponent.CatDetailComponentBuilder.putEvent(this).build()
+//        CatDetailComponent.CatDetailComponentBuilder.putEvent(this).build()
 
         super.onCreate(savedInstanceState)
 
