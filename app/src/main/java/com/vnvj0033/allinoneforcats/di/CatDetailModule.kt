@@ -1,24 +1,24 @@
 package com.vnvj0033.allinoneforcats.di
 
 import com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailAdapter
+import com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailEvent
 import com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailPresent
 import com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 
 @Module
-@InstallIn(ActivityComponent::class)
+@InstallIn(CatDetailComponent::class)
 class CatDetailModule {
 
     @Provides
     fun providesRepository() = CatDetailRepository()
 
     @Provides
-    fun providesPresent(repository: CatDetailRepository) = CatDetailPresent(repository)
+    fun providesPresent(event: CatDetailEvent, repository: CatDetailRepository) = CatDetailPresent(event, repository)
 
     @Provides
-    fun providesCatDetailAdapter() = CatDetailAdapter()
+    fun providesCatDetailAdapter(event: CatDetailEvent) = CatDetailAdapter(event)
 
 }
