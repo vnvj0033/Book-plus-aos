@@ -1,6 +1,7 @@
 package com.vnvj0033.allinoneforcats.ui.catdetil
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -10,6 +11,7 @@ import com.vnvj0033.allinoneforcats.databinding.ActivityCatDetailBinding
 import com.vnvj0033.allinoneforcats.di.CatDetailComponent
 import com.vnvj0033.allinoneforcats.model.Cat
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,19 +24,26 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
     @Inject lateinit var catDetailAdapter: CatDetailAdapter
 
+    @Inject lateinit var builder: CatDetailComponent.CatDetailComponentBuilder
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
-//        CatDetailComponent.CatDetailComponentBuilder.putEvent(this).build()
-
         super.onCreate(savedInstanceState)
+
+        builder.setEvent(this).build()
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_cat_detail)
         setContentView(binding.root)
 
         binding.recyclerviewCatListCatDetail.adapter = catDetailAdapter
 
-        val cat : Cat = intent.extras?.getParcelable("cat") ?: Cat(name = getString(R.string.test_text), description = getString(R.string.test_text))
-        lifecycleScope.launch {
+        val cat : Cat = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.extras?.getParcelable("cat", Cat::class.java) ?: Cat(name = getString(R.string.test_text), description = getString(R.string.test_text))
+        } else {
+            intent.extras?.getParcelable("cat") ?: Cat(name = getString(R.string.test_text), description = getString(R.string.test_text))
+        }
+
+        lifecycleScope.launch(Dispatchers.IO) {
             updateCat(cat)
             catDetailPresent.updateCatList(cat.name)
         }
