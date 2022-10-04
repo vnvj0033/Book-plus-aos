@@ -9,8 +9,8 @@ import dagger.hilt.android.components.ActivityComponent
 interface CatDetailComponent {
 
     @DefineComponent.Builder
-    interface CatDetailComponentBuilder {
-        fun setEvent(@BindsInstance catDetailEvent: CatDetailEvent): CatDetailComponentBuilder
+    interface Builder {
+        fun setEvent(@BindsInstance catDetailEvent: CatDetailEvent): Builder
         fun build(): CatDetailComponent
     }
 }

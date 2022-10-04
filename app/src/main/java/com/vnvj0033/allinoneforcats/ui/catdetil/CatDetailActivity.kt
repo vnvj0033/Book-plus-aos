@@ -3,6 +3,7 @@ package com.vnvj0033.allinoneforcats.ui.catdetil
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
@@ -24,7 +25,7 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
     @Inject lateinit var catDetailAdapter: CatDetailAdapter
 
-    @Inject lateinit var builder: CatDetailComponent.CatDetailComponentBuilder
+    @Inject lateinit var builder: CatDetailComponent.Builder
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -50,14 +51,19 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
     }
 
     override fun updateCat(cat: Cat) {
+        Log.d("testsyyoo", "updateCat")
         binding.cat = cat
     }
 
     override fun updateList(list: List<Cat>) {
+        Log.d("testsyyoo", "updateList")
+
         catDetailAdapter.addData(list)
     }
 
     override fun goToCatDetail(cat: Cat) {
+        Log.d("testsyyoo", "goToCatDetail")
+
         val intent = Intent(this, CatDetailActivity::class.java).apply {
             putExtra("cat", cat)
         }

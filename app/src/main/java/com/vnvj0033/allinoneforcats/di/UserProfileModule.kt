@@ -13,13 +13,13 @@ import dagger.hilt.android.components.ActivityComponent
 @InstallIn(ActivityComponent::class)
 class UserProfileModule {
 
-    @Provides
-    fun providesRepository() = UserRepository()
-
-    @Provides
-    fun providesPresent(event: UserProfileEvent, repository: UserRepository) = UserPresenter(event, repository)
-
-    @Provides
-    fun providesAdapter(presenter: UserPresenter) = CatListAdapter(presenter)
+//    @Provides
+//    fun providesRepository() = UserRepository()
+//
+//    @Provides
+//    fun providesPresent(event: UserProfileEvent, repository: UserRepository) = UserPresenter(event, repository)
+//
+//    @Provides
+//    fun providesAdapter(presenter: UserPresenter) = CatListAdapter(presenter)
 
 }
