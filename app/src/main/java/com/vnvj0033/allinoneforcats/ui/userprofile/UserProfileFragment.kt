@@ -1,5 +1,6 @@
 package com.vnvj0033.allinoneforcats.ui.userprofile
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,18 +11,28 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.FragmentUserProfileBinding
+import com.vnvj0033.allinoneforcats.di.UserProfileComponent
 import com.vnvj0033.allinoneforcats.model.Cat
 import com.vnvj0033.allinoneforcats.model.User
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class UserProfileFragment : Fragment(), UserProfileEvent {
 
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var catListAdapter: CatListAdapter
-    private lateinit var userRepository: UserRepository
-    private lateinit var userPresenter: UserPresenter
+    @Inject lateinit var catListAdapter: CatListAdapter
+    @Inject lateinit var userPresenter: UserPresenter
+    @Inject lateinit var builder: UserProfileComponent.UserProfileComponentBuilder
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        builder.setEvent(this).build()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_profile, container, false)
@@ -31,13 +42,11 @@ class UserProfileFragment : Fragment(), UserProfileEvent {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userRepository = UserRepository()
-        userPresenter = UserPresenter(userProfileEvent = this, userRepository)
 
-        catListAdapter = CatListAdapter(userPresenter)
+
         binding.recyclerviewCatChoices.adapter = catListAdapter
 
-        lifecycleScope.launch {
+        lifecycleScope.launch(Dispatchers.IO) {
             userPresenter.loadData()
         }
 
