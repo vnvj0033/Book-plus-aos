@@ -1,16 +1,26 @@
 package com.vnvj0033.allinoneforcats.di
 
+import com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailActivity
 import com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailEvent
-import dagger.BindsInstance
-import dagger.hilt.DefineComponent
-import dagger.hilt.android.components.ActivityComponent
+import dagger.Component
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-@DefineComponent(parent = ActivityComponent::class)
+@Component(dependencies = [CatEventDependencies::class])
 interface CatDetailComponent {
 
-    @DefineComponent.Builder
+    fun inject(activity: CatDetailActivity)
+
+    @Component.Builder
     interface Builder {
-        fun setEvent(@BindsInstance catDetailEvent: CatDetailEvent): Builder
+        fun setEvent(catDetailEvent: CatEventDependencies): Builder
         fun build(): CatDetailComponent
     }
+}
+
+@EntryPoint
+@InstallIn(SingletonComponent::class)
+interface CatEventDependencies {
+    fun catDetailEvent(): CatDetailEvent
 }

@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.ActivityCatDetailBinding
-import com.vnvj0033.allinoneforcats.di.CatDetailComponent
 import com.vnvj0033.allinoneforcats.model.Cat
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -25,13 +24,12 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
     @Inject lateinit var catDetailAdapter: CatDetailAdapter
 
-    @Inject lateinit var builder: CatDetailComponent.Builder
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        catDetailPresent.catDetailEvent = this
+        catDetailAdapter.catDetailEvent = this
 
         super.onCreate(savedInstanceState)
 
-        builder.setEvent(this).build()
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_cat_detail)
         setContentView(binding.root)
