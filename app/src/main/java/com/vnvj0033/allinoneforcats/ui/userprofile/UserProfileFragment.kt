@@ -13,15 +13,15 @@ import com.vnvj0033.allinoneforcats.databinding.FragmentUserProfileBinding
 import com.vnvj0033.allinoneforcats.model.Cat
 import com.vnvj0033.allinoneforcats.model.User
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class UserProfileFragment : Fragment(), UserProfileEvent {
 
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var catListAdapter: CatListAdapter
-    private lateinit var userRepository: UserRepository
-    private lateinit var userPresenter: UserPresenter
+    @Inject lateinit var catListAdapter: CatListAdapter
+    @Inject lateinit var userPresenter: UserPresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_profile, container, false)
@@ -29,12 +29,10 @@ class UserProfileFragment : Fragment(), UserProfileEvent {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        userPresenter.userProfileEvent = this
+
         super.onViewCreated(view, savedInstanceState)
 
-        userRepository = UserRepository()
-        userPresenter = UserPresenter(userProfileEvent = this, userRepository)
-
-        catListAdapter = CatListAdapter(userPresenter)
         binding.recyclerviewCatChoices.adapter = catListAdapter
 
         lifecycleScope.launch {
