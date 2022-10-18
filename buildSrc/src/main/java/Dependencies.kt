@@ -18,5 +18,5 @@ object Versions {
     const val retrofitVersion = "2.9.0"
     const val roomVersion = "2.4.3"
     const val glideVersion = "4.13.0"
-    const val hilrVersion = "2.43"
+    const val junitVersion = "4.13.2"
 }
