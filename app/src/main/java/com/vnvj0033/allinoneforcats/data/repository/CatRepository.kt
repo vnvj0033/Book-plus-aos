@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import java.lang.Exception
 
-class CatDetailRepository {
+class CatRepository {
 
     suspend fun loadCatList(name: String): Flow<List<Cat>> = coroutineScope {
 
