@@ -5,7 +5,7 @@ import android.content.Context
 import android.util.Log
 import com.vnvj0033.allinoneforcats.data.datasouce.database.CatDatabase
 import com.vnvj0033.allinoneforcats.domain.model.Cat
-import com.vnvj0033.allinoneforcats.common.push.FirebaseMessagingHelper
+import com.vnvj0033.allinoneforcats.util.push.FirebaseMessagingHelper
 import com.vnvj0033.allinoneforcats.data.datasouce.network.retrofit.RetrofitCore
 import com.vnvj0033.allinoneforcats.data.datasouce.network.retrofit.requester.CatRequester
 import com.vnvj0033.allinoneforcats.util.preferencedata.PreferencesDataStore

@@ -1,4 +1,4 @@
-package com.vnvj0033.allinoneforcats.domain.model.binding
+package com.vnvj0033.allinoneforcats.util.binding
 
 import android.widget.ImageView
 import android.widget.TextView
