@@ -3,6 +3,7 @@ package com.vnvj0033.allinoneforcats.presentation.presenter
 import com.vnvj0033.allinoneforcats.domain.model.Cat
 import com.vnvj0033.allinoneforcats.presentation.view.userprofile.UserProfileEvent
 import com.vnvj0033.allinoneforcats.data.repository.UserRepository
+import kotlinx.coroutines.flow.single
 
 class UserPresenter(
     private val userRepository: UserRepository
@@ -14,12 +15,10 @@ class UserPresenter(
     }
 
     suspend fun loadData() {
-        userRepository.loadCats().collect { cats ->
-            userRepository.loadUser(cats).collect { user ->
+        val cats = userRepository.loadCats().single()
+        val user = userRepository.loadUser(cats).single()
 
-                userProfileEvent?.updateUser(user)
-                userProfileEvent?.updateCatList(cats)
-            }
-        }
+        userProfileEvent?.updateUser(user)
+        userProfileEvent?.updateCatList(cats)
     }
 }
