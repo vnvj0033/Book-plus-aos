@@ -41,7 +41,7 @@
         <activity android:name=".presentation.view.catdetail.CatDetailActivity" />
 
         <service
-            android:name=".common.push.CatsFirebaseMessagingService"
+            android:name=".util.push.CatsFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

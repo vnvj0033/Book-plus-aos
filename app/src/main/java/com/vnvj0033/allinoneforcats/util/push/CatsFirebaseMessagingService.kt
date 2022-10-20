@@ -1,4 +1,4 @@
-package com.vnvj0033.allinoneforcats.common.push
+package com.vnvj0033.allinoneforcats.util.push
 
 import android.annotation.SuppressLint
 import android.app.Notification
