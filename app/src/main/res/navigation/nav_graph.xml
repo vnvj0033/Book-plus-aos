@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/UserProfileFragment"
-        android:name="com.vnvj0033.allinoneforcats.ui.userprofile.UserProfileFragment"
+        android:name="com.vnvj0033.allinoneforcats.presentation.view.userprofile.UserProfileFragment"
         android:label="AllInOneForCat"
         tools:layout="@layout/fragment_user_profile">
 
@@ -21,7 +21,7 @@
 
     <activity
         android:id="@+id/CatDetailActivity"
-        android:name="com.vnvj0033.allinoneforcats.ui.catdetil.CatDetailActivity"
+        android:name="com.vnvj0033.allinoneforcats.presentation.view.catdetail.CatDetailActivity"
         android:label="CatDetail"
         tools:layout="@layout/activity_cat_detail">
     </activity>
@@ -29,7 +29,7 @@
 
     <activity
         android:id="@+id/ScreenTestActivity"
-        android:name="com.vnvj0033.allinoneforcats.ui.screentest.ScreenTestActivity"
+        android:name="com.vnvj0033.allinoneforcats.presentation.view.screentest.ScreenTestActivity"
         android:label="ScreenTest"
         tools:layout="@layout/activity_screen_test">
     </activity>

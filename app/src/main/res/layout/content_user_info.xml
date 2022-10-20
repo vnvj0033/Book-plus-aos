@@ -6,9 +6,9 @@
     <data>
         <variable
             name="user"
-            type="com.vnvj0033.allinoneforcats.model.User" />
+            type="com.vnvj0033.allinoneforcats.domain.model.User" />
 
-        <import type="com.vnvj0033.allinoneforcats.model.binding.BindingContentUserInfo" />
+        <import type="com.vnvj0033.allinoneforcats.domain.model.binding.BindingContentUserInfo" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"

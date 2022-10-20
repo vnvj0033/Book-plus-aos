@@ -19,16 +19,16 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".ui.screentest.ScreenTestActivity"
+            android:name=".presentation.view.screentest.ScreenTestActivity"
             android:exported="false" />
 
         <activity
-            android:name=".ui.settings.SettingsActivity"
+            android:name=".presentation.view.settings.SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings" />
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".presentation.view.main.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AllInOneForCats">
             <intent-filter>
@@ -38,10 +38,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.catdetil.CatDetailActivity" />
+        <activity android:name=".presentation.view.catdetail.CatDetailActivity" />
 
         <service
-            android:name=".push.CatsFirebaseMessagingService"
+            android:name=".common.push.CatsFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
