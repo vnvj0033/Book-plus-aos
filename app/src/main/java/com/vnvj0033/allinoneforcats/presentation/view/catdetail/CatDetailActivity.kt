@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.vnvj0033.allinoneforcats.R
+import com.vnvj0033.allinoneforcats.common.di.InCatDetail
 import com.vnvj0033.allinoneforcats.databinding.ActivityCatDetailBinding
 import com.vnvj0033.allinoneforcats.domain.model.Cat
 import com.vnvj0033.allinoneforcats.presentation.presenter.CatDetailPresent
@@ -21,8 +22,10 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
 
     private lateinit var binding: ActivityCatDetailBinding
 
+    @InCatDetail
     @Inject lateinit var catDetailPresent: CatDetailPresent
 
+    @InCatDetail
     @Inject lateinit var catDetailAdapter: CatDetailAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
