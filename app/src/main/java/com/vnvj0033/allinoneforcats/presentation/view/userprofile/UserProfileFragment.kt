@@ -17,7 +17,7 @@ import com.vnvj0033.allinoneforcats.presentation.presenter.UserPresenter
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class UserProfileFragment : Fragment(), UserProfileEvent {
+class UserProfileFragment : Fragment(), UserProfileView.AdapterEvent {
 
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
@@ -33,10 +33,15 @@ class UserProfileFragment : Fragment(), UserProfileEvent {
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerviewCatChoices.adapter = catListAdapter.apply {
-            userProfileEvent = this@UserProfileFragment
+            userProfileView = this@UserProfileFragment
         }
 
         lifecycleScope.launch {
@@ -52,21 +57,18 @@ class UserProfileFragment : Fragment(), UserProfileEvent {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
-    override fun goToCatDetail(cat: Cat) {
-        findNavController().navigate(R.id.action_userProfile_to_catDetail)
-    }
 
-    override fun updateUser(user: User) {
+    private fun updateUser(user: User) {
         binding.contentUserInfo.user = user
     }
 
-    override fun updateCatList(cats: List<Cat>) {
+    private fun updateCatList(cats: List<Cat>) =
         catListAdapter.addCats(cats)
+
+
+    override fun goToCatDetail(cat: Cat) {
+        findNavController().navigate(R.id.action_userProfile_to_catDetail)
     }
 }
 
