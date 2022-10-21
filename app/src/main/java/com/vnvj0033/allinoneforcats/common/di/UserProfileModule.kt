@@ -21,6 +21,6 @@ class UserProfileModule {
     fun providesPresent(repository: UserRepository) = UserPresenter(repository)
 
     @Provides
-    fun providesAdapter(presenter: UserPresenter) = CatListAdapter(presenter)
+    fun providesAdapter() = CatListAdapter()
 
 }
