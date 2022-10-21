@@ -11,7 +11,7 @@ import com.vnvj0033.allinoneforcats.domain.model.Cat
 class CatListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val catList = ArrayList<Cat>()
 
-    var userProfileEvent: UserProfileEvent? = null
+    var userProfileView: UserProfileView.AdapterEvent? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.content_cat_list_item, parent, false) as ContentCatListItemBinding
@@ -34,7 +34,7 @@ class CatListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class CatViewHolder(private val binding: ContentCatListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(cat: Cat) {
-            binding.imageviewCatCatDetail.setOnClickListener { userProfileEvent?.goToCatDetail(cat) }
+            binding.imageviewCatCatDetail.setOnClickListener { userProfileView?.goToCatDetail(cat) }
         }
     }
 }
