@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.vnvj0033.allinoneforcats.R
+import com.vnvj0033.allinoneforcats.common.di.InUserProfile
 import com.vnvj0033.allinoneforcats.databinding.FragmentUserProfileBinding
 import com.vnvj0033.allinoneforcats.domain.model.Cat
 import com.vnvj0033.allinoneforcats.domain.model.User
@@ -21,7 +22,10 @@ class UserProfileFragment : Fragment(), UserProfileEvent {
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
 
+    @InUserProfile
     @Inject lateinit var catListAdapter: CatListAdapter
+
+    @InUserProfile
     @Inject lateinit var userPresenter: UserPresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
