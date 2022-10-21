@@ -30,14 +30,17 @@ class UserProfileFragment : Fragment(), UserProfileEvent {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        userPresenter.userProfileEvent = this
-
         super.onViewCreated(view, savedInstanceState)
-
-        binding.recyclerviewCatChoices.adapter = catListAdapter
+        binding.recyclerviewCatChoices.adapter = catListAdapter.apply {
+            userProfileEvent = this@UserProfileFragment
+        }
 
         lifecycleScope.launch {
-            userPresenter.loadData()
+            userPresenter.loadData { cats, user ->
+                updateUser(user)
+                updateCatList(cats)
+            }
+
         }
 
         binding.contentUserInfo.imageviewProfileUserProfileContent.setOnClickListener {

@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vnvj0033.allinoneforcats.R
 import com.vnvj0033.allinoneforcats.databinding.ContentCatListItemBinding
 import com.vnvj0033.allinoneforcats.domain.model.Cat
-import com.vnvj0033.allinoneforcats.presentation.presenter.UserPresenter
 
-class CatListAdapter(private val userPresenter: UserPresenter) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CatListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val catList = ArrayList<Cat>()
+
+    var userProfileEvent: UserProfileEvent? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.content_cat_list_item, parent, false) as ContentCatListItemBinding
@@ -33,7 +34,7 @@ class CatListAdapter(private val userPresenter: UserPresenter) : RecyclerView.Ad
 
     inner class CatViewHolder(private val binding: ContentCatListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(cat: Cat) {
-            binding.imageviewCatCatDetail.setOnClickListener { userPresenter.goToCatDetail(cat) }
+            binding.imageviewCatCatDetail.setOnClickListener { userProfileEvent?.goToCatDetail(cat) }
         }
     }
 }
