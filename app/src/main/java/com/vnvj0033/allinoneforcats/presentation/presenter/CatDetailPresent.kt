@@ -1,17 +1,14 @@
 package com.vnvj0033.allinoneforcats.presentation.presenter
 
-import com.vnvj0033.allinoneforcats.presentation.view.catdetail.CatDetailEvent
 import com.vnvj0033.allinoneforcats.data.repository.CatRepository
+import com.vnvj0033.allinoneforcats.domain.model.Cat
+import kotlinx.coroutines.flow.single
 
 class CatDetailPresent (
     private val catRepository: CatRepository
 ) {
 
-    var catDetailEvent: CatDetailEvent? = null
+    suspend fun getCatList(name: String, callback: (List<Cat>) -> Unit) =
+        callback.invoke(catRepository.loadCatList(name).single())
 
-    suspend fun updateCatList(name: String) {
-        catRepository.loadCatList(name).collect { list ->
-            catDetailEvent?.updateList(list)
-        }
-    }
 }
