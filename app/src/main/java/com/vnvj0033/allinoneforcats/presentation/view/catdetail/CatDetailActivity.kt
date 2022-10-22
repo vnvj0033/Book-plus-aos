@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
+class CatDetailActivity: AppCompatActivity(), CatDetailView.AdapterEvent {
 
     private lateinit var binding: ActivityCatDetailBinding
 
@@ -29,8 +29,7 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
     @Inject lateinit var catDetailAdapter: CatDetailAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        catDetailPresent.catDetailEvent = this
-        catDetailAdapter.catDetailEvent = this
+        catDetailAdapter.catDetailView = this
 
         super.onCreate(savedInstanceState)
 
@@ -46,18 +45,20 @@ class CatDetailActivity: AppCompatActivity(), CatDetailEvent {
             intent.extras?.getParcelable("cat") ?: Cat(name = getString(R.string.test_text), description = getString(R.string.test_text))
         }
 
+        updateCat(cat)
         lifecycleScope.launch(Dispatchers.IO) {
-            updateCat(cat)
-            catDetailPresent.updateCatList(cat.name)
+            catDetailPresent.getCatList(cat.name) {
+                updateList(it)
+            }
         }
     }
 
-    override fun updateCat(cat: Cat) {
+    fun updateCat(cat: Cat) {
         Log.d("testsyyoo", "updateCat")
         binding.cat = cat
     }
 
-    override fun updateList(list: List<Cat>) {
+    fun updateList(list: List<Cat>) {
         Log.d("testsyyoo", "updateList")
 
         catDetailAdapter.addData(list)
