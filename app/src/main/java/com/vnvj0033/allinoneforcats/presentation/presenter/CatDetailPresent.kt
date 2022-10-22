@@ -8,7 +8,17 @@ class CatDetailPresent (
     private val catRepository: CatRepository
 ) {
 
-    suspend fun getCatList(name: String, callback: (List<Cat>) -> Unit) =
-        callback.invoke(catRepository.loadCatList(name).single())
+    var catPair: Pair<String, List<Cat>>? = null
+
+    suspend fun getCatList(name: String, callback: (List<Cat>) -> Unit) {
+        if (catPair != null && catPair?.first == name) {
+            callback.invoke(catPair!!.second)
+        } else {
+            val list = catRepository.loadCatList(name).single()
+            catPair = Pair(name, list)
+            callback.invoke(list)
+
+        }
+    }
 
 }
