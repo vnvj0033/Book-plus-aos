@@ -8,16 +8,16 @@ class CatDetailPresent (
     private val catRepository: CatRepository
 ) {
 
-    var catPair: Pair<String, List<Cat>>? = null
+    // TODO: 캐시 메모리 구현 되어있는데 필요한지?
+    private var catPair = Pair<String, List<Cat>>("", ArrayList())
 
     suspend fun getCatList(name: String, callback: (List<Cat>) -> Unit) {
-        if (catPair != null && catPair?.first == name) {
-            callback.invoke(catPair!!.second)
+        if (catPair.first == name) {
+            callback.invoke(catPair.second)
         } else {
             val list = catRepository.loadCatList(name).single()
             catPair = Pair(name, list)
             callback.invoke(list)
-
         }
     }
 
