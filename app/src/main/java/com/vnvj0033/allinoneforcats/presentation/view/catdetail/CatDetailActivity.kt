@@ -3,7 +3,6 @@ package com.vnvj0033.allinoneforcats.presentation.view.catdetail
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
@@ -29,7 +28,7 @@ class CatDetailActivity: AppCompatActivity(), CatDetailView.AdapterEvent {
     @Inject lateinit var catDetailAdapter: CatDetailAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        catDetailAdapter.catDetailView = this
+        catDetailAdapter.setCatDetailView(this)
 
         super.onCreate(savedInstanceState)
 
@@ -53,20 +52,15 @@ class CatDetailActivity: AppCompatActivity(), CatDetailView.AdapterEvent {
         }
     }
 
-    fun updateCat(cat: Cat) {
-        Log.d("testsyyoo", "updateCat")
+    private fun updateCat(cat: Cat) {
         binding.cat = cat
     }
 
-    fun updateList(list: List<Cat>) {
-        Log.d("testsyyoo", "updateList")
-
+    private fun updateList(list: List<Cat>) {
         catDetailAdapter.addData(list)
     }
 
     override fun goToCatDetail(cat: Cat) {
-        Log.d("testsyyoo", "goToCatDetail")
-
         val intent = Intent(this, CatDetailActivity::class.java).apply {
             putExtra("cat", cat)
         }
