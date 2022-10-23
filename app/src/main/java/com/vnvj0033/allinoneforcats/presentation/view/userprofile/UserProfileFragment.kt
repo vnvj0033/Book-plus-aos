@@ -49,7 +49,6 @@ class UserProfileFragment : Fragment(), UserProfileView.AdapterEvent {
                 updateUser(user)
                 updateCatList(cats)
             }
-
         }
 
         binding.contentUserInfo.imageviewProfileUserProfileContent.setOnClickListener {
