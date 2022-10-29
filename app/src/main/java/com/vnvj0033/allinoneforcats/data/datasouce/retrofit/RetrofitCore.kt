@@ -1,5 +1,6 @@
 package com.vnvj0033.allinoneforcats.data.datasouce.retrofit
 
+import com.vnvj0033.allinoneforcats.data.datasouce.retrofit.api.CatApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,8 +14,8 @@ object RetrofitCore {
 //        .addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }) // debugging 용도 로그 노출
         .addInterceptor { chain ->
             val request = chain.request().newBuilder()
-                .removeHeader("User-Agent")
-                .addHeader("User-Agent", "Google-HTTP-Java-Client/1.23.0 (gzip)")
+//                .removeHeader("User-Agent")
+//                .addHeader("User-Agent", "Google-HTTP-Java-Client/1.23.0 (gzip)")
                 .build()
 
             chain.run {
@@ -28,10 +29,11 @@ object RetrofitCore {
 
     // 레트로핏 객체
     private val retrofit = Retrofit.Builder()
-        .baseUrl("")
+        .baseUrl("https://api.thecatapi.com/v1/")
         .client(client)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     // 통신 API 인터페이스 구현
+    val catApi = retrofit.create(CatApi::class.java)
 }
