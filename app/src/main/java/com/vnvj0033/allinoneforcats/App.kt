@@ -1,62 +1,14 @@
 package com.vnvj0033.allinoneforcats
 
 import android.app.Application
-import android.content.Context
-import android.util.Log
-import com.vnvj0033.allinoneforcats.data.datasouce.database.CatDatabase
-import com.vnvj0033.allinoneforcats.domain.model.Cat
 import com.vnvj0033.allinoneforcats.util.push.FirebaseMessagingHelper
-import com.vnvj0033.allinoneforcats.data.datasouce.network.retrofit.RetrofitCore
-import com.vnvj0033.allinoneforcats.data.datasouce.network.retrofit.requester.CatRequester
-import com.vnvj0033.allinoneforcats.util.preferencedata.PreferencesDataStore
-import com.vnvj0033.allinoneforcats.util.preferencedata.SharedPreferencesData
 import dagger.hilt.android.HiltAndroidApp
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 @HiltAndroidApp
 class App : Application() {
-    companion object {
-        lateinit var data: SharedPreferencesData
-        lateinit var storeData: PreferencesDataStore
-        lateinit var context: Context
-    }
 
     override fun onCreate() {
         super.onCreate()
-        context = applicationContext
-        data = SharedPreferencesData(applicationContext)
-        storeData = PreferencesDataStore(this@App)
-
         FirebaseMessagingHelper.updateToken()
-
-//        loadDB()
-//        loadCat()
-    }
-
-    private fun loadCat() {
-        val requester = CatRequester.getCat("cream")
-        RetrofitCore.catApi.getCat(requester).enqueue(object : Callback<Cat> {
-            override fun onResponse(call: Call<Cat>, response: Response<Cat>) {
-                if (response.isSuccessful) {
-                    response.body() ?: return
-
-                    Log.d("retrofit", "isSuccessful")
-                }
-            }
-
-            override fun onFailure(call: Call<Cat>, t: Throwable) { }
-
-        })
-    }
-
-    private fun loadDB() {
-        CoroutineScope(Dispatchers.IO).launch {
-            CatDatabase.getInstance(context).catDao().addAll(Cat("1", "de", "im url"))
-        }
     }
 }
