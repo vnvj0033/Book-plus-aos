@@ -31,6 +31,15 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.3.2"
+    }
+
     dataBinding {
         isEnabled = true
     }
@@ -76,4 +85,12 @@ dependencies {
     // Hilt
     implementation ("com.google.dagger:hilt-android:${Versions.hiltVersion}")
     kapt ("com.google.dagger:hilt-compiler:${Versions.hiltVersion}")
+
+    // Compose Material Design 3
+    implementation("androidx.compose.material3:material3:1.0.0-rc01")
+    // Android Studio Preview support
+    implementation("androidx.compose.ui:ui-tooling-preview:1.2.1")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.2.1")
+    // Compose glide
+    implementation("io.coil-kt:coil-compose:2.2.2")
 }
