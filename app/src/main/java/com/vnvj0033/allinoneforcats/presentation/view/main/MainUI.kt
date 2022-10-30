@@ -54,17 +54,3 @@ class MainState {
     val items = mutableStateListOf<Cat>()
     val itemClick = mutableStateOf({ _: Cat -> })
 }
-
-
-@Preview
-@Composable
-fun preview() {
-    val state = MainState().apply {
-        items.add(Cat(url = "https://cdn2.thecatapi.com/images/a7g.jpg"))
-        items.add(Cat(url = "https://cdn2.thecatapi.com/images/a7g.jpg"))
-        items.add(Cat(url = "https://cdn2.thecatapi.com/images/a7g.jpg"))
-        items.add(Cat(url = "https://cdn2.thecatapi.com/images/a7g.jpg"))
-        items.add(Cat(url = "https://cdn2.thecatapi.com/images/a7g.jpg"))
-    }
-    MainUI(state)
-}
