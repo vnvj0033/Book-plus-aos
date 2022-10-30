@@ -4,9 +4,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SnapshotMutationPolicy
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -27,18 +31,28 @@ private fun CatGrid(state: MainState) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 128.dp)
     ) {
+
+
         items(state.items) { cat ->
-            Text(text = "123")
-            AsyncImage(
-                model = cat.url,
-                contentDescription = "this image is cat item"
-            )
+            CatItem(cat, state.itemClick.value)
         }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun CatItem(cat: Cat, onClick: (Cat)-> Unit) {
+    Surface(onClick = {onClick.invoke(cat)}) {
+        AsyncImage(
+            model = cat.url,
+            contentDescription = "this image is cat item",
+        )
     }
 }
 
 class MainState {
     val items = mutableStateListOf<Cat>()
+    val itemClick = mutableStateOf({ _: Cat -> })
 }
 
 
