@@ -5,13 +5,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
-import com.vnvj0033.allinoneforcats.data.entry.Cat
-import com.vnvj0033.allinoneforcats.presentation.presenter.MainPresenter
+import androidx.lifecycle.lifecycleScope
+
+import com.vnvj0033.allinoneforcats.presentation.presenter.MainViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
     private val mainState = MainState()
-    private val viewModel: MainPresenter by viewModels()
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -21,8 +24,11 @@ class MainActivity : ComponentActivity() {
             MainUI(mainState)
         }
 
-        viewModel.loadCatList { cats: List<Cat>->
-            mainState.items.addAll(cats)
+        viewModel.cats.observe(this) {
+            mainState.items.addAll(it)
+        }
+        lifecycleScope.launch() {
+            viewModel.loadCatList()
         }
 
     }
