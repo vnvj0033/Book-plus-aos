@@ -40,9 +40,7 @@ android {
         kotlinCompilerExtensionVersion = "1.3.2"
     }
 
-    dataBinding {
-        isEnabled = true
-    }
+    namespace = "com.vnvj0033.allinoneforcats"
 }
 
 dependencies {
