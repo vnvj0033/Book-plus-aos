@@ -93,4 +93,6 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.2.2")
     // Compose Integration with activities
     implementation("androidx.activity:activity-compose:1.6.1")
+    // Compose ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
 }
