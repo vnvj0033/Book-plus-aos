@@ -24,7 +24,7 @@ import coil.compose.AsyncImage
 import com.vnvj0033.allinoneforcats.data.entry.Cat
 import com.vnvj0033.allinoneforcats.presentation.presenter.MainState
 import com.vnvj0033.allinoneforcats.presentation.presenter.MainViewModel
-import com.vnvj0033.allinoneforcats.presentation.view.detail.CatDetailActivity
+import com.vnvj0033.allinoneforcats.presentation.view.detail.DetailActivity
 import com.vnvj0033.allinoneforcats.presentation.view.theme.AppTheme
 
 @Composable
@@ -39,7 +39,7 @@ private fun MainUI(viewModel: MainViewModel) {
     val context = LocalContext.current
 
     state.click = { cat: Cat ->
-        val intent = Intent(context, CatDetailActivity::class.java).apply {
+        val intent = Intent(context, DetailActivity::class.java).apply {
             putExtra("cat", cat)
         }
         context.startActivity(intent)
