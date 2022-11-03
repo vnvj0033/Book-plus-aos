@@ -46,12 +46,6 @@ android {
 dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.8.0-alpha01")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.5.2")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.2")
-    implementation("androidx.preference:preference:1.2.0")
     testImplementation("junit:junit:${Versions.junitVersion}")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
@@ -63,13 +57,6 @@ dependencies {
     // dagger hilt
     implementation ("com.google.dagger:hilt-android:${Versions.hiltVersion}")
     kapt ("com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}")
-
-    //Glide
-    implementation ("com.github.bumptech.glide:glide:${Versions.glideVersion}")
-    annotationProcessor ("com.github.bumptech.glide:compiler:${Versions.glideVersion}")
-
-    // Preferences DataStore
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     // Room
     implementation ("androidx.room:room-runtime:${Versions.roomVersion}")

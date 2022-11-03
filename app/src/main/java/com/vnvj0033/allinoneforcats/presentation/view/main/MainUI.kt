@@ -20,30 +20,28 @@ import com.vnvj0033.allinoneforcats.presentation.view.detail.CatDetailActivity
 
 @Composable
 fun MainUI() {
-
-
-
     MainUI(viewModel())
 }
 
 @Composable
 private fun MainUI(viewModel: MainViewModel) {
 
+    val state = viewModel.state
     val context = LocalContext.current
 
-    viewModel.state.click.value = {cat: Cat ->
+    state.click = { cat: Cat ->
         val intent = Intent(context, CatDetailActivity::class.java).apply {
             putExtra("cat", cat)
         }
         context.startActivity(intent)
     }
 
-    viewModel.loadCatList()
-
     Column {
         Text(text = "선택 너의 고양이")
         CatGrid(state = viewModel.state)
     }
+
+    viewModel.loadCatList()
 
 }
 
@@ -56,7 +54,7 @@ private fun CatGrid(state: MainState) {
 
         items(state.items) { cat ->
             CatItem(cat) {
-                state.click.value.invoke(cat)
+                state.click.invoke(cat)
             }
         }
     }
@@ -68,7 +66,8 @@ fun CatItem(cat: Cat, click: ()-> Unit) {
     Surface(onClick = click) {
         AsyncImage(
             model = cat.url,
-            contentDescription = "this image is cat item",
+            contentDescription = "this image is cat item"
         )
     }
 }
+
