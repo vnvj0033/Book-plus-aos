@@ -13,13 +13,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AllInOneForCats"
         android:usesCleartextTraffic="true">
 
         <activity
             android:name=".presentation.view.main.MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AllInOneForCats">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
