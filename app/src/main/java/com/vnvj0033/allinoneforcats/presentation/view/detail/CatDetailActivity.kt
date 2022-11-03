@@ -1,7 +1,7 @@
 package com.vnvj0033.allinoneforcats.presentation.view.detail
 
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
 
-class CatDetailActivity : AppCompatActivity() {
+class CatDetailActivity : ComponentActivity() {
 
 }
