@@ -1,6 +1,8 @@
 package com.vnvj0033.allinoneforcats.presentation.view.main
 
 import android.content.Intent
+import android.content.res.Configuration.UI_MODE_NIGHT_NO
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -10,6 +12,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
@@ -17,6 +20,7 @@ import com.vnvj0033.allinoneforcats.data.entry.Cat
 import com.vnvj0033.allinoneforcats.presentation.presenter.MainState
 import com.vnvj0033.allinoneforcats.presentation.presenter.MainViewModel
 import com.vnvj0033.allinoneforcats.presentation.view.detail.CatDetailActivity
+import com.vnvj0033.allinoneforcats.presentation.view.theme.AppTheme
 
 @Composable
 fun MainUI() {
@@ -50,8 +54,6 @@ private fun CatGrid(state: MainState) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 128.dp)
     ) {
-
-
         items(state.items) { cat ->
             CatItem(cat) {
                 state.click.invoke(cat)
@@ -71,3 +73,18 @@ fun CatItem(cat: Cat, click: ()-> Unit) {
     }
 }
 
+@Preview(uiMode = UI_MODE_NIGHT_NO, showSystemUi = true, showBackground = true)
+@Composable
+fun Preview() {
+    AppTheme {
+        MainUI()
+    }
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES, showSystemUi = true, showBackground = true)
+@Composable
+fun PreviewDark() {
+    AppTheme {
+        MainUI()
+    }
+}
