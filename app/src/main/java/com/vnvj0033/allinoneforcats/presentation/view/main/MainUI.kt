@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -11,9 +12,13 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.vnvj0033.allinoneforcats.data.entry.Cat
@@ -40,8 +45,14 @@ private fun MainUI(viewModel: MainViewModel) {
         context.startActivity(intent)
     }
 
-    Column {
-        Text(text = "선택 너의 고양이")
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            text = "선택 너의 고양이",
+            modifier = Modifier
+                .padding(16.dp),
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold)
+
         CatGrid(state = viewModel.state)
     }
 
