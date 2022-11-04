@@ -1,19 +1,15 @@
 package com.vnvj0033.allinoneforcats.presentation.presenter
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.vnvj0033.allinoneforcats.data.entry.Cat
 import com.vnvj0033.allinoneforcats.data.repository.CatRepository
-import com.vnvj0033.allinoneforcats.data.repository.FakeCatRepo
+import com.vnvj0033.allinoneforcats.presentation.view.main.MainState
 import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
-
-    private val catRepository: CatRepository = FakeCatRepo()
+class MainViewModel(
+    private val catRepository: CatRepository,
+) : ViewModel() {
     val state = MainState()
 
     fun loadCatList() {
@@ -23,7 +19,12 @@ class MainViewModel : ViewModel() {
     }
 }
 
-class MainState {
-    val items = mutableStateListOf<Cat>()
-    var click by mutableStateOf({ _:Cat -> })
+class MainViewModelFactory(private val catRepository: CatRepository): ViewModelProvider.Factory {
+
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if(modelClass.isAssignableFrom(MainViewModel::class.java)) {
+            return MainViewModel(catRepository) as T
+        }
+        throw IllegalStateException("no ViewModel")
+    }
 }

@@ -19,31 +19,39 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import coil.compose.AsyncImage
 import com.vnvj0033.allinoneforcats.data.entry.Cat
-import com.vnvj0033.allinoneforcats.presentation.presenter.MainState
+import com.vnvj0033.allinoneforcats.data.repository.CatRepository
+import com.vnvj0033.allinoneforcats.data.repository.FakeCatRepo
 import com.vnvj0033.allinoneforcats.presentation.presenter.MainViewModel
+import com.vnvj0033.allinoneforcats.presentation.presenter.MainViewModelFactory
 import com.vnvj0033.allinoneforcats.presentation.view.detail.DetailActivity
 import com.vnvj0033.allinoneforcats.presentation.view.theme.AppTheme
 
 @Composable
-fun MainUI() {
-    MainUI(viewModel())
-}
-
-@Composable
-private fun MainUI(viewModel: MainViewModel) {
-
-    val state = viewModel.state
+fun MainUI(catRepository: CatRepository) {
+    val viewModelStoreOwner = LocalViewModelStoreOwner.current
     val context = LocalContext.current
 
-    state.click = { cat: Cat ->
+    val factory = MainViewModelFactory(catRepository)
+    val viewModel = ViewModelProvider(viewModelStoreOwner!!, factory)[MainViewModel::class.java]
+
+    viewModel.state.click = { cat: Cat ->
         val intent = Intent(context, DetailActivity::class.java).apply {
             putExtra("cat", cat)
         }
         context.startActivity(intent)
     }
+
+    MainUI(viewModel.state)
+
+    viewModel.loadCatList()
+}
+
+@Composable
+private fun MainUI(state: MainState) {
 
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
@@ -53,11 +61,8 @@ private fun MainUI(viewModel: MainViewModel) {
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold)
 
-        CatGrid(state = viewModel.state)
+        CatGrid(state = state)
     }
-
-    viewModel.loadCatList()
-
 }
 
 @Composable
@@ -88,7 +93,7 @@ fun CatItem(cat: Cat, click: ()-> Unit) {
 @Composable
 fun Preview() {
     AppTheme {
-        MainUI()
+        MainUI(FakeCatRepo())
     }
 }
 
@@ -96,6 +101,6 @@ fun Preview() {
 @Composable
 fun PreviewDark() {
     AppTheme {
-        MainUI()
+        MainUI(FakeCatRepo())
     }
 }

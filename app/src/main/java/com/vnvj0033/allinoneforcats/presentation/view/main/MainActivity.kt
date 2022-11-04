@@ -3,6 +3,7 @@ package com.vnvj0033.allinoneforcats.presentation.view.main
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.vnvj0033.allinoneforcats.data.repository.FakeCatRepo
 
 class MainActivity : ComponentActivity() {
 
@@ -10,7 +11,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MainUI()
+            MainUI(FakeCatRepo())
         }
     }
 }
