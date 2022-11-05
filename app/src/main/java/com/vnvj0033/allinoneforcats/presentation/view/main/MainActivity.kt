@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.vnvj0033.allinoneforcats.data.repository.CatRepository
-import com.vnvj0033.allinoneforcats.data.repository.FakeCatRepo
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -18,7 +17,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MainUI(FakeCatRepo())
+            MainUI(catRepository)
         }
     }
 }
