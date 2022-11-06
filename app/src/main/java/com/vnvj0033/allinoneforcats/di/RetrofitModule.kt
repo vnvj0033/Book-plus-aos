@@ -41,9 +41,8 @@ object RetrofitModule {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    // 통신 API 인터페이스 구현
     @Singleton
     @Provides
-    fun providesCatApi(retrofit: Retrofit) = retrofit.create(CatApi::class.java)
+    fun provideCatApi(retrofit: Retrofit) = retrofit.create(CatApi::class.java)
 
 }
