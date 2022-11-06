@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import com.vnvj0033.allinoneforcats.data.entry.Cat
+import com.vnvj0033.allinoneforcats.data.entry.CatEntry
 
 class DetailActivity : ComponentActivity() {
 
@@ -17,9 +17,9 @@ class DetailActivity : ComponentActivity() {
 
         if (bundle.containsKey("cat")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                viewModel.state.cat = bundle.getParcelable("cat", Cat::class.java) ?: Cat()
+                viewModel.state.cat = bundle.getParcelable("cat", CatEntry::class.java) ?: CatEntry()
             } else {
-                viewModel.state.cat = bundle.getParcelable("cat") ?: Cat()
+                viewModel.state.cat = bundle.getParcelable("cat") ?: CatEntry()
             }
         }
 
