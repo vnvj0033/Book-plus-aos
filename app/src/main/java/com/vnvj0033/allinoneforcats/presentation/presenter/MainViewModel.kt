@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.vnvj0033.allinoneforcats.data.repository.CatRepository
+import com.vnvj0033.allinoneforcats.domain.model.toDetailCat
 import com.vnvj0033.allinoneforcats.presentation.view.main.MainState
 import kotlinx.coroutines.launch
 
@@ -14,7 +15,9 @@ class MainViewModel(
 
     fun loadCatList() {
         viewModelScope.launch {
-            state.items.addAll(catRepository.getCatList())
+            state.items.addAll(catRepository.getCatList().map {
+                it.toDetailCat()
+            })
         }
     }
 }

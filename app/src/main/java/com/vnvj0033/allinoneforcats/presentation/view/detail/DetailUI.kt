@@ -8,6 +8,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import coil.compose.AsyncImage
 import com.vnvj0033.allinoneforcats.data.entry.CatEntry
+import com.vnvj0033.allinoneforcats.domain.model.DetailCat
 
 @Composable
 fun DetailUI(viewModel: DetailViewModel) {
@@ -24,5 +25,5 @@ class DetailViewModel : ViewModel() {
 }
 
 class DetailState {
-    var cat by mutableStateOf(CatEntry())
+    var cat by mutableStateOf(DetailCat())
 }
