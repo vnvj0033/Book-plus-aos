@@ -25,6 +25,7 @@ import coil.compose.AsyncImage
 import com.vnvj0033.allinoneforcats.data.entry.CatEntry
 import com.vnvj0033.allinoneforcats.data.repository.CatRepository
 import com.vnvj0033.allinoneforcats.data.repository.FakeCatRepo
+import com.vnvj0033.allinoneforcats.domain.model.DetailCat
 import com.vnvj0033.allinoneforcats.presentation.presenter.MainViewModel
 import com.vnvj0033.allinoneforcats.presentation.presenter.MainViewModelFactory
 import com.vnvj0033.allinoneforcats.presentation.view.detail.DetailActivity
@@ -38,7 +39,7 @@ fun MainUI(catRepository: CatRepository) {
     val factory = MainViewModelFactory(catRepository)
     val viewModel = ViewModelProvider(viewModelStoreOwner!!, factory)[MainViewModel::class.java]
 
-    viewModel.state.click = { cat: CatEntry ->
+    viewModel.state.click = { cat: DetailCat ->
         val intent = Intent(context, DetailActivity::class.java).apply {
             putExtra("cat", cat)
         }
@@ -80,7 +81,7 @@ private fun CatGrid(state: MainState) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CatItem(cat: CatEntry, click: ()-> Unit) {
+fun CatItem(cat: DetailCat, click: ()-> Unit) {
     Surface(onClick = click) {
         AsyncImage(
             model = cat.url,
