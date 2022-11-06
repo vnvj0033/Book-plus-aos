@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 @Keep
 @Parcelize
 @Entity
-data class Cat(
+data class CatEntry(
     val id: String = "",
     val url: String = "",
     val width: String = "",
