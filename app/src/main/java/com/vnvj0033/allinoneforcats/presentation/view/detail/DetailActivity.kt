@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import com.vnvj0033.allinoneforcats.domain.model.DetailCat
+import com.vnvj0033.allinoneforcats.presentation.presenter.DetailViewModel
 
 class DetailActivity : ComponentActivity() {
 
