@@ -94,7 +94,7 @@ fun CatItem(cat: DetailCat, click: ()-> Unit) {
 @Composable
 fun Preview() {
     AppTheme {
-        MainUI(FakeCatRepo())
+        MainUI(MainState())
     }
 }
 
@@ -102,6 +102,6 @@ fun Preview() {
 @Composable
 fun PreviewDark() {
     AppTheme {
-        MainUI(FakeCatRepo())
+        MainUI(MainState())
     }
 }
