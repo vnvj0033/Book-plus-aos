@@ -5,10 +5,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
 import coil.compose.AsyncImage
-import com.vnvj0033.allinoneforcats.data.entry.CatEntry
 import com.vnvj0033.allinoneforcats.domain.model.DetailCat
+import com.vnvj0033.allinoneforcats.presentation.presenter.DetailViewModel
 
 @Composable
 fun DetailUI(viewModel: DetailViewModel) {
@@ -20,9 +19,6 @@ fun DetailUI(viewModel: DetailViewModel) {
     }
 }
 
-class DetailViewModel : ViewModel() {
-    val state = DetailState()
-}
 
 class DetailState {
     var cat by mutableStateOf(DetailCat())
