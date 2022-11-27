@@ -40,7 +40,7 @@ android {
         kotlinCompilerExtensionVersion = "1.3.2"
     }
 
-    namespace = "com.vnvj0033.allinoneforcats"
+    namespace = "com.vnvj0033.bookplus"
 }
 
 dependencies {

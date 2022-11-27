@@ -1,5 +1,5 @@
 object Apps {
-    const val applicationId = "com.vnvj0033.allinoneforcats"
+    const val applicationId = "com.vnvj0033.bookplus"
     const val minSdkVersion = 21
     const val targetSdkVersion = 33
     const val compileSdkVersion = 33
