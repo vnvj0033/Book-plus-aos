@@ -3,7 +3,7 @@ package com.vnvj0033.bookplus.presentation.presenter
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.vnvj0033.bookplus.data.repository.CatRepository
-import com.vnvj0033.bookplus.presentation.view.detail.DetailState
+import com.vnvj0033.bookplus.presentation.ui.detail.DetailState
 
 class DetailViewModel : ViewModel() {
     val state = DetailState()

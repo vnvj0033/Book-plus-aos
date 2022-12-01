@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.vnvj0033.bookplus.data.repository.CatRepository
 import com.vnvj0033.bookplus.domain.model.toDetailCat
-import com.vnvj0033.bookplus.presentation.view.main.MainState
 import kotlinx.coroutines.launch
 
 class MainViewModel(
