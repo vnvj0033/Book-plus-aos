@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,23 +23,38 @@ import com.vnvj0033.bookplus.R
 
 @Composable
 fun PlatformSelectionList() {
-    val platforms = listOf("1", "2", "3")
-    LazyRow(Modifier.fillMaxWidth()) {
-        items(platforms) { title ->
-            PlatformSelection(title)
-        }
+    val platforms = listOf("kyobo", "yes25", "aladin")
+    PlatformSelectionList(platforms)
+}
 
+@Composable
+fun PlatformSelectionList(platforms: List<String>) {
+
+    Column {
+        Text(
+            text = "PLATFORMS",
+            style = MaterialTheme.typography.titleSmall,
+            modifier = Modifier
+                .paddingFromBaseline(top = 40.dp, bottom = 8.dp)
+                .padding(horizontal = 16.dp)
+        )
+        LazyRow(Modifier.fillMaxWidth()) {
+            items(platforms) { title ->
+                PlatformSelection(title)
+            }
+        }
     }
+
 }
 
 
 @Composable
 fun PlatformSelection(title: String) {
-    val image = painterResource(R.drawable.ic_blank_cat)
+    val image = painterResource(R.drawable.logo_kyobo)
 
     val maxSize = 88.dp
 
-    val selectedColor = Color.Yellow
+    val selectedColor = Color.Transparent
 
     Column(
         modifier = Modifier
@@ -55,9 +71,10 @@ fun PlatformSelection(title: String) {
                 .clip(CircleShape)
         )
         Text(
-            text = title,
+            text = title.uppercase(),
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
+            style = MaterialTheme.typography.labelLarge,
             modifier = Modifier
                 .paddingFromBaseline(top = 24.dp, bottom = 8.dp)
                 .sizeIn(maxWidth = maxSize)
@@ -68,8 +85,10 @@ fun PlatformSelection(title: String) {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 private fun PreviewPlatformSelectionList() {
+    val platforms = listOf("KYOBO", "YES24", "ALADIN")
+
     AppTheme {
-        PlatformSelectionList()
+        PlatformSelectionList(platforms)
     }
 }
 
