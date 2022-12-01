@@ -1,6 +1,5 @@
 package com.vnvj0033.bookplus.data.datasouce.retrofit
 
-import com.vnvj0033.bookplus.data.datasouce.retrofit.api.CatApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -29,11 +28,9 @@ object RetrofitCore {
 
     // 레트로핏 객체
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://api.thecatapi.com/v1/")
+        .baseUrl("https://localhost:3000/")
         .client(client)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    // 통신 API 인터페이스 구현
-    val catApi = retrofit.create(CatApi::class.java)
 }
