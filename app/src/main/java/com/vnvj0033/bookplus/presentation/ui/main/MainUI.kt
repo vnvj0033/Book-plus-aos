@@ -20,7 +20,7 @@ fun MainUI() {
 
 @Preview(uiMode = UI_MODE_NIGHT_NO, showSystemUi = true, showBackground = true)
 @Composable
-fun Preview() {
+private fun Preview() {
     AppTheme {
         MainUI()
     }

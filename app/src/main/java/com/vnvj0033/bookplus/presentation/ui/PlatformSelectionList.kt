@@ -14,23 +14,28 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vnvj0033.bookplus.R
+import com.vnvj0033.bookplus.presentation.ui.state.PlatformSelectionState
 
 @Composable
 fun PlatformSelectionList() {
-    val platforms = listOf("kyobo", "yes25", "aladin")
+    val kyobo = PlatformSelectionState("kyobo", R.drawable.logo_kyobo)
+    val yes24 = PlatformSelectionState("yes24", R.drawable.logo_yes24)
+    val aladin = PlatformSelectionState("aladin", R.drawable.logo_kyobo)
+
+    val platforms = listOf(kyobo, yes24, aladin)
+
     PlatformSelectionList(platforms)
 }
 
 @Composable
-fun PlatformSelectionList(platforms: List<String>) {
+fun PlatformSelectionList(platforms: List<PlatformSelectionState>) {
 
-    Column {
+    Column() {
         Text(
             text = "PLATFORMS",
             style = MaterialTheme.typography.titleSmall,
@@ -39,8 +44,8 @@ fun PlatformSelectionList(platforms: List<String>) {
                 .padding(horizontal = 16.dp)
         )
         LazyRow(Modifier.fillMaxWidth()) {
-            items(platforms) { title ->
-                PlatformSelection(title)
+            items(platforms) { platform ->
+                PlatformSelection(platform)
             }
         }
     }
@@ -49,8 +54,8 @@ fun PlatformSelectionList(platforms: List<String>) {
 
 
 @Composable
-fun PlatformSelection(title: String) {
-    val image = painterResource(R.drawable.logo_kyobo)
+fun PlatformSelection(state: PlatformSelectionState) {
+    val image = painterResource(state.imageResource)
 
     val maxSize = 88.dp
 
@@ -65,13 +70,13 @@ fun PlatformSelection(title: String) {
         Image(
             painter = image,
             contentDescription = null,
-            contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(maxSize)
                 .clip(CircleShape)
+                .background(Color.LightGray)
         )
         Text(
-            text = title.uppercase(),
+            text = state.title.uppercase(),
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
             style = MaterialTheme.typography.labelLarge,
@@ -85,8 +90,6 @@ fun PlatformSelection(title: String) {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 private fun PreviewPlatformSelectionList() {
-    val platforms = listOf("KYOBO", "YES24", "ALADIN")
-
     AppTheme {
         PlatformSelectionList(platforms)
     }
@@ -95,7 +98,16 @@ private fun PreviewPlatformSelectionList() {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 private fun PreviewPlatformSelection() {
+    val kyobo = PlatformSelectionState("kyobo", R.drawable.logo_kyobo)
+
     AppTheme {
-        PlatformSelection("preview title")
+        PlatformSelection(kyobo)
     }
 }
+
+
+val kyobo = PlatformSelectionState("kyobo", R.drawable.logo_kyobo)
+val yes24 = PlatformSelectionState("yes24", R.drawable.logo_yes24)
+val aladin = PlatformSelectionState("aladin", R.drawable.logo_aladin)
+
+val platforms = listOf(kyobo, yes24, aladin)
