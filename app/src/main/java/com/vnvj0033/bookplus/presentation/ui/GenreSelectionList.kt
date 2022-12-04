@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.vnvj0033.bookplus.presentation.ui.state.GenreSelectionListState
 
 @Composable
 fun GenreSelectionList() {
@@ -26,8 +27,11 @@ fun GenreSelectionList() {
         "취미/생활",
     )
 
+    val state = GenreSelectionListState()
+    state.options.addAll(options)
+
     LazyRow(modifier = Modifier.padding(top = 8.dp)) {
-        items(options) { text ->
+        items(state.options) { text ->
             GenreSelection(text)
         }
     }
