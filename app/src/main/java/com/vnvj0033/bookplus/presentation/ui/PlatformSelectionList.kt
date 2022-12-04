@@ -23,12 +23,6 @@ import com.vnvj0033.bookplus.presentation.ui.state.PlatformSelectionState
 
 @Composable
 fun PlatformSelectionList() {
-    val kyobo = PlatformSelectionState("kyobo", R.drawable.logo_kyobo)
-    val yes24 = PlatformSelectionState("yes24", R.drawable.logo_yes24)
-    val aladin = PlatformSelectionState("aladin", R.drawable.logo_kyobo)
-
-    val platforms = listOf(kyobo, yes24, aladin)
-
     PlatformSelectionList(platforms)
 }
 
@@ -110,4 +104,4 @@ val kyobo = PlatformSelectionState("kyobo", R.drawable.logo_kyobo)
 val yes24 = PlatformSelectionState("yes24", R.drawable.logo_yes24)
 val aladin = PlatformSelectionState("aladin", R.drawable.logo_aladin)
 
-val platforms = listOf(kyobo, yes24, aladin)
+val platforms = listOf(kyobo, yes24, aladin, kyobo, yes24, aladin)

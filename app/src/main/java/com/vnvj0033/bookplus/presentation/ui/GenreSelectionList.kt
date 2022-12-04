@@ -34,9 +34,7 @@ fun GenreSelectionList() {
 }
 
 @Composable
-private fun GenreSelection(
-    text: String
-) {
+private fun GenreSelection(text: String) {
     var selectedOption by remember {
         mutableStateOf("컴퓨터/IT")
     }
