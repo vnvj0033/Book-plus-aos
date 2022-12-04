@@ -22,7 +22,8 @@ import com.vnvj0033.bookplus.domain.model.MainBook
 fun BookList() {
 
     LazyColumn(
-        modifier = Modifier.padding(top = 8.dp),
+        modifier = Modifier
+            .padding(top = 8.dp),
         contentPadding = PaddingValues(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
