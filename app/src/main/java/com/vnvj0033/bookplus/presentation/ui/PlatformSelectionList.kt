@@ -3,6 +3,7 @@ package com.vnvj0033.bookplus.presentation.ui
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -19,11 +20,15 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vnvj0033.bookplus.R
+import com.vnvj0033.bookplus.presentation.presenter.PlatformSelectionListViewModel
 import com.vnvj0033.bookplus.presentation.ui.state.PlatformSelectionState
 
 @Composable
 fun PlatformSelectionList() {
-    PlatformSelectionList(platforms)
+
+    val viewmodel = PlatformSelectionListViewModel()
+
+    PlatformSelectionList(viewmodel.platforms)
 }
 
 @Composable
@@ -39,7 +44,9 @@ fun PlatformSelectionList(platforms: List<PlatformSelectionState>) {
         )
         LazyRow(Modifier.fillMaxWidth()) {
             items(platforms) { platform ->
-                PlatformSelection(platform)
+                PlatformSelection(platform) {
+
+                }
             }
         }
     }
@@ -48,17 +55,19 @@ fun PlatformSelectionList(platforms: List<PlatformSelectionState>) {
 
 
 @Composable
-fun PlatformSelection(state: PlatformSelectionState) {
+fun PlatformSelection(
+    state: PlatformSelectionState,
+    click: () -> Unit = {}
+) {
     val image = painterResource(state.imageResource)
-
     val maxSize = 88.dp
-
     val selectedColor = Color.Transparent
 
     Column(
         modifier = Modifier
             .background(selectedColor)
-            .padding(8.dp),
+            .padding(8.dp)
+            .clickable {  },
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
@@ -85,7 +94,7 @@ fun PlatformSelection(state: PlatformSelectionState) {
 @Composable
 private fun PreviewPlatformSelectionList() {
     AppTheme {
-        PlatformSelectionList(platforms)
+        PlatformSelectionList()
     }
 }
 
@@ -98,10 +107,3 @@ private fun PreviewPlatformSelection() {
         PlatformSelection(kyobo)
     }
 }
-
-
-val kyobo = PlatformSelectionState("kyobo", R.drawable.logo_kyobo)
-val yes24 = PlatformSelectionState("yes24", R.drawable.logo_yes24)
-val aladin = PlatformSelectionState("aladin", R.drawable.logo_aladin)
-
-val platforms = listOf(kyobo, yes24, aladin, kyobo, yes24, aladin)
