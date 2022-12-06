@@ -6,42 +6,33 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.vnvj0033.bookplus.presentation.presenter.MainViewModel
 import com.vnvj0033.bookplus.presentation.ui.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainUI() {
+    val viewModel = MainViewModel()
 
-    val platformState = null
-    val genreState = null
-    val booksState = null
-
-    val platformClick = {
-
-    }
-
-    val genreClick = {
-
-    }
-
-    val bookClick = {
-
-    }
-
-    val navigateClick = {
-
-    }
-
-    Scaffold(bottomBar =  {BottomNavigation()}) {
+    Scaffold(bottomBar = { BottomNavigation() }) {
         Column(modifier = Modifier.padding(it)) {
-            PlatformSelectionList()
-            GenreSelectionList()
-            BookList()
+            PlatformSelectionList(viewModel.platformStates) {
+                viewModel.loadGenre()
+            }
+            GenreSelectionList(viewModel.genreState) {
+                viewModel.loadBooks()
+            }
+            BookList() {
+                openBookDetail()
+            }
         }
     }
+}
+
+private fun openBookDetail() {
+
 }
 
 

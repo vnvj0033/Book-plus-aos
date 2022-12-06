@@ -20,15 +20,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vnvj0033.bookplus.R
-import com.vnvj0033.bookplus.presentation.presenter.PlatformSelectionListViewModel
 import com.vnvj0033.bookplus.presentation.ui.state.PlatformSelectionState
 
 @Composable
-fun PlatformSelectionList() {
-
-    val viewmodel = PlatformSelectionListViewModel()
-
-    PlatformSelectionList(viewmodel.platforms)
+fun PlatformSelectionList(
+    platforms: List<PlatformSelectionState> = listOf(),
+    click: () -> Unit = {}
+) {
+    PlatformSelectionList(platforms)
 }
 
 @Composable

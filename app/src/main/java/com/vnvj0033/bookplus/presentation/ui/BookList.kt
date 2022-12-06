@@ -19,7 +19,7 @@ import com.vnvj0033.bookplus.R
 import com.vnvj0033.bookplus.domain.model.MainBook
 
 @Composable
-fun BookList() {
+fun BookList(click: () -> Unit = {}) {
 
     LazyColumn(
         modifier = Modifier
