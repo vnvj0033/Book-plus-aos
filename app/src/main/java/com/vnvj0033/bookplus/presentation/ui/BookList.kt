@@ -1,6 +1,7 @@
 package com.vnvj0033.bookplus.presentation.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -19,7 +20,7 @@ import com.vnvj0033.bookplus.R
 import com.vnvj0033.bookplus.domain.model.MainBook
 
 @Composable
-fun BookList(click: () -> Unit = {}) {
+fun BookList(click: (MainBook) -> Unit = {}) {
 
     LazyColumn(
         modifier = Modifier
@@ -28,13 +29,18 @@ fun BookList(click: () -> Unit = {}) {
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(books) { book ->
-            Book(book)
+            Book(book) {
+                click.invoke(book)
+            }
         }
     }
 }
 
 @Composable
-fun Book(book: MainBook) {
+fun Book(
+    book: MainBook,
+    click: () -> Unit = {}
+) {
 
     val maxHeight = 112.dp
 
@@ -44,7 +50,7 @@ fun Book(book: MainBook) {
             .sizeIn(maxHeight = maxHeight),
         shape = MaterialTheme.shapes.small
     ) {
-        Row {
+        Row(Modifier.clickable { click.invoke() }) {
             Image(
                 modifier = Modifier.size(112.dp),
                 painter = painterResource(R.drawable.ic_blank_profile),
