@@ -25,6 +25,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".presentation.controller.BookDetailActivity" />
+
         <service
             android:name=".util.push.CatsFirebaseMessagingService"
             android:exported="false">
