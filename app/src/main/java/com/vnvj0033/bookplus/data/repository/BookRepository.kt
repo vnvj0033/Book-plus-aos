@@ -5,8 +5,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
 class FakeBookRepo : BookRepository {
-    override suspend fun loadBook(genre: String): Flow<Book> {
-        return flowOf(Book())
+    override suspend fun loadBooks(genre: String): Flow<List<Book>> {
+        return flowOf(listOf( Book()))
     }
 
     override suspend fun loadGenres(): Flow<List<String>> {
@@ -17,6 +17,6 @@ class FakeBookRepo : BookRepository {
 }
 
 interface BookRepository {
-    suspend fun loadBook(genre: String): Flow<Book>
+    suspend fun loadBooks(genre: String): Flow<List<Book>>
     suspend fun loadGenres(): Flow<List<String>>
 }

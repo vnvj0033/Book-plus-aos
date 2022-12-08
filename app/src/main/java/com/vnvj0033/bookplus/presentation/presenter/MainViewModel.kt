@@ -2,8 +2,11 @@ package com.vnvj0033.bookplus.presentation.presenter
 
 import androidx.lifecycle.ViewModel
 import com.vnvj0033.bookplus.R
+import com.vnvj0033.bookplus.data.entity.Book
 import com.vnvj0033.bookplus.data.repository.BookRepository
 import com.vnvj0033.bookplus.data.repository.FakeBookRepo
+import com.vnvj0033.bookplus.domain.model.MainBook
+import com.vnvj0033.bookplus.presentation.ui.state.BookListState
 import com.vnvj0033.bookplus.presentation.ui.state.GenreSelectionListState
 import com.vnvj0033.bookplus.presentation.ui.state.PlatformSelectionState
 import kotlinx.coroutines.flow.single
@@ -17,6 +20,7 @@ class MainViewModel: ViewModel() {
 
     val platformStates = listOf(kyobo, yes24, aladin, kyobo, yes24, aladin)
     val genreState = GenreSelectionListState()
+    val bookListState = BookListState()
 
     suspend fun loadGenre() {
         val genres = bookRepo.loadGenres().single()
@@ -27,9 +31,15 @@ class MainViewModel: ViewModel() {
 
     suspend fun loadBooks() {
         val selectedGenre = genreState.selectGenre
-        val book = bookRepo.loadBook(selectedGenre)
+        val books = bookRepo.loadBooks(selectedGenre).single().map { book ->
+            book.toMainBook()
+        }
+
+        bookListState.books.clear()
+        bookListState.books.addAll(books)
 
     }
 
 
+    private fun Book.toMainBook() = MainBook("", title, "", "")
 }

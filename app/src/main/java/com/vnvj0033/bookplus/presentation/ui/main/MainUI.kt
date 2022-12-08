@@ -46,7 +46,7 @@ private fun MainCompose(modifier: Modifier = Modifier) {
                 viewModel.loadBooks()
             }
         }
-        BookList { book ->
+        BookList(viewModel.bookListState) { book ->
             openBookDetail(context, book)
         }
     }

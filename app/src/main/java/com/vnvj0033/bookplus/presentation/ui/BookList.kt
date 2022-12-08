@@ -18,9 +18,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vnvj0033.bookplus.R
 import com.vnvj0033.bookplus.domain.model.MainBook
+import com.vnvj0033.bookplus.presentation.ui.state.BookListState
 
 @Composable
-fun BookList(click: (MainBook) -> Unit = {}) {
+fun BookList(
+    state: BookListState = BookListState(),
+    click: (MainBook) -> Unit = {}
+) {
 
     LazyColumn(
         modifier = Modifier
@@ -28,7 +32,7 @@ fun BookList(click: (MainBook) -> Unit = {}) {
         contentPadding = PaddingValues(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(books) { book ->
+        items(state.books) { book ->
             Book(book) {
                 click.invoke(book)
             }
@@ -76,16 +80,6 @@ fun Book(
 
 }
 
-
-val books = listOf(
-    MainBook("imagerUrl", "title", "writer", "summery"),
-    MainBook("imagerUrl", "title", "writer", "summery"),
-    MainBook("imagerUrl", "title", "writer", "summery"),
-    MainBook("imagerUrl", "title", "writer", "summery"),
-    MainBook("imagerUrl", "title", "writer", "summery"),
-    MainBook("imagerUrl", "title", "writer", "summery")
-)
-
 @Composable
 @Preview
 private fun PreviewBookList() {
@@ -98,6 +92,6 @@ private fun PreviewBookList() {
 @Preview
 private fun PreviewBook() {
     AppTheme {
-        Book(books[0])
+        Book(MainBook("","","", ""))
     }
 }
