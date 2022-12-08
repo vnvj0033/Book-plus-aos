@@ -19,21 +19,26 @@ import com.vnvj0033.bookplus.presentation.ui.*
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainUI() {
-    val context = LocalContext.current
-
-    val viewModel = MainViewModel()
 
     Scaffold(bottomBar = { BottomNavigation() }) {
-        Column(modifier = Modifier.padding(it)) {
-            PlatformSelectionList(viewModel.platformStates) {
-                viewModel.loadGenre()
-            }
-            GenreSelectionList(viewModel.genreState) {
-                viewModel.loadBooks()
-            }
-            BookList { book ->
-                openBookDetail(context, book)
-            }
+        MainCompose(modifier = Modifier.padding(it))
+    }
+}
+
+@Composable
+private fun MainCompose(modifier: Modifier = Modifier) {
+    val context = LocalContext.current
+    val viewModel = MainViewModel()
+
+    Column(modifier = modifier) {
+        PlatformSelectionList(viewModel.platformStates) {
+            viewModel.loadGenre()
+        }
+        GenreSelectionList(viewModel.genreState) {
+            viewModel.loadBooks()
+        }
+        BookList { book ->
+            openBookDetail(context, book)
         }
     }
 }
