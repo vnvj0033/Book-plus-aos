@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".presentation.controller.MainActivity"
+            android:name=".presentation.controller.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".presentation.controller.MainActivity" />
         <activity android:name=".presentation.controller.BookDetailActivity" />
 
         <service
