@@ -21,29 +21,25 @@ fun BottomNavigation() {
                     imageVector = Icons.Default.AccountBox,
                     contentDescription = null)
             },
-            label = {
-                Text("메인")
-            })
+            label = { Text("메인") })
 
-        NavigationBarItem(selected = false, onClick = { /*TODO*/ },
+        NavigationBarItem(
+            selected = false,
+            onClick = { /*TODO*/ },
             icon = {
                 Icon(
                     imageVector = Icons.Default.AccountBox,
-                    contentDescription = null)
-            },
-            label = {
-                Text("선호 장르")
-            })
+                    contentDescription = null) },
+            label = { Text("선호 장르") })
 
-        NavigationBarItem(selected = false, onClick = { /*TODO*/ },
+        NavigationBarItem(
+            selected = false,
+            onClick = { /*TODO*/ },
             icon = {
                 Icon(
                     imageVector = Icons.Default.AccountBox,
-                    contentDescription = null)
-            },
-            label = {
-                Text("설정")
-            })
+                    contentDescription = null) },
+            label = { Text("설정") })
     }
 }
 
