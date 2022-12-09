@@ -32,6 +32,16 @@ fun BottomNavigation() {
                     contentDescription = null) },
             label = { Text("선호 장르") })
 
+
+        NavigationBarItem(
+            selected = false,
+            onClick = { /*TODO*/ },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.AccountBox,
+                    contentDescription = null) },
+            label = { Text("구독하기") })
+
         NavigationBarItem(
             selected = false,
             onClick = { /*TODO*/ },
