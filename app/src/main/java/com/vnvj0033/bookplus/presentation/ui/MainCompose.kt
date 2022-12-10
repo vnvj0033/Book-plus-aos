@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vnvj0033.bookplus.domain.model.MainBook
 import com.vnvj0033.bookplus.presentation.controller.BookDetailActivity
 import com.vnvj0033.bookplus.presentation.presenter.MainViewModel
@@ -17,7 +18,7 @@ fun MainCompose(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val composeScope = rememberCoroutineScope()
 
-    val viewModel = MainViewModel()
+    val viewModel: MainViewModel = viewModel()
 
     Column(modifier = modifier) {
         PlatformSelectionList(viewModel.platformStates) {
