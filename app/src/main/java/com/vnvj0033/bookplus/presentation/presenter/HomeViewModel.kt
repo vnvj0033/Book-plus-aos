@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import com.vnvj0033.bookplus.R
 import com.vnvj0033.bookplus.data.entity.Book
 import com.vnvj0033.bookplus.data.repository.BookRepository
-import com.vnvj0033.bookplus.data.repository.FakeBookRepo
 import com.vnvj0033.bookplus.domain.model.MainBook
 import com.vnvj0033.bookplus.presentation.ui.state.BookListState
 import com.vnvj0033.bookplus.presentation.ui.state.GenreSelectionListState
@@ -14,7 +13,7 @@ import kotlinx.coroutines.flow.single
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val bookRepository: BookRepository
 ): ViewModel() {
     private val kyobo = PlatformSelectionState("kyobo", R.drawable.logo_kyobo)

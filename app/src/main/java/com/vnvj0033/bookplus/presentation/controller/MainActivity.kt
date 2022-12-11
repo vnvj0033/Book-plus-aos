@@ -11,15 +11,21 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.ViewModel
-import com.vnvj0033.bookplus.presentation.presenter.MainViewModel
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.vnvj0033.bookplus.data.repository.BookRepository
+import com.vnvj0033.bookplus.presentation.presenter.HomeViewModel
 import com.vnvj0033.bookplus.presentation.ui.AppTheme
 import com.vnvj0033.bookplus.presentation.ui.BottomNavigation
-import com.vnvj0033.bookplus.presentation.ui.MainCompose
+import com.vnvj0033.bookplus.presentation.ui.HomeCompose
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var bookRepository: BookRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,10 +40,19 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     private fun MainUI() {
-        val viewModel: MainViewModel by viewModels()
+        val homeViewModel: HomeViewModel by viewModels(factoryProducer = {
+            viewModelFactory {
+                initializer {
+                    HomeViewModel(bookRepository = bookRepository)
+                }
+            }
+        })
 
         Scaffold(bottomBar = { BottomNavigation() }) {
-            MainCompose(modifier = Modifier.padding(it))
+            HomeCompose(
+                modifier = Modifier.padding(it),
+                viewModel = homeViewModel
+            )
         }
     }
 

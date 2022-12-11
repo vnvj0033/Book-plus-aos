@@ -21,7 +21,7 @@ fun BottomNavigation() {
                     imageVector = Icons.Default.AccountBox,
                     contentDescription = null)
             },
-            label = { Text("메인") })
+            label = { Text("홈") })
 
         NavigationBarItem(
             selected = false,
