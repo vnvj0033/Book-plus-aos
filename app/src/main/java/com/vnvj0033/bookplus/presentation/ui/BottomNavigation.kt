@@ -1,7 +1,7 @@
 package com.vnvj0033.bookplus.presentation.ui
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
@@ -18,7 +18,7 @@ fun BottomNavigation() {
             onClick = { /*TODO*/ },
             icon = {
                 Icon(
-                    imageVector = Icons.Default.AccountBox,
+                    imageVector = Icons.Default.Home,
                     contentDescription = null)
             },
             label = { Text("홈") })
@@ -28,7 +28,7 @@ fun BottomNavigation() {
             onClick = { /*TODO*/ },
             icon = {
                 Icon(
-                    imageVector = Icons.Default.AccountBox,
+                    imageVector = Icons.Default.Favorite,
                     contentDescription = null) },
             label = { Text("선호 장르") })
 
@@ -38,7 +38,7 @@ fun BottomNavigation() {
             onClick = { /*TODO*/ },
             icon = {
                 Icon(
-                    imageVector = Icons.Default.AccountBox,
+                    imageVector = Icons.Default.Search,
                     contentDescription = null) },
             label = { Text("구독하기") })
 
@@ -47,7 +47,7 @@ fun BottomNavigation() {
             onClick = { /*TODO*/ },
             icon = {
                 Icon(
-                    imageVector = Icons.Default.AccountBox,
+                    imageVector = Icons.Default.Settings,
                     contentDescription = null) },
             label = { Text("설정") })
     }

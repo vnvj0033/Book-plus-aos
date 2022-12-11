@@ -7,6 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
+import com.vnvj0033.bookplus.data.repository.BookRepositoryImpl
 import com.vnvj0033.bookplus.domain.model.MainBook
 import com.vnvj0033.bookplus.presentation.controller.BookDetailActivity
 import com.vnvj0033.bookplus.presentation.presenter.HomeViewModel
@@ -44,3 +46,13 @@ private fun openBookDetail(context: Context, book: MainBook) {
     context.startActivity(intent)
 }
 
+
+@Preview
+@Composable
+private fun Preview() {
+    AppTheme {
+        HomeCompose(
+            viewModel = HomeViewModel(BookRepositoryImpl())
+        )
+    }
+}
