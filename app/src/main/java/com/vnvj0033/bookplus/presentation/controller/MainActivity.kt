@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.vnvj0033.bookplus.data.repository.BookRepository
+import com.vnvj0033.bookplus.data.repository.FakeBookRepo
 import com.vnvj0033.bookplus.presentation.presenter.HomeViewModel
 import com.vnvj0033.bookplus.presentation.ui.AppTheme
 import com.vnvj0033.bookplus.presentation.ui.BottomNavigation
@@ -57,11 +58,17 @@ class MainActivity : ComponentActivity() {
     }
 
 
+    @OptIn(ExperimentalMaterial3Api::class)
     @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, showSystemUi = true, showBackground = true)
     @Composable
     private fun Preview() {
         AppTheme {
-            MainUI()
+            Scaffold(bottomBar = { BottomNavigation() }) {
+                HomeCompose(
+                    modifier = Modifier.padding(it),
+                    viewModel = HomeViewModel(FakeBookRepo())
+                )
+            }
         }
     }
 }

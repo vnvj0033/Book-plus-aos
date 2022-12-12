@@ -54,13 +54,3 @@ private fun Preview() {
         FavoriteGenreCompose()
     }
 }
-
-/**
- *  Column {
- *      Filter()
- *      BookList { FavoriteBook ->
- *          FavoriteBookItem(FavoriteBook)
- *      }
- * }
- *
- * */
