@@ -21,17 +21,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vnvj0033.bookplus.R
 import com.vnvj0033.bookplus.presentation.ui.state.PlatformSelectionState
+import com.vnvj0033.bookplus.presentation.ui.state.PlatformsState
 
 @Composable
 fun PlatformSelectionList(
-    platforms: List<PlatformSelectionState> = listOf(),
-    click: () -> Unit = {}
+    state: PlatformsState,
+    click: (String) -> Unit = {}
 ) {
-    PlatformSelectionList(platforms)
-}
-
-@Composable
-fun PlatformSelectionList(platforms: List<PlatformSelectionState>) {
 
     Column() {
         Text(
@@ -42,10 +38,10 @@ fun PlatformSelectionList(platforms: List<PlatformSelectionState>) {
                 .padding(horizontal = 16.dp)
         )
         LazyRow(Modifier.fillMaxWidth()) {
-            items(platforms) { platform ->
-                PlatformSelection(platform) {
+            items(state.platforms) { platform ->
+                val isSelected = state.selectedTitle == platform.title
 
-                }
+                PlatformSelection(platform, click, isSelected)
             }
         }
     }
@@ -56,17 +52,23 @@ fun PlatformSelectionList(platforms: List<PlatformSelectionState>) {
 @Composable
 fun PlatformSelection(
     state: PlatformSelectionState,
-    click: () -> Unit = {}
+    click: (String) -> Unit = {},
+    isSelected: Boolean = false
 ) {
     val image = painterResource(state.imageResource)
     val maxSize = 88.dp
-    val selectedColor = Color.Transparent
+    val background =
+        if (isSelected) Color(145, 208, 187)
+        else Color.Transparent
+    val imageBackground =
+        if (isSelected) Color.White
+        else Color.LightGray
 
     Column(
         modifier = Modifier
-            .background(selectedColor)
-            .padding(8.dp)
-            .clickable {  },
+            .background(background)
+            .clickable { click.invoke(state.title) }
+            .padding(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
@@ -75,7 +77,7 @@ fun PlatformSelection(
             modifier = Modifier
                 .size(maxSize)
                 .clip(CircleShape)
-                .background(Color.LightGray)
+                .background(imageBackground)
         )
         Text(
             text = state.title.uppercase(),
@@ -93,7 +95,7 @@ fun PlatformSelection(
 @Composable
 private fun PreviewPlatformSelectionList() {
     AppTheme {
-        PlatformSelectionList()
+        PlatformSelectionList(PlatformsState())
     }
 }
 

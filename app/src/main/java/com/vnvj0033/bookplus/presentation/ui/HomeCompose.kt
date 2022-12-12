@@ -23,7 +23,7 @@ fun HomeCompose(
     val composeScope = rememberCoroutineScope()
 
     Column(modifier = modifier) {
-        PlatformSelectionList(viewModel.platformStates) {
+        PlatformSelectionList(viewModel.platformsState) {
             composeScope.launch {
                 viewModel.loadGenre()
                 viewModel.loadBooks()
