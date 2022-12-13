@@ -16,10 +16,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vnvj0033.bookplus.presentation.ui.state.GenreSelectionListState
 
+/**
+ * 클릭시 장르만 변경, 이벤트는 호이스팅
+ * */
 @Composable
 fun GenreSelectionList(
     state: GenreSelectionListState = GenreSelectionListState(),
-    click: () -> Unit = {}
+    click: (String) -> Unit = {}
 ) {
 
     val options = listOf(
@@ -34,22 +37,27 @@ fun GenreSelectionList(
 
     LazyRow(modifier = Modifier.padding(top = 8.dp)) {
         items(state.options) { text ->
-            GenreSelection(text)
+            val isSelected = state.selectGenre == text
+
+            GenreSelection(
+                text = text,
+                isSelected = isSelected
+            ) { selectGenre ->
+                state.selectGenre = selectGenre
+                click.invoke(selectGenre)
+            }
         }
     }
 }
 
 @Composable
-private fun GenreSelection(text: String) {
-    var selectedOption by remember {
-        mutableStateOf("컴퓨터/IT")
-    }
+private fun GenreSelection(
+    text: String,
+    isSelected: Boolean = false,
+    click: (String) -> Unit = {}
+) {
 
-    val onSelectionChange = { option: String ->
-        selectedOption = option
-    }
-
-    val background = if (text == selectedOption) {
+    val background = if (isSelected) {
         Color(145, 208, 187)
     } else {
         Color.LightGray
@@ -61,7 +69,7 @@ private fun GenreSelection(text: String) {
             color = Color.White,
             modifier = Modifier
                 .clip(RoundedCornerShape(24.dp))
-                .clickable { onSelectionChange(text) }
+                .clickable { click.invoke(text) }
                 .background(background)
                 .padding(
                     vertical = 12.dp,
@@ -75,7 +83,7 @@ private fun GenreSelection(text: String) {
 @Composable
 private fun PreviewGenreSelectionList() {
     AppTheme {
-        GenreSelection("컴퓨터/IT")
+        GenreSelection("컴퓨터/IT", true)
     }
 }
 
