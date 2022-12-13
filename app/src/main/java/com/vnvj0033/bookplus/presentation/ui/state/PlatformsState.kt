@@ -1,5 +1,8 @@
 package com.vnvj0033.bookplus.presentation.ui.state
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import com.vnvj0033.bookplus.R
 
 class PlatformsState {
@@ -9,5 +12,5 @@ class PlatformsState {
 
     val platforms = listOf(kyobo, yes24, aladin, yes24, aladin)
 
-    var selectedTitle = "kyobo"
+    var selectedTitle by mutableStateOf("kyobo")
 }
