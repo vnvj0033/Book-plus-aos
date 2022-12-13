@@ -10,6 +10,4 @@ class PlatformsState {
     val platforms = listOf(kyobo, yes24, aladin, kyobo, yes24, aladin)
 
     var selectedTitle = "kyobo"
-
-
 }

@@ -22,19 +22,23 @@ fun HomeCompose(
     val context = LocalContext.current
     val composeScope = rememberCoroutineScope()
 
+    val platformListState = viewModel.platformsState
+    val genreState = viewModel.genreState
+    val bookListState = viewModel.bookListState
+
     Column(modifier = modifier) {
-        PlatformSelectionList(viewModel.platformsState) {
+        PlatformSelectionList(platformListState) {
             composeScope.launch {
                 viewModel.loadGenre()
                 viewModel.loadBooks()
             }
         }
-        GenreSelectionList(viewModel.genreState) {
+        GenreSelectionList(genreState) {
             composeScope.launch {
                 viewModel.loadBooks()
             }
         }
-        BookList(viewModel.bookListState) { book ->
+        BookList(bookListState) { book ->
             openBookDetail(context, book)
         }
     }

@@ -23,6 +23,9 @@ import com.vnvj0033.bookplus.R
 import com.vnvj0033.bookplus.presentation.ui.state.PlatformSelectionState
 import com.vnvj0033.bookplus.presentation.ui.state.PlatformsState
 
+/**
+ * 클릭시 배경 변경, 이벤트는 외부로 호이스팅
+ * */
 @Composable
 fun PlatformSelectionList(
     state: PlatformsState,
@@ -41,7 +44,13 @@ fun PlatformSelectionList(
             items(state.platforms) { platform ->
                 val isSelected = state.selectedTitle == platform.title
 
-                PlatformSelection(platform, click, isSelected)
+                PlatformSelection(
+                    state = platform,
+                    isSelected = isSelected
+                ) { selectTitle ->
+                    state.selectedTitle = selectTitle
+                    click.invoke(selectTitle)
+                }
             }
         }
     }
@@ -52,8 +61,8 @@ fun PlatformSelectionList(
 @Composable
 fun PlatformSelection(
     state: PlatformSelectionState,
-    click: (String) -> Unit = {},
-    isSelected: Boolean = false
+    isSelected: Boolean = false,
+    click: (String) -> Unit = {}
 ) {
     val image = painterResource(state.imageResource)
     val maxSize = 88.dp
