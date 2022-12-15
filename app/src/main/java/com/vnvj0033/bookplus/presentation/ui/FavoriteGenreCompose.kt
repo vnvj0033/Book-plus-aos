@@ -30,7 +30,7 @@ fun FavoriteGenreCompose() {
 private fun Filter() {
 
     DropdownMenu(
-        expanded = true,
+        expanded = false,
         onDismissRequest = { /*TODO*/ }
     ) {
 

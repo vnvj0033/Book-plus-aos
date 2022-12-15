@@ -6,7 +6,7 @@ import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -14,12 +14,15 @@ import androidx.navigation.compose.rememberNavController
 @Composable
 fun BottomNavigation(navController: NavHostController) {
 
+    var currentRoute by remember { mutableStateOf("home") }
+
     BottomAppBar {
         NavigationBarItem(
-            selected = true,
-            onClick = { navController.navigate("home") {
-                launchSingleTop = true
-            } },
+            selected = currentRoute == "home",
+            onClick = {
+                navController.navigateSingleTopTo("home")
+                currentRoute = "home"
+            },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Home,
@@ -28,10 +31,11 @@ fun BottomNavigation(navController: NavHostController) {
             label = { Text("홈") })
 
         NavigationBarItem(
-            selected = false,
-            onClick = { navController.navigate("favorite_genre") {
-                launchSingleTop = true
-            } },
+            selected = currentRoute == "favorite_genre",
+            onClick = {
+                navController.navigateSingleTopTo("favorite_genre")
+                currentRoute = "favorite_genre"
+            },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Favorite,
@@ -57,6 +61,7 @@ fun BottomNavigation(navController: NavHostController) {
                     contentDescription = null) },
             label = { Text("설정") })
     }
+
 }
 
 
@@ -67,3 +72,6 @@ private fun Preview() {
         BottomNavigation(rememberNavController())
     }
 }
+
+private fun NavHostController.navigateSingleTopTo(route: String) =
+    this.navigate(route) { launchSingleTop = true }
