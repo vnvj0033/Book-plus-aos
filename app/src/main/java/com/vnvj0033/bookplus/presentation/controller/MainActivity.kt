@@ -13,11 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.vnvj0033.bookplus.data.repository.BookRepository
 import com.vnvj0033.bookplus.data.repository.FakeBookRepo
 import com.vnvj0033.bookplus.presentation.presenter.HomeViewModel
 import com.vnvj0033.bookplus.presentation.ui.AppTheme
 import com.vnvj0033.bookplus.presentation.ui.BottomNavigation
+import com.vnvj0033.bookplus.presentation.ui.FavoriteGenreCompose
 import com.vnvj0033.bookplus.presentation.ui.HomeCompose
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -41,6 +45,8 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     private fun MainUI() {
+        val navController = rememberNavController()
+
         val homeViewModel: HomeViewModel by viewModels(factoryProducer = {
             viewModelFactory {
                 initializer {
@@ -49,11 +55,19 @@ class MainActivity : ComponentActivity() {
             }
         })
 
-        Scaffold(bottomBar = { BottomNavigation() }) {
-            HomeCompose(
-                modifier = Modifier.padding(it),
-                viewModel = homeViewModel
-            )
+
+
+        Scaffold(bottomBar = { BottomNavigation(navController) }) { paddingValue ->
+            NavHost(navController = navController, startDestination = "home") {
+                composable("home") {
+                    HomeCompose(
+                        modifier = Modifier.padding(paddingValue),
+                        viewModel = homeViewModel)
+                }
+                composable("favorite_genre") {
+                    FavoriteGenreCompose()
+                }
+            }
         }
     }
 
@@ -63,7 +77,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun Preview() {
         AppTheme {
-            Scaffold(bottomBar = { BottomNavigation() }) {
+            Scaffold(bottomBar = { BottomNavigation(rememberNavController()) }) {
                 HomeCompose(
                     modifier = Modifier.padding(it),
                     viewModel = HomeViewModel(FakeBookRepo())

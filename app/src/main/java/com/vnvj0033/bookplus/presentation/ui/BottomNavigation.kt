@@ -8,14 +8,18 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun BottomNavigation() {
+fun BottomNavigation(navController: NavHostController) {
 
     BottomAppBar {
         NavigationBarItem(
             selected = true,
-            onClick = { /*TODO*/ },
+            onClick = { navController.navigate("home") {
+                launchSingleTop = true
+            } },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Home,
@@ -25,7 +29,9 @@ fun BottomNavigation() {
 
         NavigationBarItem(
             selected = false,
-            onClick = { /*TODO*/ },
+            onClick = { navController.navigate("favorite_genre") {
+                launchSingleTop = true
+            } },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Favorite,
@@ -58,6 +64,6 @@ fun BottomNavigation() {
 @Composable
 private fun Preview() {
     AppTheme {
-        BottomNavigation()
+        BottomNavigation(rememberNavController())
     }
 }
