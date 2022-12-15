@@ -47,8 +47,8 @@ dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")
     testImplementation("junit:junit:${Versions.junitVersion}")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.4")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
 
     // firebase
     implementation(platform("com.google.firebase:firebase-bom:30.1.0"))
@@ -72,14 +72,16 @@ dependencies {
     kapt ("com.google.dagger:hilt-compiler:${Versions.hiltVersion}")
 
     // Compose Material Design 3
-    implementation("androidx.compose.material3:material3:1.1.0-alpha01")
+    implementation("androidx.compose.material3:material3:1.1.0-alpha03")
     // Android Studio Preview support
-    implementation("androidx.compose.ui:ui-tooling-preview:1.3.0")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.3.0")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.3.2")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.3.2")
     // Compose coil
     implementation("io.coil-kt:coil-compose:2.2.2")
     // Compose Integration with activities
     implementation("androidx.activity:activity-compose:1.6.1")
     // Compose ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
+    // Compose Navigation
+    implementation("androidx.navigation:navigation-compose:2.5.3")
 }
