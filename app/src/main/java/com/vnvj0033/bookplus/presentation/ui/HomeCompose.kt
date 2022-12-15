@@ -12,6 +12,9 @@ import com.vnvj0033.bookplus.data.repository.FakeBookRepo
 import com.vnvj0033.bookplus.domain.model.MainBook
 import com.vnvj0033.bookplus.presentation.controller.BookDetailActivity
 import com.vnvj0033.bookplus.presentation.presenter.HomeViewModel
+import com.vnvj0033.bookplus.presentation.ui.component.BookList
+import com.vnvj0033.bookplus.presentation.ui.component.GenreSelectionList
+import com.vnvj0033.bookplus.presentation.ui.component.PlatformSelectionList
 import kotlinx.coroutines.launch
 
 @Composable

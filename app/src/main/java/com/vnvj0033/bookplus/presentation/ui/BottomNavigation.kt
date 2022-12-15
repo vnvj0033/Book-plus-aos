@@ -16,13 +16,15 @@ fun BottomNavigation(navController: NavHostController) {
 
     var currentRoute by remember { mutableStateOf("home") }
 
+    val onClick = { route: String ->
+        navController.navigateSingleTopTo(route)
+        currentRoute = route
+    }
+
     BottomAppBar {
         NavigationBarItem(
             selected = currentRoute == "home",
-            onClick = {
-                navController.navigateSingleTopTo("home")
-                currentRoute = "home"
-            },
+            onClick = { onClick.invoke("home") },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Home,
@@ -32,10 +34,7 @@ fun BottomNavigation(navController: NavHostController) {
 
         NavigationBarItem(
             selected = currentRoute == "favorite_genre",
-            onClick = {
-                navController.navigateSingleTopTo("favorite_genre")
-                currentRoute = "favorite_genre"
-            },
+            onClick = { onClick.invoke("favorite_genre") },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Favorite,

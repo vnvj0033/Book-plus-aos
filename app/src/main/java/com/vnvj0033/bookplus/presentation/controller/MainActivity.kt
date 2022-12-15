@@ -55,8 +55,6 @@ class MainActivity : ComponentActivity() {
             }
         })
 
-
-
         Scaffold(bottomBar = { BottomNavigation(navController) }) { paddingValue ->
             NavHost(navController = navController, startDestination = "home") {
                 composable("home") {
@@ -65,7 +63,7 @@ class MainActivity : ComponentActivity() {
                         viewModel = homeViewModel)
                 }
                 composable("favorite_genre") {
-                    FavoriteGenreCompose()
+                    FavoriteGenreCompose(modifier = Modifier.padding(paddingValue))
                 }
             }
         }

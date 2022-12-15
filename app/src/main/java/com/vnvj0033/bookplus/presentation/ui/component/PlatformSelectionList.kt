@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.presentation.ui
+package com.vnvj0033.bookplus.presentation.ui.component
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vnvj0033.bookplus.R
+import com.vnvj0033.bookplus.presentation.ui.AppTheme
 import com.vnvj0033.bookplus.presentation.ui.state.PlatformSelectionState
 import com.vnvj0033.bookplus.presentation.ui.state.PlatformsState
 
