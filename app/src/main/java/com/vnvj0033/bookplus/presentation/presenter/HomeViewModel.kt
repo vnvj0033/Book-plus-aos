@@ -21,7 +21,8 @@ class HomeViewModel @Inject constructor(
 
 
     suspend fun loadGenre() {
-        val genres = bookRepository.loadGenres().single()
+        val platform = platformsState.selectedTitle
+        val genres = bookRepository.loadGenres(platform).single()
 
         genreState.options.clear()
         genreState.options.addAll(genres)

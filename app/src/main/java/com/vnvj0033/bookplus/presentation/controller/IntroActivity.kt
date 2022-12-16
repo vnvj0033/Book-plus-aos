@@ -48,10 +48,9 @@ class IntroActivity : ComponentActivity() {
         ) {
             Image(
                 painter = painterResource(id = R.mipmap.ic_launcher),
-                contentDescription = null,
                 modifier = Modifier
-                    .size(128.dp)
-            )
+                    .size(128.dp),
+                contentDescription = null)
         }
 
     }
