@@ -1,12 +1,9 @@
 package com.vnvj0033.bookplus.presentation.ui
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Divider
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -16,27 +13,59 @@ import com.vnvj0033.bookplus.presentation.ui.component.BookList
 fun FavoriteGenreCompose(modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
 
-        Row {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .padding(8.dp),
                 text = "SUBSCRIPT")
-
             Filter()
         }
         Divider()
         BookList()
     }
 }
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun Filter() {
+private fun Filter(
+    modifier: Modifier = Modifier
+) {
+    val options = listOf("Option 1", "Option 2", "Option 3", "Option 4", "Option 5")
+    var expanded by remember { mutableStateOf(false) }
+    var selectedOptionText by remember { mutableStateOf(options[0]) }
 
-    DropdownMenu(
-        expanded = false,
-        onDismissRequest = { /*TODO*/ }
+    ExposedDropdownMenuBox(
+        expanded = expanded,
+        onExpandedChange = { expanded = !expanded }
     ) {
-
-        testdata.forEach {
-            Text(text = it)
+        TextField(
+            readOnly = true,
+            value = selectedOptionText,
+            onValueChange = { },
+            label = { Text("Label") },
+            trailingIcon = {
+                ExposedDropdownMenuDefaults.TrailingIcon(
+                    expanded = expanded
+                )
+            },
+            colors = ExposedDropdownMenuDefaults.textFieldColors()
+        )
+        ExposedDropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+            options.forEach { selectionOption ->
+                DropdownMenuItem(
+                    text = { Text(text = selectionOption) },
+                    onClick = {
+                        selectedOptionText = selectionOption
+                        expanded = false
+                    }
+                )
+            }
         }
     }
 }
