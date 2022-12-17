@@ -28,47 +28,6 @@ fun FavoriteGenreCompose(modifier: Modifier = Modifier) {
         BookList()
     }
 }
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun Filter(
-    modifier: Modifier = Modifier
-) {
-    val options = listOf("Option 1", "Option 2", "Option 3", "Option 4", "Option 5")
-    var expanded by remember { mutableStateOf(false) }
-    var selectedOptionText by remember { mutableStateOf(options[0]) }
-
-    ExposedDropdownMenuBox(
-        expanded = expanded,
-        onExpandedChange = { expanded = !expanded }
-    ) {
-        TextField(
-            readOnly = true,
-            value = selectedOptionText,
-            onValueChange = { },
-            label = { Text("Label") },
-            trailingIcon = {
-                ExposedDropdownMenuDefaults.TrailingIcon(
-                    expanded = expanded
-                )
-            },
-            colors = ExposedDropdownMenuDefaults.textFieldColors()
-        )
-        ExposedDropdownMenu(
-            expanded = expanded,
-            onDismissRequest = { expanded = false }
-        ) {
-            options.forEach { selectionOption ->
-                DropdownMenuItem(
-                    text = { Text(text = selectionOption) },
-                    onClick = {
-                        selectedOptionText = selectionOption
-                        expanded = false
-                    }
-                )
-            }
-        }
-    }
-}
 
 private val testdata = listOf(
     "it",

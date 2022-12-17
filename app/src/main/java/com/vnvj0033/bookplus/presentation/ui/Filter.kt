@@ -4,9 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,24 +20,28 @@ fun Filter() {
         "Japan",
         "India",
     )
-    val text = remember { mutableStateOf("") }
-    val isOpen = remember { mutableStateOf(false) }
+    var text by remember { mutableStateOf("default123123123123") }
+    var isOpen by remember { mutableStateOf(false) }
     val openCloseOfDropDownList: (Boolean) -> Unit = {
-        isOpen.value = it
+        isOpen = it
     }
     val userSelectedString: (String) -> Unit = {
-        text.value = it
+        text = it
     }
     Box {
         Column {
-            OutlinedTextField(
-                value = text.value,
-                onValueChange = { text.value = it },
-                label = { Text(text = "TextFieldTitle") },
-                modifier = Modifier.fillMaxWidth())
+            TextField(
+                value = text,
+                onValueChange = { text = it },
+                readOnly = false,
+                trailingIcon = {
+                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = isOpen)
+                },
+                singleLine = true,
+                modifier = Modifier.width(160.dp))
 
             DropDownList(
-                requestToOpen = isOpen.value,
+                requestToOpen = isOpen,
                 list = countryList,
                 openCloseOfDropDownList,
                 userSelectedString)
@@ -49,7 +51,7 @@ fun Filter() {
                 .matchParentSize()
                 .background(Color.Transparent)
                 .padding(10.dp)
-                .clickable(onClick = { isOpen.value = true }))
+                .clickable(onClick = { isOpen = true }))
     }
 }
 
