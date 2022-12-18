@@ -13,7 +13,10 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Filter(state: FilterState = FilterState()) {
+fun Filter(
+    state: FilterState = FilterState(),
+    selectedString: (String) -> Unit = {}
+) {
     if (state.option.size > 0) {
         state.displayText = state.option[0]
     }
@@ -34,7 +37,10 @@ fun Filter(state: FilterState = FilterState()) {
                 requestToOpen = state.isOpen,
                 list = state.option,
                 dismissRequest = { state.isOpen = it },
-                selectedString = { state.displayText = it })
+                selectedString = {
+                    state.displayText = it
+                    selectedString.invoke(it)
+                })
         }
         Spacer(
             modifier = Modifier
