@@ -13,45 +13,35 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Filter() {
-    val countryList = listOf(
-        "United state",
-        "Australia",
-        "Japan",
-        "India",
-    )
-    var text by remember { mutableStateOf("default123123123123") }
-    var isOpen by remember { mutableStateOf(false) }
-    val openCloseOfDropDownList: (Boolean) -> Unit = {
-        isOpen = it
+fun Filter(state: FilterState = FilterState()) {
+    if (state.option.size > 0) {
+        state.displayText = state.option[0]
     }
-    val userSelectedString: (String) -> Unit = {
-        text = it
-    }
+
     Box {
         Column {
             TextField(
-                value = text,
-                onValueChange = { text = it },
+                value = state.displayText,
+                onValueChange = { state.displayText = it },
                 readOnly = false,
                 trailingIcon = {
-                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = isOpen)
+                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = state.isOpen)
                 },
                 singleLine = true,
                 modifier = Modifier.width(160.dp))
 
             DropDownList(
-                requestToOpen = isOpen,
-                list = countryList,
-                openCloseOfDropDownList,
-                userSelectedString)
+                requestToOpen = state.isOpen,
+                list = state.option,
+                dismissRequest = { state.isOpen = it },
+                selectedString = { state.displayText = it })
         }
         Spacer(
             modifier = Modifier
                 .matchParentSize()
                 .background(Color.Transparent)
                 .padding(10.dp)
-                .clickable(onClick = { isOpen = true }))
+                .clickable(onClick = { state.isOpen = true }))
     }
 }
 
@@ -60,13 +50,13 @@ fun Filter() {
 fun DropDownList(
     requestToOpen: Boolean = false,
     list: List<String>,
-    request: (Boolean) -> Unit,
+    dismissRequest: (Boolean) -> Unit,
     selectedString: (String) -> Unit
 ) {
     DropdownMenu(
         modifier = Modifier.fillMaxWidth(),
         expanded = requestToOpen,
-        onDismissRequest = { request(false) },
+        onDismissRequest = { dismissRequest(false) },
     ) {
         list.forEach {
             DropdownMenuItem(
@@ -75,7 +65,7 @@ fun DropDownList(
                     .wrapContentWidth()
                     .align(Alignment.Start)) },
                 onClick = {
-                    request(false)
+                    dismissRequest(false)
                     selectedString(it)
                 }
             )
@@ -83,10 +73,19 @@ fun DropDownList(
     }
 }
 
+class FilterState {
+    val option = mutableStateListOf<String>()
+    var isOpen by mutableStateOf(false)
+    var displayText by mutableStateOf("")
+}
+
 @Preview
 @Composable
 private fun Preview() {
+    val state = FilterState()
+
+    state.option.addAll(listOf("test1", "test2", "test3"))
     AppTheme {
-        Filter()
+        Filter(state)
     }
 }
