@@ -6,9 +6,9 @@
   <a href="https://developer.android.com/studio/releases/gradle-plugin"><img alt="AGP" src="https://img.shields.io/badge/AGP-7.3.1-blue?style=flat"/></a>
 </p>
 
-Bookplus is an Android app that informs you of new books of the genre you subscribed to.
+![LOGO](https://user-images.githubusercontent.com/59002243/208304790-28aa17ac-5c78-4c91-bb65-f30e9241d28e.png)
 
-![LOGO](https://www.gstatic.com/devrel-devsite/prod/ve6e6ebff6d326e85aedeebfd3fad7cfd85d0fc48cfc2ee55b5498d178a34d928/android/images/lockup.svg)
+Bookplus는 구독한 장르의 새로 등록된 베스트 셀러를 알려주는 Android 어플리케이션입니다.
 
 ## stack & third party libraries
 
@@ -20,3 +20,15 @@ Bookplus is an Android app that informs you of new books of the genre you subscr
 - Asynchronous [Coroutine](https://github.com/Kotlin/kotlinx.coroutines) and [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow)
 - JetPack
   - [Compose](https://developer.android.com/jetpack/compose) - ...
+  - ViewModel
+  - Navigation
+  - Room
+- Hilt
+- Retrofit2
+
+
+## Features
+
+## Architecture
+
+## MAD Score
