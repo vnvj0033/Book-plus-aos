@@ -28,6 +28,10 @@ fun Filter(
     Box {
         Column {
             TextField(
+                modifier = Modifier.width(160.dp),
+                colors = TextFieldDefaults.textFieldColors(
+                    containerColor = Color.Transparent
+                ),
                 value = displayText,
                 onValueChange = { displayText = it },
                 readOnly = false,
@@ -35,7 +39,7 @@ fun Filter(
                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = state.isOpen)
                 },
                 singleLine = true,
-                modifier = Modifier.width(160.dp))
+                )
 
             DropDownList(
                 requestToOpen = state.isOpen,
