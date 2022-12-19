@@ -30,7 +30,9 @@ fun Filter(
             TextField(
                 modifier = Modifier.width(160.dp),
                 colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.Transparent
+                    containerColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent
                 ),
                 value = displayText,
                 onValueChange = { displayText = it },
