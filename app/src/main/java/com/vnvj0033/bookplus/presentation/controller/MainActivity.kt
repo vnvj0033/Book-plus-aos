@@ -18,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.vnvj0033.bookplus.data.repository.BookRepository
 import com.vnvj0033.bookplus.data.repository.FakeBookRepo
+import com.vnvj0033.bookplus.presentation.presenter.FavoriteGenreViewModel
 import com.vnvj0033.bookplus.presentation.presenter.HomeViewModel
 import com.vnvj0033.bookplus.presentation.ui.AppTheme
 import com.vnvj0033.bookplus.presentation.ui.BottomNavigation
@@ -55,6 +56,14 @@ class MainActivity : ComponentActivity() {
             }
         })
 
+        val favoriteGenreViewModel: FavoriteGenreViewModel by viewModels(factoryProducer = {
+            viewModelFactory {
+                initializer {
+                    FavoriteGenreViewModel(bookRepository = bookRepository)
+                }
+            }
+        })
+
         Scaffold(bottomBar = { BottomNavigation(navController) }) { paddingValue ->
             NavHost(navController = navController, startDestination = "home") {
                 composable("home") {
@@ -63,7 +72,10 @@ class MainActivity : ComponentActivity() {
                         viewModel = homeViewModel)
                 }
                 composable("favorite_genre") {
-                    FavoriteGenreCompose(modifier = Modifier.padding(paddingValue))
+                    FavoriteGenreCompose(
+                        modifier = Modifier.padding(paddingValue),
+                        viewModel = favoriteGenreViewModel
+                    )
                 }
             }
         }
