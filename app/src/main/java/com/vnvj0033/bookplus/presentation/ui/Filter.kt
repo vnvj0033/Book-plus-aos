@@ -17,6 +17,8 @@ fun Filter(
     state: FilterState = FilterState(),
     selectedString: (String) -> Unit = {}
 ) {
+    var isOpen by remember { mutableStateOf(false) }
+
     var displayText by remember {
         if (state.option.isEmpty()) {
             mutableStateOf("")
@@ -38,15 +40,15 @@ fun Filter(
                 onValueChange = { displayText = it },
                 readOnly = true,
                 trailingIcon = {
-                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = state.isOpen)
+                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = isOpen)
                 },
                 singleLine = true,
                 )
 
             DropDownList(
-                requestToOpen = state.isOpen,
+                requestToOpen = isOpen,
                 list = state.option,
-                dismissRequest = { state.isOpen = it },
+                dismissRequest = { isOpen = it },
                 selectedString = {
                     displayText = it
                     selectedString.invoke(it)
@@ -57,7 +59,7 @@ fun Filter(
                 .matchParentSize()
                 .background(Color.Transparent)
                 .padding(10.dp)
-                .clickable(onClick = { state.isOpen = true }))
+                .clickable(onClick = { isOpen = true }))
     }
 }
 
@@ -95,7 +97,6 @@ fun DropDownList(
 
 class FilterState {
     val option = mutableStateListOf<String>()
-    var isOpen by mutableStateOf(false)
 }
 
 @Preview
