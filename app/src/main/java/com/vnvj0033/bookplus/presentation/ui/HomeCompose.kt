@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -28,6 +29,11 @@ fun HomeCompose(
     val platformListState = viewModel.platformsState
     val genreState = viewModel.genreState
     val bookListState = viewModel.bookListState
+
+    LaunchedEffect(true) {
+        viewModel.loadGenre()
+        viewModel.loadBooks()
+    }
 
     Column(modifier = modifier) {
         PlatformSelectionList(platformListState) {
