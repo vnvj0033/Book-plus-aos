@@ -103,7 +103,7 @@ class FilterState {
 private fun Preview() {
     val state = FilterState()
 
-    state.option.addAll(listOf("test1", "test2", "test3"))
+    state.option.addAll(listOf("1", "2", "3", "4"))
     AppTheme {
         Filter(state)
     }

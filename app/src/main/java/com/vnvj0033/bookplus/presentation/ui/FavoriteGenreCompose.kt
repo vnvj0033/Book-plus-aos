@@ -25,7 +25,7 @@ fun FavoriteGenreCompose(
     LaunchedEffect(true) {
         if (viewModel.filterState.option.isNotEmpty()) {
             composeScope.launch {
-                viewModel.updateFilter(viewModel.filterState.option[0])
+                viewModel.refreshListWithFilter(viewModel.filterState.option[0])
             }
         }
     }
@@ -42,7 +42,7 @@ fun FavoriteGenreCompose(
                 text = "SUBSCRIPT")
             Filter(viewModel.filterState) { filterGenre ->
                 composeScope.launch {
-                    viewModel.updateFilter(filterGenre)
+                    viewModel.refreshListWithFilter(filterGenre)
                 }
             }
         }

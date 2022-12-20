@@ -11,10 +11,13 @@ import javax.inject.Inject
 class FavoriteGenreViewModel @Inject constructor(
     private val bookRepository: BookRepository
 ): ViewModel() {
-    val filterState = FilterState()
+    val filterState = FilterState().apply {
+        // test filter option
+        option.addAll(listOf("1", "2", "3", "4"))
+    }
 
-    suspend fun updateFilter(genre: String) {
-        bookRepository.loadBooks("", genre).single()
+    suspend fun refreshListWithFilter(genre: String) {
+        bookRepository.loadFavoriteBooks("", genre).single()
     }
 
 }

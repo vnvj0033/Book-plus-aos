@@ -7,6 +7,17 @@ import java.util.*
 import javax.inject.Inject
 
 class FakeBookRepo @Inject constructor() : BookRepository {
+    override suspend fun loadFavoriteBooks(userId: String, genre: String): Flow<List<Book>> {
+        val list = if (genre == "1") {
+            listOf(Book(), Book(), Book(), Book(), Book(), Book(), Book(), Book(), Book())
+        } else if (genre == "2" || genre == "3") {
+            listOf(Book(), Book(), Book())
+        } else {
+            listOf(Book())
+        }
+
+        return flowOf(list)
+    }
 
     override suspend fun loadBooks(platform: String, genre: String): Flow<List<Book>> {
         val list = if (genre == "전체") {
