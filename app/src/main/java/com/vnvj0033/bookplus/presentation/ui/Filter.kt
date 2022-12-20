@@ -36,7 +36,7 @@ fun Filter(
                 ),
                 value = displayText,
                 onValueChange = { displayText = it },
-                readOnly = false,
+                readOnly = true,
                 trailingIcon = {
                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = state.isOpen)
                 },
