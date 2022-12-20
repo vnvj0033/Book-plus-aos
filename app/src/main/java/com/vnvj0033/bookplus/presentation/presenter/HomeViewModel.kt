@@ -1,9 +1,8 @@
 package com.vnvj0033.bookplus.presentation.presenter
 
 import androidx.lifecycle.ViewModel
-import com.vnvj0033.bookplus.data.entity.Book
 import com.vnvj0033.bookplus.data.repository.BookRepository
-import com.vnvj0033.bookplus.domain.model.MainBook
+import com.vnvj0033.bookplus.domain.model.toMainBook
 import com.vnvj0033.bookplus.presentation.ui.state.BookListState
 import com.vnvj0033.bookplus.presentation.ui.state.GenreSelectionListState
 import com.vnvj0033.bookplus.presentation.ui.state.PlatformsState
@@ -38,6 +37,4 @@ class HomeViewModel @Inject constructor(
         bookListState.books.clear()
         bookListState.books.addAll(books)
     }
-
-    private fun Book.toMainBook() = MainBook(imgUtl, title, writer, summary)
 }
