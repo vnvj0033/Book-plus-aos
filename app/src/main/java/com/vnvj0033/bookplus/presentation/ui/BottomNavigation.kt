@@ -73,4 +73,8 @@ private fun Preview() {
 }
 
 private fun NavHostController.navigateSingleTopTo(route: String) =
-    this.navigate(route) { launchSingleTop = true }
+    this.navigate(route) {
+        popUpTo(route) {
+            inclusive = true
+        }
+    }
