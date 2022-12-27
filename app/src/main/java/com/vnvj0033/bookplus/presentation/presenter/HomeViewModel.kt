@@ -7,7 +7,6 @@ import com.vnvj0033.bookplus.presentation.ui.state.BookListState
 import com.vnvj0033.bookplus.presentation.ui.state.GenreSelectionListState
 import com.vnvj0033.bookplus.presentation.ui.state.PlatformsState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.single
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,20 +20,23 @@ class HomeViewModel @Inject constructor(
 
     suspend fun loadGenre() {
         val platform = platformsState.selectedTitle
-        val genres = bookRepository.loadGenres(platform).single()
+        bookRepository.loadGenres(platform).collect {
+            genreState.options.clear()
+            genreState.options.addAll(it)
+        }
 
-        genreState.options.clear()
-        genreState.options.addAll(genres)
     }
 
     suspend fun loadBooks() {
         val selectedGenre = genreState.selectGenre
 
-        val books = bookRepository.loadBooks(platformsState.selectedTitle, selectedGenre).single().map { book ->
-            book.toMainBook()
-        }
+        bookRepository.loadBooks(platformsState.selectedTitle, selectedGenre).collect { books ->
+            val mainBooks = books.map { book ->
+                book.toMainBook()
+            }
 
-        bookListState.books.clear()
-        bookListState.books.addAll(books)
+            bookListState.books.clear()
+            bookListState.books.addAll(mainBooks)
+        }
     }
 }

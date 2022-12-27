@@ -6,7 +6,6 @@ import com.vnvj0033.bookplus.domain.model.toMainBook
 import com.vnvj0033.bookplus.presentation.ui.FilterState
 import com.vnvj0033.bookplus.presentation.ui.state.BookListState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.single
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,12 +19,13 @@ class FavoriteGenreViewModel @Inject constructor(
     }
 
     suspend fun refreshListWithFilter(genre: String) {
-        val books = bookRepository.loadFavoriteBooks("", genre).single().map {
-            it.toMainBook()
+        bookRepository.loadFavoriteBooks("", genre).collect { books ->
+            val mainBook = books.map {
+                it.toMainBook()
+            }
+            bookListState.books.clear()
+            bookListState.books.addAll(mainBook)
         }
-
-        bookListState.books.clear()
-        bookListState.books.addAll(books)
     }
 
 }
