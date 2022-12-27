@@ -50,6 +50,9 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.4")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
 
+    // datastore preferences
+    implementation ("androidx.datastore:datastore-preferences:1.0.0")
+
     // firebase
     implementation(platform("com.google.firebase:firebase-bom:30.1.0"))
     implementation("com.google.firebase:firebase-messaging-ktx")
@@ -66,10 +69,6 @@ dependencies {
     // Retrofit2
     implementation ("com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}")
     implementation ("com.squareup.retrofit2:converter-gson:${Versions.retrofitVersion}")
-
-    // Hilt
-    implementation ("com.google.dagger:hilt-android:${Versions.hiltVersion}")
-    kapt ("com.google.dagger:hilt-compiler:${Versions.hiltVersion}")
 
     // Compose Material Design 3
     implementation("androidx.compose.material3:material3:1.1.0-alpha03")
