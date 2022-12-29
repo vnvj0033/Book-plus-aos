@@ -1,42 +1,56 @@
 package com.vnvj0033.bookplus.home
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.vnvj0033.bookplus.data.repository.BookRepository
+import com.vnvj0033.bookplus.domain.model.MainBook
 import com.vnvj0033.bookplus.domain.model.toMainBook
-import com.vnvj0033.bookplus.ui.state.BookListState
-import com.vnvj0033.bookplus.ui.state.GenreSelectionListState
-import com.vnvj0033.bookplus.ui.state.PlatformsState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val bookRepository: BookRepository
+    private val savedStateHandle: SavedStateHandle,
+    bookRepository: BookRepository
 ): ViewModel() {
-    val genreState = GenreSelectionListState()
-    val bookListState = BookListState()
-    val platformsState = PlatformsState()
+
+    private var platform: String
+        get() = savedStateHandle["platform"] ?: ""
+        set(value) { savedStateHandle["platform"] = value }
 
 
-    suspend fun loadGenre() {
-        val platform = platformsState.selectedTitle
-        bookRepository.loadGenres(platform).collect {
-            genreState.options.clear()
-            genreState.options.addAll(it)
-        }
-
-    }
-
-    suspend fun loadBooks() {
-        val selectedGenre = genreState.selectGenre
-
-        bookRepository.loadBooks(platformsState.selectedTitle, selectedGenre).collect { books ->
-            val mainBooks = books.map { book ->
-                book.toMainBook()
+    val homeUiState: StateFlow<HomeUiState> = with(bookRepository) {
+        combine(genres, books) { genres, books ->
+            if (genres.isNotEmpty() && books.isNotEmpty()) {
+                HomeUiState.Success(
+                    HomeStateData(
+                        platform,
+                        genres,
+                        books.map { it.toMainBook() }
+                    )
+                )
+            } else {
+                HomeUiState.Error
             }
-
-            bookListState.books.clear()
-            bookListState.books.addAll(mainBooks)
         }
-    }
+    } .stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(),
+        initialValue = HomeUiState.Loading
+    )
+
+}
+
+data class HomeStateData(
+    val platform: String,
+    val genres: List<String>,
+    val books: List<MainBook>
+)
+
+sealed interface HomeUiState {
+    data class Success(val homeStateData: HomeStateData) : HomeUiState
+    object Error : HomeUiState
+    object Loading : HomeUiState
 }

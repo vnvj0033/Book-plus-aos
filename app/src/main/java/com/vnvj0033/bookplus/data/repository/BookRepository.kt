@@ -5,26 +5,24 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
-class BookRepositoryImpl @Inject constructor(
-//    datasoure: BookDataSource
-) : BookRepository {
+class BookRepositoryImpl : BookRepository {
+
+    override val genres: Flow<List<String>>
+        get() = flowOf(listOf("전체", "문학 작품", "국내 소설", "컴퓨터/IT", "취미/생활"))
+
+    override val books: Flow<List<Book>>
+        get() = flowOf(listOf( Book()))
+
+
     override suspend fun loadFavoriteBooks(userId: String, genre: String): Flow<List<Book>> {
         return flowOf(listOf( Book()))
-    }
-
-    override suspend fun loadBooks(platform: String, genre: String): Flow<List<Book>> {
-        return flowOf(listOf( Book()))
-    }
-
-    override suspend fun loadGenres(platform: String): Flow<List<String>> {
-        val list = listOf("전체", "문학 작품", "국내 소설", "컴퓨터/IT", "취미/생활")
-        return flowOf(list)
     }
 
 }
 
 interface BookRepository {
+    val genres: Flow<List<String>>
+    val books: Flow<List<Book>>
+
     suspend fun loadFavoriteBooks(userId: String, genre: String): Flow<List<Book>>
-    suspend fun loadBooks(platform: String, genre: String): Flow<List<Book>>
-    suspend fun loadGenres(platform: String): Flow<List<String>>
 }
