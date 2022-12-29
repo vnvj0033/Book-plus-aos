@@ -83,4 +83,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
     // Compose Navigation
     implementation("androidx.navigation:navigation-compose:2.5.3")
+    // Compose Hilt
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 }

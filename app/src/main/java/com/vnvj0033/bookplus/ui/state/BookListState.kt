@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.presentation.ui.state
+package com.vnvj0033.bookplus.ui.state
 
 import androidx.compose.runtime.mutableStateListOf
 import com.vnvj0033.bookplus.domain.model.MainBook

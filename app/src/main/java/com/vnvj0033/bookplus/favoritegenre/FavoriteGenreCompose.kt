@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.presentation.ui
+package com.vnvj0033.bookplus.favoritegenre
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Divider
@@ -10,15 +10,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.vnvj0033.bookplus.data.repository.FakeBookRepo
-import com.vnvj0033.bookplus.presentation.presenter.FavoriteGenreViewModel
-import com.vnvj0033.bookplus.presentation.ui.component.BookList
+import com.vnvj0033.bookplus.ui.AppTheme
+import com.vnvj0033.bookplus.ui.Filter
+import com.vnvj0033.bookplus.ui.component.BookList
 import kotlinx.coroutines.launch
 
 @Composable
 fun FavoriteGenreCompose(
     modifier: Modifier = Modifier,
-    viewModel: FavoriteGenreViewModel
+    viewModel: FavoriteGenreViewModel = hiltViewModel()
 ) {
     val composeScope = rememberCoroutineScope()
     

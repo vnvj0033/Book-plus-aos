@@ -14,7 +14,7 @@ import androidx.core.app.NotificationCompat
 import com.vnvj0033.bookplus.R
 
 
-import com.vnvj0033.bookplus.presentation.controller.MainActivity
+import com.vnvj0033.bookplus.main.MainActivity
 
 class PushNotificationManager {
 

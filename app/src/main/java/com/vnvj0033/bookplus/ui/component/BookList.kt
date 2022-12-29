@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.presentation.ui.component
+package com.vnvj0033.bookplus.ui.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -18,8 +18,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vnvj0033.bookplus.R
 import com.vnvj0033.bookplus.domain.model.MainBook
-import com.vnvj0033.bookplus.presentation.ui.AppTheme
-import com.vnvj0033.bookplus.presentation.ui.state.BookListState
+import com.vnvj0033.bookplus.ui.AppTheme
+import com.vnvj0033.bookplus.ui.state.BookListState
 
 @Composable
 fun BookList(

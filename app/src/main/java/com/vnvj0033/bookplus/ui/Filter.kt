@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.presentation.ui
+package com.vnvj0033.bookplus.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

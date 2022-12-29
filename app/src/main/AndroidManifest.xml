@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".presentation.controller.IntroActivity"
+            android:name=".intro.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,9 +25,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.controller.MainActivity" />
-        <activity android:name=".presentation.controller.FavoriteGenreActivity" />
-        <activity android:name=".presentation.controller.BookDetailActivity" />
+        <activity android:name=".main.MainActivity" />
+        <activity android:name=".BookDetailActivity" />
 
         <service
             android:name=".util.push.CatsFirebaseMessagingService"

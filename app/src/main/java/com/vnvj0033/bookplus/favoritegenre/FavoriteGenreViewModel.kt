@@ -1,10 +1,10 @@
-package com.vnvj0033.bookplus.presentation.presenter
+package com.vnvj0033.bookplus.favoritegenre
 
 import androidx.lifecycle.ViewModel
 import com.vnvj0033.bookplus.data.repository.BookRepository
 import com.vnvj0033.bookplus.domain.model.toMainBook
-import com.vnvj0033.bookplus.presentation.ui.FilterState
-import com.vnvj0033.bookplus.presentation.ui.state.BookListState
+import com.vnvj0033.bookplus.ui.FilterState
+import com.vnvj0033.bookplus.ui.state.BookListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.presentation.ui
+package com.vnvj0033.bookplus.home
 
 import android.content.Context
 import android.content.Intent
@@ -9,19 +9,20 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.vnvj0033.bookplus.data.repository.FakeBookRepo
 import com.vnvj0033.bookplus.domain.model.MainBook
-import com.vnvj0033.bookplus.presentation.controller.BookDetailActivity
-import com.vnvj0033.bookplus.presentation.presenter.HomeViewModel
-import com.vnvj0033.bookplus.presentation.ui.component.BookList
-import com.vnvj0033.bookplus.presentation.ui.component.GenreSelectionList
-import com.vnvj0033.bookplus.presentation.ui.component.PlatformSelectionList
+import com.vnvj0033.bookplus.BookDetailActivity
+import com.vnvj0033.bookplus.ui.AppTheme
+import com.vnvj0033.bookplus.ui.component.BookList
+import com.vnvj0033.bookplus.ui.component.GenreSelectionList
+import com.vnvj0033.bookplus.ui.component.PlatformSelectionList
 import kotlinx.coroutines.launch
 
 @Composable
 fun HomeCompose(
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
     val composeScope = rememberCoroutineScope()

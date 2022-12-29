@@ -3,8 +3,11 @@ package com.vnvj0033.bookplus.data.repository
 import com.vnvj0033.bookplus.data.entity.Book
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import javax.inject.Inject
 
-class BookRepositoryImpl : BookRepository {
+class BookRepositoryImpl @Inject constructor(
+//    datasoure: BookDataSource
+) : BookRepository {
     override suspend fun loadFavoriteBooks(userId: String, genre: String): Flow<List<Book>> {
         return flowOf(listOf( Book()))
     }
