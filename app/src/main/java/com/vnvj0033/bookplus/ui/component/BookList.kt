@@ -19,11 +19,10 @@ import androidx.compose.ui.unit.sp
 import com.vnvj0033.bookplus.R
 import com.vnvj0033.bookplus.domain.model.MainBook
 import com.vnvj0033.bookplus.ui.AppTheme
-import com.vnvj0033.bookplus.ui.state.BookListState
 
 @Composable
 fun BookList(
-    state: BookListState = BookListState(),
+    books: List<MainBook> = listOf(),
     click: (MainBook) -> Unit = {}
 ) {
 
@@ -33,7 +32,7 @@ fun BookList(
         contentPadding = PaddingValues(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(state.books) { book ->
+        items(books) { book ->
             Book(book) {
                 click.invoke(book)
             }

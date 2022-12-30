@@ -49,7 +49,7 @@ fun FavoriteGenreCompose(
             }
         }
         Divider()
-        BookList(viewModel.bookListState)
+        BookList(viewModel.bookListState.books)
     }
 }
 

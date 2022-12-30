@@ -3,53 +3,52 @@ package com.vnvj0033.bookplus.home
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.vnvj0033.bookplus.data.repository.FakeBookRepo
-import com.vnvj0033.bookplus.domain.model.MainBook
 import com.vnvj0033.bookplus.BookDetailActivity
+import com.vnvj0033.bookplus.domain.model.MainBook
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.component.BookList
 import com.vnvj0033.bookplus.ui.component.GenreSelectionList
 import com.vnvj0033.bookplus.ui.component.PlatformSelectionList
-import kotlinx.coroutines.launch
 
 @Composable
 fun HomeCompose(
-    modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-    val context = LocalContext.current
-    val composeScope = rememberCoroutineScope()
+    val uiState by viewModel.uiState.collectAsState()
 
-    val platformListState = viewModel.platformsState
-    val genreState = viewModel.genreState
-    val bookListState = viewModel.bookListState
-
-    LaunchedEffect(true) {
-        viewModel.loadGenre()
-        viewModel.loadBooks()
+    when(uiState) {
+        is HomeUiState.Loading -> {
+            Text(text = "LOADING...")
+        }
+        is HomeUiState.Success -> {
+            HomeScreen(state = (uiState as HomeUiState.Success).homeStateData)
+        }
     }
 
-    Column(modifier = modifier) {
-        PlatformSelectionList(platformListState) {
-            composeScope.launch {
-                viewModel.loadGenre()
-                viewModel.loadBooks()
-            }
+}
+
+@Composable
+fun HomeScreen(state: HomeStateData) {
+    val context = LocalContext.current
+
+    Column {
+        PlatformSelectionList {
+            state.platform = it
         }
-        GenreSelectionList(genreState) {
-            composeScope.launch {
-                viewModel.loadBooks()
-            }
-        }
-        BookList(bookListState) { book ->
-            openBookDetail(context, book)
+        GenreSelectionList(
+            options = state.genres
+        )
+        BookList(
+            books = state.books
+        ) {
+            openBookDetail(context, it)
         }
     }
 }
@@ -63,10 +62,24 @@ private fun openBookDetail(context: Context, book: MainBook) {
 
 @Preview
 @Composable
-private fun Preview() {
-    AppTheme {
-        HomeCompose(
-            viewModel = HomeViewModel(FakeBookRepo())
+private fun PreviewHomeScreen() {
+    val state = HomeStateData(
+        "kyobo",
+        listOf("123", "234"),
+        listOf(
+            MainBook("", "", "", "")
         )
+    )
+
+    AppTheme {
+        HomeScreen(state)
+    }
+}
+
+@Preview
+@Composable
+private fun PreviewLoading() {
+    AppTheme {
+        Text(text = "LOADING...")
     }
 }

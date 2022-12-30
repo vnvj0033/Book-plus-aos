@@ -21,36 +21,41 @@ class HomeViewModel @Inject constructor(
         set(value) { savedStateHandle["platform"] = value }
 
 
-    val homeUiState: StateFlow<HomeUiState> = with(bookRepository) {
-        combine(genres, books) { genres, books ->
-            if (genres.isNotEmpty() && books.isNotEmpty()) {
-                HomeUiState.Success(
-                    HomeStateData(
-                        platform,
-                        genres,
-                        books.map { it.toMainBook() }
-                    )
-                )
-            } else {
-                HomeUiState.Error
-            }
-        }
-    } .stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(),
-        initialValue = HomeUiState.Loading
-    )
+    val uiState: StateFlow<HomeUiState> =
+        homeUiState(platform, bookRepository).stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(),
+            initialValue = HomeUiState.Loading
+        )
 
 }
 
+private fun homeUiState(
+    platform: String,
+    bookRepository: BookRepository
+) = with(bookRepository) {
+    combine(genres, books) { genres, books ->
+        if (genres.isNotEmpty() && books.isNotEmpty()) {
+            HomeUiState.Success(
+                HomeStateData(
+                    platform,
+                    genres,
+                    books.map { it.toMainBook() }
+                )
+            )
+        } else {
+            HomeUiState.Loading
+        }
+    }
+}
+
 data class HomeStateData(
-    val platform: String,
+    var platform: String,
     val genres: List<String>,
     val books: List<MainBook>
 )
 
 sealed interface HomeUiState {
     data class Success(val homeStateData: HomeStateData) : HomeUiState
-    object Error : HomeUiState
     object Loading : HomeUiState
 }

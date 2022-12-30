@@ -22,14 +22,13 @@ import androidx.compose.ui.unit.dp
 import com.vnvj0033.bookplus.R
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.state.PlatformSelectionState
-import com.vnvj0033.bookplus.ui.state.PlatformsState
 
 /**
  * 클릭시 배경 변경, 이벤트는 외부로 호이스팅
  * */
 @Composable
 fun PlatformSelectionList(
-    state: PlatformsState,
+    selectedTitle: String = "",
     click: (String) -> Unit = {}
 ) {
 
@@ -42,14 +41,13 @@ fun PlatformSelectionList(
                 .padding(horizontal = 16.dp)
         )
         LazyRow(Modifier.fillMaxWidth()) {
-            items(state.platforms) { platform ->
-                val isSelected = state.selectedTitle == platform.title
+            items(platforms) { platform ->
+                val isSelected = selectedTitle == platform.title
 
                 PlatformSelection(
                     state = platform,
                     isSelected = isSelected
                 ) { selectTitle ->
-                    state.selectedTitle = selectTitle
                     click.invoke(selectTitle)
                 }
             }
@@ -101,11 +99,18 @@ fun PlatformSelection(
     }
 }
 
+private val platforms: List<PlatformSelectionState> =
+    listOf(
+        PlatformSelectionState("kyobo", R.drawable.logo_kyobo),
+        PlatformSelectionState("yes24", R.drawable.logo_yes24),
+        PlatformSelectionState("aladin", R.drawable.logo_aladin)
+    )
+
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 private fun PreviewPlatformSelectionList() {
     AppTheme {
-        PlatformSelectionList(PlatformsState())
+        PlatformSelectionList()
     }
 }
 

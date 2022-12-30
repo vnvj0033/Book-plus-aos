@@ -15,36 +15,31 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vnvj0033.bookplus.ui.AppTheme
-import com.vnvj0033.bookplus.ui.state.GenreSelectionListState
 
 /**
  * 클릭시 장르만 변경, 이벤트는 호이스팅
  * */
 @Composable
 fun GenreSelectionList(
-    state: GenreSelectionListState = GenreSelectionListState(),
+    options: List<String>,
     click: (String) -> Unit = {}
 ) {
 
-    val options = listOf(
-        "전체",
-        "문학 작품",
-        "국내 소설",
-        "컴퓨터/IT",
-        "취미/생활",
-    )
+    var selectedGenre: String by remember { mutableStateOf("") }
 
-    state.options.addAll(options)
+    if (options.isNotEmpty()) {
+        selectedGenre = options[0]
+    }
 
     LazyRow(modifier = Modifier.padding(top = 8.dp)) {
-        items(state.options) { text ->
-            val isSelected = state.selectGenre == text
+        items(options) { text ->
+            val isSelected = selectedGenre == text
 
             GenreSelection(
                 text = text,
                 isSelected = isSelected
             ) { selectGenre ->
-                state.selectGenre = selectGenre
+                selectedGenre = selectGenre
                 click.invoke(selectGenre)
             }
         }
@@ -91,7 +86,8 @@ private fun PreviewGenreSelectionList() {
 @Preview
 @Composable
 private fun PreviewGenreSelection() {
+    val options = listOf("123", "234", "345", "456")
     AppTheme {
-        GenreSelectionList()
+        GenreSelectionList(options)
     }
 }

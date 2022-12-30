@@ -23,8 +23,7 @@ class FavoriteGenreViewModel @Inject constructor(
             val mainBook = books.map {
                 it.toMainBook()
             }
-            bookListState.books.clear()
-            bookListState.books.addAll(mainBook)
+            bookListState.books = mainBook
         }
     }
 
