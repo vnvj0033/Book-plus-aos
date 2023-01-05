@@ -61,7 +61,7 @@ fun HomeScreen(state: HomeStateData) {
 }
 
 @Composable
-fun Loading() {
+private fun Loading() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center

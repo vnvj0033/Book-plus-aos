@@ -3,9 +3,7 @@ package com.vnvj0033.bookplus.favoritegenre
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -19,20 +17,47 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun FavoriteGenreCompose(
-    modifier: Modifier = Modifier,
     viewModel: FavoriteGenreViewModel = hiltViewModel()
+) {
+    val uiState by viewModel.uiState.collectAsState()
+
+    when (uiState) {
+        is FavoriteGenreUiState.Loading -> {
+            Loading()
+        }
+        is FavoriteGenreUiState.Success -> {
+            val composeScope = rememberCoroutineScope()
+            val state = (uiState as FavoriteGenreUiState.Success).favoriteGenreStateData
+            FavoriteGenreCompose(state) { genre ->
+                composeScope.launch {
+                    viewModel.refreshListWithFilter(genre)   
+                }
+            }
+        }
+    }
+    
+}
+
+@Composable
+private fun FavoriteGenreCompose(
+    state: FavoriteGenreStateData,
+    refreshListWithFilter: (String) -> Unit = {}
 ) {
     val composeScope = rememberCoroutineScope()
     
+    val filterState = state.filterState
+
+    val books = state.bookListState.books
+    
     LaunchedEffect(true) {
-        if (viewModel.filterState.option.isNotEmpty()) {
+        if (filterState.option.isNotEmpty()) {
             composeScope.launch {
-                viewModel.refreshListWithFilter(viewModel.filterState.option[0])
+                refreshListWithFilter(filterState.option[0])
             }
         }
     }
 
-    Column(modifier = modifier) {
+    Column {
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -42,15 +67,20 @@ fun FavoriteGenreCompose(
                 modifier = Modifier
                     .padding(8.dp),
                 text = "SUBSCRIPT")
-            Filter(viewModel.filterState) { filterGenre ->
+            Filter(filterState) { filterGenre ->
                 composeScope.launch {
-                    viewModel.refreshListWithFilter(filterGenre)
+                    refreshListWithFilter(filterGenre)
                 }
             }
         }
         Divider()
-        BookList(viewModel.bookListState.books)
+        BookList(books)
     }
+}
+
+@Composable
+private fun Loading() {
+    
 }
 
 @Composable
