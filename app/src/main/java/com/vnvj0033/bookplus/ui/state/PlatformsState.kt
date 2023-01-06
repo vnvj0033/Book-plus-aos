@@ -9,5 +9,5 @@ data class PlatformsState(
             PlatformSelectionState("yes24", R.drawable.logo_yes24),
             PlatformSelectionState("aladin", R.drawable.logo_aladin)
         ),
-    var selectedTitle: String = "kyobo"
+    var selectedTitle: String = platforms[0].title
 )

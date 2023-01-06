@@ -10,7 +10,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -22,15 +22,15 @@ import androidx.compose.ui.unit.dp
 import com.vnvj0033.bookplus.R
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.state.PlatformSelectionState
+import com.vnvj0033.bookplus.ui.state.PlatformsState
 
 /**
  * 클릭시 배경 변경, 이벤트는 외부로 호이스팅
  * */
 @Composable
-fun PlatformSelectionList(
-    selectedTitle: String = "",
-    click: (String) -> Unit = {}
-) {
+fun PlatformSelectionList(state: PlatformsState) {
+
+    var selectedTitle by remember { mutableStateOf(state.selectedTitle) }
 
     Column() {
         Text(
@@ -47,8 +47,8 @@ fun PlatformSelectionList(
                 PlatformSelection(
                     state = platform,
                     isSelected = isSelected
-                ) { selectTitle ->
-                    click.invoke(selectTitle)
+                ) { title ->
+                    selectedTitle = title
                 }
             }
         }
@@ -110,7 +110,7 @@ private val platforms: List<PlatformSelectionState> =
 @Composable
 private fun PreviewPlatformSelectionList() {
     AppTheme {
-        PlatformSelectionList()
+        PlatformSelectionList(PlatformsState())
     }
 }
 

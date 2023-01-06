@@ -21,6 +21,7 @@ import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.component.BookList
 import com.vnvj0033.bookplus.ui.component.GenreSelectionList
 import com.vnvj0033.bookplus.ui.component.PlatformSelectionList
+import com.vnvj0033.bookplus.ui.state.PlatformsState
 
 @Composable
 fun HomeCompose(
@@ -46,9 +47,7 @@ fun HomeScreen(state: HomeStateData) {
     Column(
         modifier = Modifier.fillMaxHeight()
     ) {
-        PlatformSelectionList {
-            state.platform = it
-        }
+        PlatformSelectionList(state.platformState)
         GenreSelectionList(
             options = state.genres
         )
@@ -81,7 +80,7 @@ private fun openBookDetail(context: Context, book: MainBook) {
 @Composable
 private fun PreviewHomeScreen() {
     val state = HomeStateData(
-        "kyobo",
+        PlatformsState(),
         listOf("123", "234"),
         listOf(
             MainBook("", "", "", "")
