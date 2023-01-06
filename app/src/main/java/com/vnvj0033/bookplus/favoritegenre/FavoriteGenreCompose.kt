@@ -30,7 +30,7 @@ fun FavoriteGenreCompose(
             val state = (uiState as FavoriteGenreUiState.Success).favoriteGenreStateData
             FavoriteGenreCompose(state) { genre ->
                 composeScope.launch {
-                    viewModel.refreshListWithFilter(genre)   
+                    viewModel.refreshListWithFilter(genre)
                 }
             }
         }
@@ -85,8 +85,16 @@ private fun Loading() {
 
 @Composable
 @Preview
-private fun Preview() {
+private fun PreviewSuccess() {
     AppTheme {
         FavoriteGenreCompose(viewModel = FavoriteGenreViewModel(FakeBookRepo()))
+    }
+}
+
+@Composable
+@Preview
+private fun PreviewLoading() {
+    AppTheme {
+        Loading()
     }
 }
