@@ -21,8 +21,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vnvj0033.bookplus.R
 import com.vnvj0033.bookplus.ui.AppTheme
-import com.vnvj0033.bookplus.ui.state.PlatformSelectionState
-import com.vnvj0033.bookplus.ui.state.PlatformsState
+import com.vnvj0033.bookplus.ui.component.state.PlatformSelectionState
+import com.vnvj0033.bookplus.ui.component.state.PlatformsState
 
 /**
  * 클릭시 배경 변경, 이벤트는 외부로 호이스팅

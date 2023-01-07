@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.ui
+package com.vnvj0033.bookplus.ui.component
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -10,6 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.vnvj0033.bookplus.ui.AppTheme
 
 @Composable
 fun BottomNavigation(navController: NavHostController) {

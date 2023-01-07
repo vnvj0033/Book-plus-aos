@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.intro
+package com.vnvj0033.bookplus.ui.intro
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,7 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vnvj0033.bookplus.R
-import com.vnvj0033.bookplus.main.MainActivity
+import com.vnvj0033.bookplus.ui.main.MainActivity
 import com.vnvj0033.bookplus.ui.AppTheme
 
 

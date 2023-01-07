@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.home
+package com.vnvj0033.bookplus.ui.home
 
 import android.content.Context
 import android.content.Intent
@@ -15,13 +15,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.vnvj0033.bookplus.BookDetailActivity
+import com.vnvj0033.bookplus.ui.bookdetail.BookDetailActivity
 import com.vnvj0033.bookplus.domain.model.MainBook
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.component.BookList
 import com.vnvj0033.bookplus.ui.component.GenreSelectionList
 import com.vnvj0033.bookplus.ui.component.PlatformSelectionList
-import com.vnvj0033.bookplus.ui.state.PlatformsState
+import com.vnvj0033.bookplus.ui.component.state.PlatformsState
 
 @Composable
 fun HomeCompose(

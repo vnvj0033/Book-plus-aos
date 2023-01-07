@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.ui.state
+package com.vnvj0033.bookplus.ui.component.state
 
 import com.vnvj0033.bookplus.domain.model.MainBook
 

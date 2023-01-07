@@ -1,12 +1,12 @@
-package com.vnvj0033.bookplus.main.navigation
+package com.vnvj0033.bookplus.ui.main.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.vnvj0033.bookplus.favoritegenre.FavoriteGenreCompose
-import com.vnvj0033.bookplus.home.HomeCompose
+import com.vnvj0033.bookplus.ui.favoritegenre.FavoriteGenreCompose
+import com.vnvj0033.bookplus.ui.home.HomeCompose
 
 private const val routeNameHome = "route_name_home"
 private const val routeNameFavoriteGenre = "route_name_favorite_genre"

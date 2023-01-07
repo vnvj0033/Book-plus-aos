@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.main.ui
+package com.vnvj0033.bookplus.ui.main
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.padding
@@ -8,9 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
-import com.vnvj0033.bookplus.main.navigation.MainNavHost
+import com.vnvj0033.bookplus.ui.main.navigation.MainNavHost
 import com.vnvj0033.bookplus.ui.AppTheme
-import com.vnvj0033.bookplus.ui.BottomNavigation
+import com.vnvj0033.bookplus.ui.component.BottomNavigation
 
 
 @OptIn(ExperimentalMaterial3Api::class)

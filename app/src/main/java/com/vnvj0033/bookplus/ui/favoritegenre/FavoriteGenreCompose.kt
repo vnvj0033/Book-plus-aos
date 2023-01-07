@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.favoritegenre
+package com.vnvj0033.bookplus.ui.favoritegenre
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Divider
@@ -47,7 +47,7 @@ private fun FavoriteGenreCompose(
     
     val filterState = state.filterState
 
-    val books = state.bookListState.books
+    val bookState = state.bookListState
     
     LaunchedEffect(true) {
         if (filterState.option.isNotEmpty()) {
@@ -74,13 +74,18 @@ private fun FavoriteGenreCompose(
             }
         }
         Divider()
-        BookList(books)
+        BookList(bookState.books)
     }
 }
 
 @Composable
 private fun Loading() {
-    
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(text = "LOADING...")
+    }
 }
 
 @Composable
