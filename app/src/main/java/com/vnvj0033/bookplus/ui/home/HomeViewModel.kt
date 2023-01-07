@@ -2,6 +2,7 @@ package com.vnvj0033.bookplus.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vnvj0033.bookplus.data.entity.Book
 import com.vnvj0033.bookplus.data.repository.BookRepository
 import com.vnvj0033.bookplus.domain.model.MainBook
 import com.vnvj0033.bookplus.domain.model.toMainBook
@@ -15,8 +16,20 @@ class HomeViewModel @Inject constructor(
     bookRepository: BookRepository
 ): ViewModel() {
 
+    private val genre = bookRepository.genres.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = listOf()
+    )
+
+    private val books = bookRepository.books.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = listOf()
+    )
+
     val uiState: StateFlow<HomeUiState> =
-        homeUiState(bookRepository).stateIn(
+        homeUiState(genre, books).stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(),
             initialValue = HomeUiState.Loading
@@ -25,15 +38,16 @@ class HomeViewModel @Inject constructor(
 }
 
 private fun homeUiState(
-    bookRepository: BookRepository
-) = with(bookRepository) {
-    combine(genres, books) { genres, books ->
-        if (genres.isNotEmpty() && books.isNotEmpty()) {
+    genres: StateFlow<List<String>>,
+    books: StateFlow<List<Book>>
+): Flow<HomeUiState> {
+    return combine(genres, books) { listOfGenre, listOfBook ->
+        if (listOfGenre.isNotEmpty() && listOfBook.isNotEmpty()) {
             HomeUiState.Success(
                 HomeStateData(
                     PlatformsState(),
-                    genres,
-                    books.map { it.toMainBook() }
+                    listOfGenre,
+                    listOfBook.map { it.toMainBook() }
                 )
             )
         } else {

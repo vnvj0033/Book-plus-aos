@@ -83,8 +83,15 @@ fun Book(
 @Composable
 @Preview
 private fun PreviewBookList() {
+    val list = listOf(
+        MainBook("", "title", "writer", "summery"),
+        MainBook("", "title", "writer", "summery"),
+        MainBook("", "title", "writer", "summery"),
+        MainBook("", "title", "writer", "summery"),
+        MainBook("", "title", "writer", "summery")
+    )
     AppTheme {
-        BookList()
+        BookList(list)
     }
 }
 

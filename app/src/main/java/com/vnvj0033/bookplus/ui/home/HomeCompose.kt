@@ -47,13 +47,13 @@ fun HomeScreen(state: HomeStateData) {
     Column(
         modifier = Modifier.fillMaxHeight()
     ) {
-        PlatformSelectionList(state.platformState)
+        PlatformSelectionList(state.platformState) { selectedTitle ->
+            state.platformState.selectedTitle = selectedTitle
+        }
         GenreSelectionList(
             options = state.genres
         )
-        BookList(
-            books = state.books
-        ) {
+        BookList(state.books) {
             openBookDetail(context, it)
         }
     }

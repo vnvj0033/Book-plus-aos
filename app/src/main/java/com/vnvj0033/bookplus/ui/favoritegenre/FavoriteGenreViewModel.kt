@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vnvj0033.bookplus.data.repository.BookRepository
 import com.vnvj0033.bookplus.domain.model.toMainBook
-import com.vnvj0033.bookplus.ui.FilterState
+import com.vnvj0033.bookplus.ui.component.FilterState
 import com.vnvj0033.bookplus.ui.component.state.BookListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
