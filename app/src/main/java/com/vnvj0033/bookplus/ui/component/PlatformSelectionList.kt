@@ -51,6 +51,7 @@ fun PlatformSelectionList(
                     isSelected = isSelected
                 ) { title ->
                     state.selectedTitle
+                    click.invoke(title)
                 }
             }
         }

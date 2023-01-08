@@ -2,6 +2,7 @@ package com.vnvj0033.bookplus.ui.home
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -29,6 +30,8 @@ fun HomeCompose(
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
+    Log.d("testsyoo", "redirection HomeCompose")
+
     when(uiState) {
         is HomeUiState.Loading -> {
             Loading()
@@ -43,6 +46,8 @@ fun HomeCompose(
 @Composable
 fun HomeScreen(state: HomeStateData) {
     val context = LocalContext.current
+
+    Log.d("testsyoo", "redirection HomeScreen")
 
     Column(
         modifier = Modifier.fillMaxHeight()

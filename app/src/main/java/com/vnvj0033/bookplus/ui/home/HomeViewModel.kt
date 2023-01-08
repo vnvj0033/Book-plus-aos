@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    bookRepository: BookRepository
+    private val bookRepository: BookRepository
 ): ViewModel() {
 
     private val genre = bookRepository.genres.stateIn(
@@ -34,6 +34,14 @@ class HomeViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(),
             initialValue = HomeUiState.Loading
         )
+
+    fun updateBook() {
+
+    }
+
+    fun updateGenre() {
+
+    }
 
 }
 
