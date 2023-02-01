@@ -2,23 +2,18 @@ package com.vnvj0033.bookplus.ui.home
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.vnvj0033.bookplus.ui.bookdetail.BookDetailActivity
 import com.vnvj0033.bookplus.domain.model.MainBook
 import com.vnvj0033.bookplus.ui.AppTheme
+import com.vnvj0033.bookplus.ui.bookdetail.BookDetailActivity
 import com.vnvj0033.bookplus.ui.component.BookList
 import com.vnvj0033.bookplus.ui.component.GenreSelectionList
 import com.vnvj0033.bookplus.ui.component.PlatformSelectionList
@@ -29,8 +24,6 @@ fun HomeCompose(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
-
-    Log.d("testsyoo", "redirection HomeCompose")
 
     when(uiState) {
         is HomeUiState.Loading -> {
@@ -47,8 +40,6 @@ fun HomeCompose(
 fun HomeScreen(state: HomeStateData) {
     val context = LocalContext.current
 
-    Log.d("testsyoo", "redirection HomeScreen")
-
     Column(
         modifier = Modifier.fillMaxHeight()
     ) {
@@ -58,19 +49,20 @@ fun HomeScreen(state: HomeStateData) {
         GenreSelectionList(
             options = state.genres
         )
-        BookList(state.books) {
-            openBookDetail(context, it)
+        BookList(state.books) { books ->
+            openBookDetail(context, books)
         }
     }
 }
 
 @Composable
 private fun Loading() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+    Column(
+        modifier = Modifier.fillMaxHeight()
     ) {
-        Text(text = "LOADING...")
+        PlatformSelectionList(PlatformsState())
+        GenreSelectionList(listOf())
+        BookList()
     }
 }
 

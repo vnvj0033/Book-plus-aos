@@ -45,6 +45,11 @@ android {
     }
 
     namespace = "com.vnvj0033.bookplus"
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    buildToolsVersion = "33.0.0"
 }
 
 dependencies {
