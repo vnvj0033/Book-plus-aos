@@ -49,44 +49,44 @@ android {
 
 dependencies {
 
-    implementation(Dependencies.coreKtx)
-    testImplementation(Dependencies.junit)
-    androidTestImplementation(Dependencies.junitExt)
-    androidTestImplementation(Dependencies.espresso)
+    implementation(Lib.coreKtx)
+    testImplementation(Lib.junit)
+    androidTestImplementation(Lib.junitExt)
+    androidTestImplementation(Lib.espresso)
 
     // datastore preferences
-    implementation (Dependencies.datastore)
+    implementation (Lib.datastore)
 
     // firebase
-    implementation(Dependencies.firebaseBom)
-    implementation(Dependencies.firebaseMessagingKtx)
+    implementation(Lib.firebaseBom)
+    implementation(Lib.firebaseMessagingKtx)
 
     // dagger hilt
-    implementation (Dependencies.hilt)
-    kapt (Dependencies.hiltCompiler)
+    implementation (Lib.hilt)
+    kapt (Lib.hiltCompiler)
 
     // Room
-    implementation (Dependencies.room)
-    annotationProcessor(Dependencies.roomCompiler)
-    kapt (Dependencies.roomCompiler)
+    implementation (Lib.room)
+    annotationProcessor(Lib.roomCompiler)
+    kapt (Lib.roomCompiler)
 
     // Retrofit2
-    implementation (Dependencies.retrofit2)
-    implementation (Dependencies.gson)
+    implementation (Lib.retrofit2)
+    implementation (Lib.gson)
 
     // Compose Material Design 3
-    implementation(Dependencies.composeMaterial3)
+    implementation(Lib.composeMaterial3)
     // Android Studio Preview support
-    implementation(Dependencies.composePreview)
-    debugImplementation(Dependencies.composeUi)
+    implementation(Lib.composePreview)
+    debugImplementation(Lib.composeUi)
     // Compose coil
-    implementation(Dependencies.coilCompose)
+    implementation(Lib.coilCompose)
     // Compose Integration with activities
-    implementation(Dependencies.activityCompose)
+    implementation(Lib.activityCompose)
     // Compose ViewModel
-    implementation(Dependencies.viewmodelCompose)
+    implementation(Lib.viewmodelCompose)
     // Compose Navigation
-    implementation(Dependencies.navigationCompose)
+    implementation(Lib.navigationCompose)
     // Compose Hilt
-    implementation(Dependencies.hiltNavigationCompose)
+    implementation(Lib.hiltNavigationCompose)
 }
