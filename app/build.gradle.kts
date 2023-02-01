@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -21,13 +23,15 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
 
-        getByName("debug") {
+        debug {
             isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -45,44 +49,44 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    testImplementation("junit:junit:${Versions.junitVersion}")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+    implementation(Dependencies.coreKtx)
+    testImplementation(Dependencies.junit)
+    androidTestImplementation(Dependencies.junitExt)
+    androidTestImplementation(Dependencies.espresso)
 
     // datastore preferences
-    implementation ("androidx.datastore:datastore-preferences:1.0.0")
+    implementation (Dependencies.datastore)
 
     // firebase
-    implementation(platform("com.google.firebase:firebase-bom:30.1.0"))
-    implementation("com.google.firebase:firebase-messaging-ktx")
+    implementation(Dependencies.firebaseBom)
+    implementation(Dependencies.firebaseMessagingKtx)
 
     // dagger hilt
-    implementation ("com.google.dagger:hilt-android:${Versions.hiltVersion}")
-    kapt ("com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}")
+    implementation (Dependencies.hilt)
+    kapt (Dependencies.hiltCompiler)
 
     // Room
-    implementation ("androidx.room:room-runtime:${Versions.roomVersion}")
-    annotationProcessor("androidx.room:room-compiler:${Versions.roomVersion}")
-    kapt ("androidx.room:room-compiler:${Versions.roomVersion}")
+    implementation (Dependencies.room)
+    annotationProcessor(Dependencies.roomCompiler)
+    kapt (Dependencies.roomCompiler)
 
     // Retrofit2
-    implementation ("com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}")
-    implementation ("com.squareup.retrofit2:converter-gson:${Versions.retrofitVersion}")
+    implementation (Dependencies.retrofit2)
+    implementation (Dependencies.gson)
 
     // Compose Material Design 3
-    implementation("androidx.compose.material3:material3:1.1.0-alpha03")
+    implementation(Dependencies.composeMaterial3)
     // Android Studio Preview support
-    implementation("androidx.compose.ui:ui-tooling-preview:1.4.0-alpha03")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.4.0-alpha03")
+    implementation(Dependencies.composePreview)
+    debugImplementation(Dependencies.composeUi)
     // Compose coil
-    implementation("io.coil-kt:coil-compose:2.2.2")
+    implementation(Dependencies.coilCompose)
     // Compose Integration with activities
-    implementation("androidx.activity:activity-compose:1.6.1")
+    implementation(Dependencies.activityCompose)
     // Compose ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-alpha03")
+    implementation(Dependencies.viewmodelCompose)
     // Compose Navigation
-    implementation("androidx.navigation:navigation-compose:2.5.3")
+    implementation(Dependencies.navigationCompose)
     // Compose Hilt
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation(Dependencies.hiltNavigationCompose)
 }
