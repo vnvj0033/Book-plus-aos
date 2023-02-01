@@ -63,7 +63,7 @@ dependencies {
     implementation (Lib.datastore)
 
     // firebase
-    implementation(Lib.firebaseBom)
+    implementation(platform(Lib.firebaseBom))
     implementation(Lib.firebaseMessagingKtx)
 
     // dagger hilt
