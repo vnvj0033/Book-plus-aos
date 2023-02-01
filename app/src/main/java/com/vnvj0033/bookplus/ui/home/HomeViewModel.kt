@@ -35,12 +35,12 @@ class HomeViewModel @Inject constructor(
             initialValue = HomeUiState.Loading
         )
 
-    fun updateBook() {
-
+    fun updateBook(platform: String) {
+        bookRepository.genres
     }
 
-    fun updateGenre() {
-
+    fun updateGenre(platform: String) {
+        genre
     }
 
 }

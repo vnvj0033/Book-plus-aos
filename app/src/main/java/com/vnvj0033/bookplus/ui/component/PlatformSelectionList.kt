@@ -34,7 +34,7 @@ fun PlatformSelectionList(
 ) {
     var selectedTitle by remember { mutableStateOf(state.selectedTitle) }
 
-    Column() {
+    Column {
         Text(
             text = "PLATFORMS",
             style = MaterialTheme.typography.titleSmall,
@@ -50,7 +50,7 @@ fun PlatformSelectionList(
                     state = platform,
                     isSelected = isSelected
                 ) { title ->
-                    state.selectedTitle
+                    selectedTitle = title
                     click.invoke(title)
                 }
             }

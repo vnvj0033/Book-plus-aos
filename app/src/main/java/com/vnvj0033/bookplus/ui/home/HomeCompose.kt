@@ -30,21 +30,30 @@ fun HomeCompose(
             Loading()
         }
         is HomeUiState.Success -> {
-            HomeScreen(state = (uiState as HomeUiState.Success).homeStateData)
+            HomeScreen(
+                state = (uiState as HomeUiState.Success).homeStateData,
+                updateBook = viewModel::updateBook,
+                updateGenre = viewModel::updateGenre
+            )
         }
     }
 
 }
 
 @Composable
-fun HomeScreen(state: HomeStateData) {
+fun HomeScreen(
+    state: HomeStateData,
+    updateBook: (String) -> Unit,
+    updateGenre: (String) -> Unit
+) {
     val context = LocalContext.current
 
     Column(
         modifier = Modifier.fillMaxHeight()
     ) {
         PlatformSelectionList(state.platformState) { selectedTitle ->
-            state.platformState.selectedTitle = selectedTitle
+            updateGenre.invoke(selectedTitle)
+            updateBook.invoke(selectedTitle)
         }
         GenreSelectionList(
             options = state.genres
@@ -85,7 +94,7 @@ private fun PreviewHomeScreen() {
     )
 
     AppTheme {
-        HomeScreen(state)
+        HomeScreen(state, {}, {})
     }
 }
 
