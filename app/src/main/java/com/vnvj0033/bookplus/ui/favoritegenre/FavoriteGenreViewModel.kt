@@ -2,15 +2,14 @@ package com.vnvj0033.bookplus.ui.favoritegenre
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vnvj0033.bookplus.data.entity.Book
 import com.vnvj0033.bookplus.data.repository.BookRepository
 import com.vnvj0033.bookplus.domain.model.toMainBook
 import com.vnvj0033.bookplus.ui.component.FilterState
 import com.vnvj0033.bookplus.ui.component.state.BookListState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,39 +17,40 @@ class FavoriteGenreViewModel @Inject constructor(
     private val bookRepository: BookRepository
 ): ViewModel() {
 
+    private val genre = MutableStateFlow(bookRepository.genres)
+    private val books = MutableStateFlow(bookRepository.books)
+
     private val stateData: FavoriteGenreStateData = FavoriteGenreStateData()
 
     val uiState: StateFlow<FavoriteGenreUiState> =
-        favoriteGenreUiState(bookRepository, stateData).stateIn(
+        favoriteGenreUiState(genre, books, stateData).stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(),
             initialValue = FavoriteGenreUiState.Loading
         )
 
-    suspend fun refreshListWithFilter(genre: String) {
-        bookRepository.loadFavoriteBooks("", genre).collect { books ->
-            val mainBook = books.map {
-                it.toMainBook()
-            }
-            stateData.bookListState.books = mainBook
+    suspend fun refreshListWithFilter(genre: String) = coroutineScope {
+        val books = bookRepository.updateBooks("", genre).map {
+            it.toMainBook()
         }
+        stateData.bookListState.books = books
     }
 
 }
 
 
 private fun favoriteGenreUiState(
-    bookRepository: BookRepository,
+    genresFlow: Flow<List<String>> ,
+    booksFlow: Flow<List<Book>>,
     stateData: FavoriteGenreStateData
-) = with(bookRepository) {
-    combine(genres, books) { genres, books ->
-        if (genres.isNotEmpty() && books.isNotEmpty()) {
-            FavoriteGenreUiState.Success(stateData)
-        } else {
-            FavoriteGenreUiState.Loading
-        }
+) = combine(genresFlow, booksFlow) { genres, books ->
+    if (genres.isNotEmpty() && books.isNotEmpty()) {
+        FavoriteGenreUiState.Success(stateData)
+    } else {
+        FavoriteGenreUiState.Loading
     }
 }
+
 
 data class FavoriteGenreStateData(
     val filterState: FilterState = FilterState(),
