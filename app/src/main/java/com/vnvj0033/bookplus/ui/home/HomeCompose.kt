@@ -32,7 +32,8 @@ fun HomeCompose(
         is HomeUiState.Success -> {
             HomeScreen(
                 state = (uiState as HomeUiState.Success).homeStateData,
-                updateGenre = viewModel::updateGenre
+                updateGenre = viewModel::updateGenre,
+                updateBooks = viewModel::updateBooks
             )
         }
     }
@@ -42,7 +43,8 @@ fun HomeCompose(
 @Composable
 fun HomeScreen(
     state: HomeStateData,
-    updateGenre: (String) -> Unit
+    updateGenre: (String) -> Unit = {},
+    updateBooks: (String) -> Unit = {}
 ) {
     val context = LocalContext.current
 
@@ -52,9 +54,9 @@ fun HomeScreen(
         PlatformSelectionList(state.platformState) { selectedTitle ->
             updateGenre.invoke(selectedTitle)
         }
-        GenreSelectionList(
-            options = state.genres
-        )
+        GenreSelectionList(options = state.genres) { genre ->
+            updateBooks.invoke(genre)
+        }
         BookList(state.books) { books ->
             openBookDetail(context, books)
         }
@@ -91,7 +93,7 @@ private fun PreviewHomeScreen() {
     )
 
     AppTheme {
-        HomeScreen(state, {})
+        HomeScreen(state)
     }
 }
 
