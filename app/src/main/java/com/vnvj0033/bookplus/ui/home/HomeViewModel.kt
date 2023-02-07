@@ -16,16 +16,8 @@ class HomeViewModel @Inject constructor(
     private val bookRepository: BookRepository
 ): ViewModel() {
 
-    private val genre = bookRepository.genres.stateIn(
-        viewModelScope,
-        SharingStarted.WhileSubscribed(),
-        emptyList()
-    )
-    private val books = bookRepository.books.stateIn(
-        viewModelScope,
-        SharingStarted.WhileSubscribed(),
-        emptyList()
-    )
+    private val genre = MutableStateFlow(bookRepository.genres)
+    private val books = MutableStateFlow(bookRepository.books)
 
     val uiState: StateFlow<HomeUiState> =
         homeUiState(genre, books).stateIn(
