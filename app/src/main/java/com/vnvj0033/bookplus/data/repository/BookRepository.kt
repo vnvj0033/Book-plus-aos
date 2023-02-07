@@ -6,6 +6,6 @@ interface BookRepository {
     val genres: List<String>
     val books: List<Book>
 
-    fun updateGenre(platform: String)
+    fun updateGenre(platform: String): List<String>
     fun updateBooks(userId: String, genre: String): List<Book>
 }

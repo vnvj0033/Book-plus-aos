@@ -27,7 +27,7 @@ class HomeViewModel @Inject constructor(
         )
 
     fun updateGenre(platform: String) {
-        bookRepository.updateGenre(platform = platform)
+        genre.value = bookRepository.updateGenre(platform = platform)
 
         if (genre.value.isNotEmpty()) {
             updateBooks(genre.value[0])
@@ -35,7 +35,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun updateBooks(newGenre: String) {
-        bookRepository.updateBooks(
+        books.value = bookRepository.updateBooks(
             userId = "",
             genre = newGenre
         )
