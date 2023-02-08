@@ -4,9 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,6 +34,10 @@ fun HomeCompose(
                 updateBooks = viewModel::updateBooks
             )
         }
+    }
+
+    LaunchedEffect(true) {
+        viewModel.updateGenre("kyobo")
     }
 
 }

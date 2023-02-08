@@ -16,21 +16,21 @@ class HomeViewModel @Inject constructor(
     private val bookRepository: BookRepository
 ): ViewModel() {
 
-    private val genre = MutableStateFlow(bookRepository.genres)
+    private val genres = MutableStateFlow(bookRepository.genres)
     private val books = MutableStateFlow(bookRepository.books)
 
     val uiState: StateFlow<HomeUiState> =
-        homeUiState(genre, books).stateIn(
+        homeUiState(genres, books).stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(),
+            started = SharingStarted.WhileSubscribed(5_000),
             initialValue = HomeUiState.Loading
         )
 
     fun updateGenre(platform: String) {
-        genre.value = bookRepository.updateGenre(platform = platform)
+        genres.value = bookRepository.updateGenre(platform = platform)
 
-        if (genre.value.isNotEmpty()) {
-            updateBooks(genre.value[0])
+        if (genres.value.isNotEmpty()) {
+            updateBooks(genres.value[0])
         }
     }
 
