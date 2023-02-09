@@ -11,11 +11,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.vnvj0033.bookplus.ui.AppTheme
+import com.vnvj0033.bookplus.ui.main.navigation.routeNameFavoriteGenre
+import com.vnvj0033.bookplus.ui.main.navigation.routeNameHome
 
 @Composable
 fun BottomNavigation(navController: NavHostController) {
 
-    var currentRoute by remember { mutableStateOf("home") }
+    var currentRoute by remember { mutableStateOf("route_name_home") }
 
     val onClick = { route: String ->
         navController.navigateSingleTopTo(route)
@@ -24,8 +26,8 @@ fun BottomNavigation(navController: NavHostController) {
 
     BottomAppBar {
         NavigationBarItem(
-            selected = currentRoute == "home",
-            onClick = { onClick.invoke("home") },
+            selected = currentRoute == routeNameHome,
+            onClick = { onClick.invoke(routeNameHome) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Home,
@@ -34,8 +36,8 @@ fun BottomNavigation(navController: NavHostController) {
             label = { Text("홈") })
 
         NavigationBarItem(
-            selected = currentRoute == "favorite_genre",
-            onClick = { onClick.invoke("favorite_genre") },
+            selected = currentRoute == routeNameFavoriteGenre,
+            onClick = { onClick.invoke(routeNameFavoriteGenre) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Favorite,

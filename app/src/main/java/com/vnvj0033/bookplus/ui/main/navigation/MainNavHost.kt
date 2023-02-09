@@ -8,8 +8,8 @@ import androidx.navigation.compose.composable
 import com.vnvj0033.bookplus.ui.favoritegenre.FavoriteGenreCompose
 import com.vnvj0033.bookplus.ui.home.HomeCompose
 
-private const val routeNameHome = "route_name_home"
-private const val routeNameFavoriteGenre = "route_name_favorite_genre"
+const val routeNameHome = "route_name_home"
+const val routeNameFavoriteGenre = "route_name_favorite_genre"
 
 @Composable
 fun MainNavHost(
