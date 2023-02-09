@@ -97,7 +97,7 @@ fun DropDownList(
 }
 
 class FilterState {
-    val option = mutableStateListOf<String>()
+    var option = listOf<String>()
 }
 
 @Preview
@@ -105,7 +105,7 @@ class FilterState {
 private fun Preview() {
     val state = FilterState()
 
-    state.option.addAll(listOf("1", "2", "3", "4"))
+    state.option = listOf("1", "2", "3", "4")
     AppTheme {
         Filter(state)
     }

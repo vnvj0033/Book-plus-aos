@@ -44,16 +44,19 @@ private fun favoriteGenreUiState(
     booksFlow: Flow<List<Book>>,
     stateData: FavoriteGenreStateData
 ) = combine(genresFlow, booksFlow) { genres, books ->
-    if (genres.isNotEmpty() && books.isNotEmpty()) {
+//    if (genres.isNotEmpty() && books.isNotEmpty()) {
         FavoriteGenreUiState.Success(stateData)
-    } else {
-        FavoriteGenreUiState.Loading
-    }
+//    } else {
+//        FavoriteGenreUiState.Loading
+//    }
 }
 
 
 data class FavoriteGenreStateData(
-    val filterState: FilterState = FilterState(),
+    val filterState: FilterState = FilterState().apply {
+        this.option = listOf("kyobo","yes24","aladin")
+
+    },
     val bookListState: BookListState = BookListState()
 )
 

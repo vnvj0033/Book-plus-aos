@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.vnvj0033.bookplus.data.repository.FakeBookRepo
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.component.BookList
 import com.vnvj0033.bookplus.ui.component.Filter
@@ -92,7 +91,7 @@ private fun Loading() {
 @Preview
 private fun PreviewSuccess() {
     AppTheme {
-        FavoriteGenreCompose(viewModel = FavoriteGenreViewModel(FakeBookRepo()))
+        FavoriteGenreCompose(FavoriteGenreStateData())
     }
 }
 
