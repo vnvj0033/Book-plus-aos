@@ -27,8 +27,10 @@ fun GenreSelectionList(
 
     var selectedGenre: String by remember { mutableStateOf("") }
 
-    if (options.isNotEmpty()) {
-        selectedGenre = options[0]
+    LaunchedEffect(options) {
+        if (!options.contains(selectedGenre) && options.isNotEmpty()) {
+            selectedGenre = options[0]
+        }
     }
 
     LazyRow(modifier = Modifier.padding(top = 8.dp)) {
