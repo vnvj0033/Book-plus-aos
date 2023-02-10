@@ -42,8 +42,6 @@ private fun FavoriteGenreCompose(
     val composeScope = rememberCoroutineScope()
     
     val option = state.filterOption
-
-    val bookState = state.bookListState
     
     LaunchedEffect(true) {
         if (option.isNotEmpty()) {
@@ -70,7 +68,7 @@ private fun FavoriteGenreCompose(
             }
         }
         Divider()
-        BookList(bookState.books)
+        BookList(state.books)
     }
 }
 

@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vnvj0033.bookplus.data.entity.Book
 import com.vnvj0033.bookplus.data.repository.BookRepository
+import com.vnvj0033.bookplus.domain.model.MainBook
 import com.vnvj0033.bookplus.domain.model.toMainBook
-import com.vnvj0033.bookplus.ui.component.state.BookListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -18,20 +18,15 @@ class FavoriteGenreViewModel @Inject constructor(
     private val genre = MutableStateFlow(bookRepository.genres)
     private val books = MutableStateFlow(bookRepository.books)
 
-    private val stateData: FavoriteGenreStateData = FavoriteGenreStateData()
-
     val uiState: StateFlow<FavoriteGenreUiState> =
-        favoriteGenreUiState(genre, books, stateData).stateIn(
+        favoriteGenreUiState(genre, books).stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(),
             initialValue = FavoriteGenreUiState.Loading
         )
 
     fun refreshListWithFilter(genre: String) {
-        val books = bookRepository.updateBooks("", genre).map {
-            it.toMainBook()
-        }
-        stateData.bookListState.books = books
+        books.value = bookRepository.updateBooks("", genre)
     }
 
 }
@@ -40,19 +35,23 @@ class FavoriteGenreViewModel @Inject constructor(
 private fun favoriteGenreUiState(
     genresFlow: Flow<List<String>> ,
     booksFlow: Flow<List<Book>>,
-    stateData: FavoriteGenreStateData
 ) = combine(genresFlow, booksFlow) { genres, books ->
-//    if (genres.isNotEmpty() && books.isNotEmpty()) {
+    val stateData = FavoriteGenreStateData(
+        genres,
+        books.map { it.toMainBook() }
+    )
+
+    if (genres.isNotEmpty() && books.isNotEmpty()) {
         FavoriteGenreUiState.Success(stateData)
-//    } else {
-//        FavoriteGenreUiState.Loading
-//    }
+    } else {
+        FavoriteGenreUiState.Loading
+    }
 }
 
 
 data class FavoriteGenreStateData(
     val filterOption: List<String> = listOf("kyobo","yes24","aladin"),
-    val bookListState: BookListState = BookListState()
+    var books: List<MainBook> = emptyList()
 )
 
 sealed interface FavoriteGenreUiState {
