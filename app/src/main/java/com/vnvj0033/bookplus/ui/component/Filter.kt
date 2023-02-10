@@ -15,16 +15,16 @@ import com.vnvj0033.bookplus.ui.AppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Filter(
-    state: FilterState = FilterState(),
+    option: List<String> = emptyList(),
     selectedString: (String) -> Unit = {}
 ) {
     var isOpen by remember { mutableStateOf(false) }
 
     var displayText by remember {
-        if (state.option.isEmpty()) {
+        if (option.isEmpty()) {
             mutableStateOf("")
         } else {
-            mutableStateOf(state.option[0])
+            mutableStateOf(option[0])
         }
     }
 
@@ -48,7 +48,7 @@ fun Filter(
 
             DropDownList(
                 requestToOpen = isOpen,
-                list = state.option,
+                list = option,
                 dismissRequest = { isOpen = it },
                 selectedString = {
                     displayText = it
@@ -96,17 +96,10 @@ fun DropDownList(
     }
 }
 
-class FilterState {
-    var option = listOf<String>()
-}
-
 @Preview
 @Composable
 private fun Preview() {
-    val state = FilterState()
-
-    state.option = listOf("1", "2", "3", "4")
     AppTheme {
-        Filter(state)
+        Filter(listOf("1", "2", "3", "4"))
     }
 }

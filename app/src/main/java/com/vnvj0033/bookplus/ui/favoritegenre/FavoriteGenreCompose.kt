@@ -25,12 +25,9 @@ fun FavoriteGenreCompose(
             Loading()
         }
         is FavoriteGenreUiState.Success -> {
-            val composeScope = rememberCoroutineScope()
             val state = (uiState as FavoriteGenreUiState.Success).favoriteGenreStateData
             FavoriteGenreCompose(state) { genre ->
-                composeScope.launch {
-                    viewModel.refreshListWithFilter(genre)
-                }
+                viewModel.refreshListWithFilter(genre)
             }
         }
     }
@@ -44,14 +41,14 @@ private fun FavoriteGenreCompose(
 ) {
     val composeScope = rememberCoroutineScope()
     
-    val filterState = state.filterState
+    val option = state.filterOption
 
     val bookState = state.bookListState
     
     LaunchedEffect(true) {
-        if (filterState.option.isNotEmpty()) {
+        if (option.isNotEmpty()) {
             composeScope.launch {
-                refreshListWithFilter(filterState.option[0])
+                refreshListWithFilter(option[0])
             }
         }
     }
@@ -66,7 +63,7 @@ private fun FavoriteGenreCompose(
                 modifier = Modifier
                     .padding(8.dp),
                 text = "SUBSCRIPT")
-            Filter(filterState) { filterGenre ->
+            Filter(option) { filterGenre ->
                 composeScope.launch {
                     refreshListWithFilter(filterGenre)
                 }

@@ -5,10 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.vnvj0033.bookplus.data.entity.Book
 import com.vnvj0033.bookplus.data.repository.BookRepository
 import com.vnvj0033.bookplus.domain.model.toMainBook
-import com.vnvj0033.bookplus.ui.component.FilterState
 import com.vnvj0033.bookplus.ui.component.state.BookListState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
@@ -29,7 +27,7 @@ class FavoriteGenreViewModel @Inject constructor(
             initialValue = FavoriteGenreUiState.Loading
         )
 
-    suspend fun refreshListWithFilter(genre: String) = coroutineScope {
+    fun refreshListWithFilter(genre: String) {
         val books = bookRepository.updateBooks("", genre).map {
             it.toMainBook()
         }
@@ -53,10 +51,7 @@ private fun favoriteGenreUiState(
 
 
 data class FavoriteGenreStateData(
-    val filterState: FilterState = FilterState().apply {
-        this.option = listOf("kyobo","yes24","aladin")
-
-    },
+    val filterOption: List<String> = listOf("kyobo","yes24","aladin"),
     val bookListState: BookListState = BookListState()
 )
 
