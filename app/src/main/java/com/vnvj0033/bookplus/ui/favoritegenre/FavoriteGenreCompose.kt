@@ -26,9 +26,10 @@ fun FavoriteGenreCompose(
         }
         is FavoriteGenreUiState.Success -> {
             val state = (uiState as FavoriteGenreUiState.Success).favoriteGenreStateData
-            FavoriteGenreCompose(state) { genre ->
-                viewModel.refreshListWithFilter(genre)
-            }
+            FavoriteGenreCompose(
+                state,
+                viewModel::refreshListWithFilter
+            )
         }
     }
     
@@ -42,14 +43,6 @@ private fun FavoriteGenreCompose(
     val composeScope = rememberCoroutineScope()
     
     val option = state.filterOption
-    
-    LaunchedEffect(true) {
-        if (option.isNotEmpty()) {
-            composeScope.launch {
-                refreshListWithFilter(option[0])
-            }
-        }
-    }
 
     Column {
         Row(
@@ -69,6 +62,15 @@ private fun FavoriteGenreCompose(
         }
         Divider()
         BookList(state.books)
+    }
+
+
+    LaunchedEffect(option) {
+        if (option.isNotEmpty()) {
+            composeScope.launch {
+                refreshListWithFilter(option[0])
+            }
+        }
     }
 }
 

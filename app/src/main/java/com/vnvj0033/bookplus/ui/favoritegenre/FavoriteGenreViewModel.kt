@@ -50,7 +50,7 @@ private fun favoriteGenreUiState(
 
 
 data class FavoriteGenreStateData(
-    val filterOption: List<String> = listOf("kyobo","yes24","aladin"),
+    val filterOption: List<String> = listOf("1", "2", "3", "4", "5", "6", "7", "8"),
     var books: List<MainBook> = emptyList()
 )
 
