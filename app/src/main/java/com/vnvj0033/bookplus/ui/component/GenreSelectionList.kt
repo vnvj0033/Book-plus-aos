@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -24,16 +25,20 @@ fun GenreSelectionList(
     options: List<String>,
     click: (String) -> Unit = {}
 ) {
-
+    val scrollState = rememberLazyListState()
     var selectedGenre: String by remember { mutableStateOf("") }
 
     LaunchedEffect(options) {
         if (!options.contains(selectedGenre) && options.isNotEmpty()) {
             selectedGenre = options[0]
+            scrollState.scrollToItem(0)
         }
     }
 
-    LazyRow(modifier = Modifier.padding(top = 8.dp)) {
+    LazyRow(
+        modifier = Modifier.padding(top = 8.dp),
+        state = scrollState
+    ) {
         items(options) { text ->
             val isSelected = selectedGenre == text
 
