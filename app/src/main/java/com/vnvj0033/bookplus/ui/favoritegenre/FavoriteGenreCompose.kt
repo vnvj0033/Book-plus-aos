@@ -25,6 +25,9 @@ fun FavoriteGenreCompose(
             Loading()
         }
         is FavoriteGenreUiState.Success -> {
+
+            viewModel.loadUserFavoriteGenres()
+
             val state = (uiState as FavoriteGenreUiState.Success).favoriteGenreStateData
             FavoriteGenreCompose(
                 state,

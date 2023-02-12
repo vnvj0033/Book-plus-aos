@@ -25,6 +25,10 @@ class FavoriteGenreViewModel @Inject constructor(
             initialValue = FavoriteGenreUiState.Loading
         )
 
+    fun loadUserFavoriteGenres() {
+        genre.value = bookRepository.loadGenreForUserId("")
+    }
+
     fun refreshListWithFilter(genre: String) {
         books.value = bookRepository.loadBooksForGenre(genre)
     }
