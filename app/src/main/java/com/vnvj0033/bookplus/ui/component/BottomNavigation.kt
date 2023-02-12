@@ -17,7 +17,7 @@ import com.vnvj0033.bookplus.ui.main.navigation.routeNameHome
 @Composable
 fun BottomNavigation(navController: NavHostController) {
 
-    var currentRoute by remember { mutableStateOf("route_name_home") }
+    var currentRoute by remember { mutableStateOf(routeNameHome) }
 
     val onClick = { route: String ->
         navController.navigateSingleTopTo(route)
