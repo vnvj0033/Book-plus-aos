@@ -22,13 +22,14 @@ fun FavoriteGenreCompose(
 
     when (uiState) {
         is FavoriteGenreUiState.Loading -> {
+            viewModel.loadUserFavoriteGenres()
             Loading()
         }
         is FavoriteGenreUiState.Success -> {
-
-            viewModel.loadUserFavoriteGenres()
-
             val state = (uiState as FavoriteGenreUiState.Success).favoriteGenreStateData
+            if (state.filterOption.isNotEmpty()) {
+                viewModel.refreshListWithFilter(state.filterOption[0])
+            }
             FavoriteGenreCompose(
                 state,
                 viewModel::refreshListWithFilter
@@ -65,15 +66,6 @@ private fun FavoriteGenreCompose(
         }
         Divider()
         BookList(state.books)
-    }
-
-
-    LaunchedEffect(option) {
-        if (option.isNotEmpty()) {
-            composeScope.launch {
-                refreshListWithFilter(option[0])
-            }
-        }
     }
 }
 

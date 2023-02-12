@@ -45,7 +45,7 @@ private fun favoriteGenreUiState(
         books.map { it.toMainBook() }
     )
 
-    if (genres.isNotEmpty() && books.isNotEmpty()) {
+    if (genres.isNotEmpty() || books.isNotEmpty()) {
         FavoriteGenreUiState.Success(stateData)
     } else {
         FavoriteGenreUiState.Loading
