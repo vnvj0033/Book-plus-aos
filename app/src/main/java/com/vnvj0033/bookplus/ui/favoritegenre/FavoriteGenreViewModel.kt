@@ -26,7 +26,7 @@ class FavoriteGenreViewModel @Inject constructor(
         )
 
     fun refreshListWithFilter(genre: String) {
-        books.value = bookRepository.updateBooks("", genre)
+        books.value = bookRepository.loadBooksForGenre(genre)
     }
 
 }
