@@ -16,8 +16,8 @@ class HomeViewModel @Inject constructor(
     private val bookRepository: BookRepository
 ): ViewModel() {
 
-    private val genres = MutableStateFlow(bookRepository.genres)
-    private val books = MutableStateFlow(bookRepository.books)
+    private val genres = MutableStateFlow(emptyList<String>())
+    private val books = MutableStateFlow(emptyList<Book>())
 
     val uiState: StateFlow<HomeUiState> =
         homeUiState(genres, books).stateIn(

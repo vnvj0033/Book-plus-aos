@@ -15,8 +15,8 @@ class FavoriteGenreViewModel @Inject constructor(
     private val bookRepository: BookRepository
 ): ViewModel() {
 
-    private val genre = MutableStateFlow(bookRepository.genres)
-    private val books = MutableStateFlow(bookRepository.books)
+    private val genre = MutableStateFlow(emptyList<String>())
+    private val books = MutableStateFlow(emptyList<Book>())
 
     val uiState: StateFlow<FavoriteGenreUiState> =
         favoriteGenreUiState(genre, books).stateIn(
