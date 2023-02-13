@@ -1,10 +1,11 @@
 package com.vnvj0033.bookplus.ui.home
 
-import android.content.Context
-import android.content.Intent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -60,7 +61,7 @@ fun HomeScreen(
             updateBooks.invoke(genre)
         }
         BookList(state.books) { books ->
-            openBookDetail(context, books)
+            BookDetailActivity.openBookDetail(context, books)
         }
     }
 }
@@ -74,12 +75,6 @@ private fun Loading() {
         GenreSelectionList(listOf())
         BookList()
     }
-}
-
-private fun openBookDetail(context: Context, book: MainBook) {
-    val intent = Intent(context, BookDetailActivity::class.java)
-    intent.putExtra(BookDetailActivity.BUNDLE_KEY_NAME_BOOK, book)
-    context.startActivity(intent)
 }
 
 
