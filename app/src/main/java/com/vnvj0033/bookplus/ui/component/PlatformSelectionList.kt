@@ -105,9 +105,9 @@ fun PlatformSelection(
 
 private val platforms: List<PlatformSelectionState> =
     listOf(
-        PlatformSelectionState(Constant.Platform.kyobo, R.drawable.logo_kyobo),
-        PlatformSelectionState(Constant.Platform.yes24, R.drawable.logo_yes24),
-        PlatformSelectionState(Constant.Platform.aladin, R.drawable.logo_aladin)
+        PlatformSelectionState(Constant.Platform.KYOBO, R.drawable.logo_kyobo),
+        PlatformSelectionState(Constant.Platform.YES24, R.drawable.logo_yes24),
+        PlatformSelectionState(Constant.Platform.ALADIN, R.drawable.logo_aladin)
     )
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
@@ -121,7 +121,7 @@ private fun PreviewPlatformSelectionList() {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 private fun PreviewPlatformSelection() {
-    val kyobo = PlatformSelectionState(Constant.Platform.kyobo, R.drawable.logo_kyobo)
+    val kyobo = PlatformSelectionState(Constant.Platform.KYOBO, R.drawable.logo_kyobo)
 
     AppTheme {
         PlatformSelection(kyobo)

@@ -2,9 +2,13 @@ package com.vnvj0033.bookplus.domain.model
 
 object Constant {
     object Platform {
-        const val kyobo = "kyobo"
-        const val yes24 = "yes24"
-        const val aladin = "aladin"
+        val KYOBO = "KYOBO"
+        val YES24 = "YES24"
+        val ALADIN = "ALADIN"
+
+        fun loadItems() = listOf(
+            KYOBO, YES24, ALADIN
+        )
     }
 
     object Genre {

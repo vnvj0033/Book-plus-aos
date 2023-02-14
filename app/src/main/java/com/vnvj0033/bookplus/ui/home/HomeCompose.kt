@@ -39,7 +39,7 @@ fun HomeCompose(
     }
 
     LaunchedEffect(true) {
-        viewModel.updateGenre(Constant.Platform.kyobo)
+        viewModel.updateGenre(Constant.Platform.KYOBO)
     }
 
 }

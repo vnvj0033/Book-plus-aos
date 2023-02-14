@@ -6,9 +6,9 @@ import com.vnvj0033.bookplus.domain.model.Constant
 data class PlatformsState(
     val platforms: List<PlatformSelectionState> =
         listOf(
-            PlatformSelectionState(Constant.Platform.kyobo, R.drawable.logo_kyobo),
-            PlatformSelectionState(Constant.Platform.yes24, R.drawable.logo_yes24),
-            PlatformSelectionState(Constant.Platform.aladin, R.drawable.logo_aladin)
+            PlatformSelectionState(Constant.Platform.KYOBO, R.drawable.logo_kyobo),
+            PlatformSelectionState(Constant.Platform.YES24, R.drawable.logo_yes24),
+            PlatformSelectionState(Constant.Platform.ALADIN, R.drawable.logo_aladin)
         ),
     var selectedTitle: String = platforms[0].title
 )
