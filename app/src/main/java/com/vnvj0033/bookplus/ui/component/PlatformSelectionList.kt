@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vnvj0033.bookplus.R
+import com.vnvj0033.bookplus.domain.model.Constant
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.component.state.PlatformSelectionState
 import com.vnvj0033.bookplus.ui.component.state.PlatformsState
@@ -104,9 +105,9 @@ fun PlatformSelection(
 
 private val platforms: List<PlatformSelectionState> =
     listOf(
-        PlatformSelectionState("kyobo", R.drawable.logo_kyobo),
-        PlatformSelectionState("yes24", R.drawable.logo_yes24),
-        PlatformSelectionState("aladin", R.drawable.logo_aladin)
+        PlatformSelectionState(Constant.Platform.kyobo, R.drawable.logo_kyobo),
+        PlatformSelectionState(Constant.Platform.yes24, R.drawable.logo_yes24),
+        PlatformSelectionState(Constant.Platform.aladin, R.drawable.logo_aladin)
     )
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
@@ -120,7 +121,7 @@ private fun PreviewPlatformSelectionList() {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 private fun PreviewPlatformSelection() {
-    val kyobo = PlatformSelectionState("kyobo", R.drawable.logo_kyobo)
+    val kyobo = PlatformSelectionState(Constant.Platform.kyobo, R.drawable.logo_kyobo)
 
     AppTheme {
         PlatformSelection(kyobo)

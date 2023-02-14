@@ -1,6 +1,7 @@
 package com.vnvj0033.bookplus.data.repository
 
 import com.vnvj0033.bookplus.data.entity.Book
+import com.vnvj0033.bookplus.domain.model.Constant
 import javax.inject.Inject
 
 class FakeBookRepo @Inject constructor() : BookRepository {
@@ -8,14 +9,14 @@ class FakeBookRepo @Inject constructor() : BookRepository {
     override var books: List<Book> = listOf()
 
     override fun loadGenreForPlatform(platform: String) = when (platform) {
-        "kyobo" -> listOf("kyobo1", "kyobo2", "kyobo3", "kyobo4", "kyobo5", "kyobo6", "kyobo7", "kyobo8")
-        "yes24" -> listOf("yes24a", "yes24b", "yes24c", "yes24d", "yes24e", "yes24f", "yes24g", "yes24h")
-        "aladin" -> listOf("aladin1", "aladin2", "aladin3", "aladin4", "aladin5", "aladin6", "aladin7", "aladin8")
+        Constant.Platform.kyobo -> listOf("kyobo1", "kyobo2", "kyobo3", "kyobo4", "kyobo5", "kyobo6", "kyobo7", "kyobo8")
+        Constant.Platform.yes24 -> listOf("yes24a", "yes24b", "yes24c", "yes24d", "yes24e", "yes24f", "yes24g", "yes24h")
+        Constant.Platform.aladin -> listOf("aladin1", "aladin2", "aladin3", "aladin4", "aladin5", "aladin6", "aladin7", "aladin8")
         else -> listOf("1", "2", "3", "4", "5", "6", "7", "8")
     }
 
     override fun loadGenreForUserId(userId: String): List<String> {
-        return loadGenreForPlatform("kyobo")
+        return loadGenreForPlatform(Constant.Platform.kyobo)
     }
 
     override fun loadBooksForGenre(genre: String): List<Book> =

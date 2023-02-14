@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.vnvj0033.bookplus.domain.model.Constant
 import com.vnvj0033.bookplus.domain.model.MainBook
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.bookdetail.BookDetailActivity
@@ -38,7 +39,7 @@ fun HomeCompose(
     }
 
     LaunchedEffect(true) {
-        viewModel.updateGenre("kyobo")
+        viewModel.updateGenre(Constant.Platform.kyobo)
     }
 
 }
