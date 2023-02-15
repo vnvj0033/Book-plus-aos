@@ -1,7 +1,10 @@
 package com.vnvj0033.bookplus.ui.component
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
@@ -9,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.main.navigation.routeNameFavoriteGenre
@@ -17,7 +21,10 @@ import com.vnvj0033.bookplus.ui.main.navigation.routeNameHome
 @Composable
 fun BottomNavigation(navController: NavHostController) {
 
+    val backstackEntry by navController.currentBackStackEntryAsState()
     var currentRoute by remember { mutableStateOf(routeNameHome) }
+
+    currentRoute = backstackEntry?.destination?.route ?: routeNameHome
 
     val onClick = { route: String ->
         navController.navigateSingleTopTo(route)
@@ -31,8 +38,7 @@ fun BottomNavigation(navController: NavHostController) {
             icon = {
                 Icon(
                     imageVector = Icons.Default.Home,
-                    contentDescription = null)
-            },
+                    contentDescription = null) },
             label = { Text("홈") })
 
         NavigationBarItem(
