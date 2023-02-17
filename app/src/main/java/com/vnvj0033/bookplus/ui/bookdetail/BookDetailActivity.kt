@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import com.vnvj0033.bookplus.domain.model.MainBook
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,6 +20,8 @@ class BookDetailActivity : ComponentActivity() {
             context.startActivity(intent)
         }
     }
+
+    val viewModel: BookDetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
