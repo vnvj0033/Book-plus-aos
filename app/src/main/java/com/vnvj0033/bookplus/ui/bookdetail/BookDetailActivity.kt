@@ -29,5 +29,10 @@ class BookDetailActivity : ComponentActivity() {
         setContent {
             BookDetailCompose()
         }
+
+        if (intent.hasExtra(BUNDLE_KEY_NAME_BOOK)) {
+            val mainBook = intent.getSerializableExtra(BUNDLE_KEY_NAME_BOOK) as MainBook
+            viewModel.setMainBook(mainBook)
+        }
     }
 }
