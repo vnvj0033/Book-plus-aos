@@ -1,6 +1,7 @@
 package com.vnvj0033.bookplus.ui.bookdetail
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement.SpaceBetween
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -27,8 +28,6 @@ fun BookDetailCompose(
     Row {
        BookCover(book.value)
     }
-
-
 }
 
 @Composable
@@ -36,10 +35,11 @@ private fun BookCover(book: MainBook) {
     Row(modifier = Modifier.fillMaxSize()) {
         AsyncImage(
             modifier = Modifier.width(128.dp),
+            placeholder = painterResource(R.drawable.ic_blank_profile),
             model = ImageRequest.Builder(LocalContext.current)
                 .data(book.imgUrl)
+                .placeholder(R.drawable.ic_blank_profile)
                 .build(),
-            placeholder = painterResource(R.drawable.ic_blank_profile),
             contentDescription = null
         )
         
@@ -47,16 +47,33 @@ private fun BookCover(book: MainBook) {
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                modifier = Modifier.padding(8.dp),
-                text = book.title)
-            Text(
-                modifier = Modifier.padding(8.dp),
-                text = book.writer)
-            Text(
-                modifier = Modifier.padding(8.dp),
-                text = book.summery)
+            TableText(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(8.dp),
+                key = "title",
+                value = book.title)
+            TableText(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(8.dp),
+                key = "writer",
+                value = book.writer)
+            TableText(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(8.dp),
+                key = "summery",
+                value = book.summery)
         }
+    }
+}
+
+@Composable
+private fun TableText(modifier: Modifier, key: String, value: String) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = SpaceBetween
+    ) {
+        Text(text = key)
+        Text(text = value)
     }
 }
 
@@ -70,7 +87,8 @@ private fun PreviewOfBookCover() {
                 "title",
                 "writer",
                 "summery"
-            ))
+            )
+        )
     }
 }
 
