@@ -1,7 +1,6 @@
 package com.vnvj0033.bookplus.ui.bookdetail
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.Arrangement.SpaceBetween
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -44,22 +43,20 @@ private fun BookCover(book: MainBook) {
         )
         
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             TableText(
-                modifier = Modifier.fillMaxWidth()
-                    .padding(8.dp),
                 key = "title",
                 value = book.title)
+            Spacer(modifier = Modifier.height(4.dp))
             TableText(
-                modifier = Modifier.fillMaxWidth()
-                    .padding(8.dp),
                 key = "writer",
                 value = book.writer)
+            Spacer(modifier = Modifier.height(4.dp))
             TableText(
-                modifier = Modifier.fillMaxWidth()
-                    .padding(8.dp),
                 key = "summery",
                 value = book.summery)
         }
@@ -67,13 +64,20 @@ private fun BookCover(book: MainBook) {
 }
 
 @Composable
-private fun TableText(modifier: Modifier, key: String, value: String) {
+private fun TableText(
+    modifier: Modifier = Modifier,
+    key: String,
+    value: String,
+    weight: Float = 0.4f
+) {
+
     Row(
-        modifier = modifier,
-        horizontalArrangement = SpaceBetween
+        modifier = modifier.fillMaxWidth()
     ) {
-        Text(text = key)
-        Text(text = value)
+        Text(text = key,
+        modifier = Modifier.weight(weight))
+        Text(text = value,
+            modifier = Modifier.weight(1 - weight))
     }
 }
 
