@@ -17,6 +17,7 @@ Bookplus는 구독한 장르의 새로 등록된 베스트 셀러를 알려주�
 - Min SDK version 23
 - Target SDK version 33
 - Language [Kotlin](https://kotlinlang.org)
+- MVI Architectural Patterns
 - Asynchronous [Coroutine](https://github.com/Kotlin/kotlinx.coroutines) and [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow)
 - JetPack
   - [Compose](https://developer.android.com/jetpack/compose) - ...
