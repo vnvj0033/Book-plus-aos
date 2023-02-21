@@ -15,8 +15,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:usesCleartextTraffic="true">
 
-        <activity
-            android:name=".ui.intro.IntroActivity"
+        <activity android:name=".ui.main.MainActivity"
             android:theme="@style/Theme.App.Starting"
             android:exported="true">
             <intent-filter>
@@ -26,7 +25,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.bookdetail.BookDetailActivity" />
 
         <service
