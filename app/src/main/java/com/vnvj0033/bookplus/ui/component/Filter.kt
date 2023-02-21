@@ -43,16 +43,17 @@ fun Filter(
                 trailingIcon = {
                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = isOpen)
                 },
-                singleLine = true,
-                )
+                singleLine = true)
 
             DropDownList(
                 requestToOpen = isOpen,
                 list = option,
                 dismissRequest = { isOpen = it },
-                selectedString = {
-                    displayText = it
-                    selectedString.invoke(it)
+                selectedString = { selectText ->
+                    if (displayText != selectText) {
+                        displayText = selectText
+                        selectedString.invoke(selectText)
+                    }
                 })
         }
         Spacer(
