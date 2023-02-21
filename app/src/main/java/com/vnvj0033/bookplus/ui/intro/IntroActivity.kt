@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.vnvj0033.bookplus.R
 import com.vnvj0033.bookplus.ui.main.MainActivity
 import com.vnvj0033.bookplus.ui.AppTheme
@@ -28,10 +29,10 @@ class IntroActivity : ComponentActivity() {
 
         actionBar?.hide()
 
+        installSplashScreen()
+
         setContent {
-            AppTheme {
-                Intro()
-            }
+
         }
 
         Handler(mainLooper).postDelayed({

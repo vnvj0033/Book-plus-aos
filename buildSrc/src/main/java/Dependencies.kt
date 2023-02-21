@@ -48,4 +48,6 @@ object Lib {
     const val viewmodelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-alpha03"
     const val navigationCompose = "androidx.navigation:navigation-compose:2.5.3"
     const val hiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0"
+
+    const val splashScreen = "androidx.core:core-splashscreen:1.0.0"
 }

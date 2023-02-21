@@ -59,6 +59,9 @@ dependencies {
     androidTestImplementation(Lib.junitExt)
     androidTestImplementation(Lib.espresso)
 
+    // splash screen
+    implementation(Lib.splashScreen)
+
     // datastore preferences
     implementation (Lib.datastore)
 
