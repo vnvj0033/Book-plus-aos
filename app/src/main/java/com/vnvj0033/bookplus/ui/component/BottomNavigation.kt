@@ -17,6 +17,7 @@ import androidx.navigation.compose.rememberNavController
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.main.navigation.routeNameFavoriteGenre
 import com.vnvj0033.bookplus.ui.main.navigation.routeNameHome
+import com.vnvj0033.bookplus.ui.main.navigation.routeNameSubscript
 
 @Composable
 fun BottomNavigation(navController: NavHostController) {
@@ -52,8 +53,8 @@ fun BottomNavigation(navController: NavHostController) {
 
 
         NavigationBarItem(
-            selected = false,
-            onClick = { /*TODO*/ },
+            selected = currentRoute == routeNameSubscript,
+            onClick = { onClick.invoke(routeNameSubscript) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Search,

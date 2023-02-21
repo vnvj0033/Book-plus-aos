@@ -7,9 +7,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.vnvj0033.bookplus.ui.favoritegenre.FavoriteGenreCompose
 import com.vnvj0033.bookplus.ui.home.HomeCompose
+import com.vnvj0033.bookplus.ui.subscript.SubscriptCompose
 
 const val routeNameHome = "route_name_home"
 const val routeNameFavoriteGenre = "route_name_favorite_genre"
+const val routeNameSubscript = "routeNameSubscript"
 
 @Composable
 fun MainNavHost(
@@ -24,5 +26,6 @@ fun MainNavHost(
     ) {
         composable(routeNameHome) { HomeCompose() }
         composable(routeNameFavoriteGenre) { FavoriteGenreCompose() }
+        composable(routeNameSubscript) { SubscriptCompose() }
     }
 }
