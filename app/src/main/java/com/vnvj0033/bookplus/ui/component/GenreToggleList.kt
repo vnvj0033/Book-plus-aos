@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -19,15 +20,26 @@ import com.vnvj0033.bookplus.ui.AppTheme
 @Composable
 fun GenreToggleList(
     options: List<String>,
-    toggle: (List<String>) -> Unit = {}
+    toggle: (List<String>) -> Unit = {},
+    selectedList: List<String> = emptyList()
 ) {
+
+    val list = selectedList.toMutableStateList()
+
     FlowLayout {
         for (option in options) {
-            GenreToggleList(
+            val isSelected = selectedList.contains(option)
+
+            ToggleItem(
                 text = option,
-                isSelected = true
-            ) { selectGenre ->
-                toggle.invoke(listOf())
+                isSelected = isSelected
+            ) { selectedGenre ->
+                if (isSelected) {
+                    list.remove(selectedGenre)
+                } else {
+                    list.add(selectedGenre)
+                }
+                toggle.invoke(list)
             }
         }
     }
@@ -71,7 +83,7 @@ private fun FlowLayout(
 }
 
 @Composable
-private fun GenreToggleList(
+private fun ToggleItem(
     text: String,
     isSelected: Boolean = false,
     click: (String) -> Unit = {}
@@ -103,7 +115,7 @@ private fun GenreToggleList(
 @Composable
 private fun PreviewGenreSelectionList() {
     AppTheme {
-        GenreToggleList("컴퓨터/IT", true)
+        ToggleItem("컴퓨터/IT", true)
     }
 }
 
