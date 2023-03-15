@@ -12,7 +12,6 @@ dependencies {
 
     // Room
     implementation (Lib.room)
-    annotationProcessor(Lib.roomCompiler)
     kapt (Lib.roomCompiler)
 
     // Retrofit2

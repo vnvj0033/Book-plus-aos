@@ -1,7 +1,7 @@
-package com.vnvj0033.bookplus.data.repository
+package com.example.repository
 
-import com.vnvj0033.bookplus.data.entity.Book
-import com.vnvj0033.bookplus.domain.model.Constant
+import com.example.model.Book
+import com.example.model.Constant
 import javax.inject.Inject
 
 class FakeBookRepo @Inject constructor() : BookRepository {

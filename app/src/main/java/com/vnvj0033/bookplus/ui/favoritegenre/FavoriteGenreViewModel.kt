@@ -3,7 +3,7 @@ package com.vnvj0033.bookplus.ui.favoritegenre
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vnvj0033.bookplus.data.entity.Book
-import com.vnvj0033.bookplus.data.repository.BookRepository
+import com.example.repository.BookRepository
 import com.vnvj0033.bookplus.domain.model.MainBook
 import com.vnvj0033.bookplus.domain.model.toMainBook
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FavoriteGenreViewModel @Inject constructor(
-    private val bookRepository: BookRepository
+    private val bookRepository: com.example.repository.BookRepository
 ): ViewModel() {
 
     private val genre = MutableStateFlow(emptyList<String>())

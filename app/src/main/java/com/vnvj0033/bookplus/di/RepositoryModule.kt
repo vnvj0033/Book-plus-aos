@@ -1,7 +1,7 @@
 package com.vnvj0033.bookplus.di
 
-import com.vnvj0033.bookplus.data.repository.BookRepository
-import com.vnvj0033.bookplus.data.repository.FakeBookRepo
+import com.example.repository.BookRepository
+import com.example.repository.FakeBookRepo
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -11,5 +11,5 @@ import dagger.hilt.components.SingletonComponent
 @Module
 abstract class RepositoryModule {
     @Binds
-    abstract fun bindBookRepo(repository: FakeBookRepo): BookRepository
+    abstract fun bindBookRepo(repository: com.example.repository.FakeBookRepo): com.example.repository.BookRepository
 }

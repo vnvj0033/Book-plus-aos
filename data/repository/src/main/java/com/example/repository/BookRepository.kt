@@ -1,6 +1,6 @@
-package com.vnvj0033.bookplus.data.repository
+package com.example.repository
 
-import com.vnvj0033.bookplus.data.entity.Book
+import com.example.model.Book
 
 interface BookRepository {
     val genres: List<String>
