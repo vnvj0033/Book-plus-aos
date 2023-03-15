@@ -10,7 +10,7 @@ android {
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":data:model")))
+    implementation(project(":data:model"))
     implementation(Lib.hilt)
     kapt(Lib.hiltCompiler)
 }
