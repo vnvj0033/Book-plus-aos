@@ -9,6 +9,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":data:model"))
 
     // Room
     implementation (Lib.room)

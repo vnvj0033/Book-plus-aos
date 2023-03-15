@@ -53,6 +53,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":data:model"))
 
     implementation(Lib.coreKtx)
     testImplementation(Lib.junit)
