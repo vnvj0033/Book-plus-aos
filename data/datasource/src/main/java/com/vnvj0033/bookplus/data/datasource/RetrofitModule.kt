@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.di
+package com.vnvj0033.bookplus.data.datasource
 
 import dagger.Module
 import dagger.Provides
@@ -16,7 +16,7 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideClient() =
+    fun provideClient(): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val request = chain.request().newBuilder().build()
@@ -24,14 +24,13 @@ object RetrofitModule {
                     withConnectTimeout(10, TimeUnit.SECONDS)
                     withReadTimeout(10, TimeUnit.SECONDS)
                     withWriteTimeout(10, TimeUnit.SECONDS)
+                    proceed(request)
                 }
-                chain.proceed(request)
             }.build()
 
-    // 레트로핏 객체
     @Provides
     @Singleton
-    fun provideRetrofit(client: OkHttpClient) =
+    fun provideRetrofit(client: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .baseUrl("https://localhost:3000/")
             .client(client)
