@@ -2,10 +2,10 @@ package com.vnvj0033.bookplus.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vnvj0033.bookplus.data.entity.Book
+import com.example.model.Book
+import com.example.model.MainBook
+import com.example.model.toMainBook
 import com.example.repository.BookRepository
-import com.vnvj0033.bookplus.domain.model.MainBook
-import com.vnvj0033.bookplus.domain.model.toMainBook
 import com.vnvj0033.bookplus.ui.component.state.PlatformsState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val bookRepository: com.example.repository.BookRepository
+    private val bookRepository: BookRepository
 ): ViewModel() {
 
     private val genres = MutableStateFlow(emptyList<String>())

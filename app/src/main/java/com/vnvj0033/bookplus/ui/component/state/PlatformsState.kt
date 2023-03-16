@@ -1,7 +1,7 @@
 package com.vnvj0033.bookplus.ui.component.state
 
+import com.example.model.Constant
 import com.vnvj0033.bookplus.R
-import com.vnvj0033.bookplus.domain.model.Constant
 
 data class PlatformsState(
     val platforms: List<PlatformSelectionState> =

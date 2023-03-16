@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.vnvj0033.bookplus.domain.model.Constant
-import com.vnvj0033.bookplus.domain.model.MainBook
+import com.example.model.Constant
+import com.example.model.MainBook
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.bookdetail.BookDetailActivity
 import com.vnvj0033.bookplus.ui.component.BookList
@@ -85,9 +85,7 @@ private fun PreviewHomeScreen() {
     val state = HomeStateData(
         PlatformsState(),
         listOf("123", "234"),
-        listOf(
-            MainBook("", "", "", "")
-        )
+        listOf(MainBook("", "", "", ""))
     )
 
     AppTheme {

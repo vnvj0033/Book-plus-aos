@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import com.vnvj0033.bookplus.domain.model.MainBook
+import com.example.model.MainBook
 import com.vnvj0033.bookplus.util.serializable
 import dagger.hilt.android.AndroidEntryPoint
 
