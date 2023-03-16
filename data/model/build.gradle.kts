@@ -4,12 +4,10 @@ plugins {
 }
 
 android {
-    namespace = "com.example.model"
+    namespace = "com.vnvj0033.bookplus.data.model"
     compileSdk = Apps.compileSdkVersion
 }
 
 dependencies {
-
     implementation(Lib.coreKtx)
-
 }

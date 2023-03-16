@@ -1,4 +1,4 @@
-package com.example.model
+package com.vnvj0033.bookplus.data.model
 
 import java.io.Serializable
 

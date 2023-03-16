@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.repository"
+    namespace = "com.vnvj0033.bookplus.data.repository"
     compileSdk = Apps.compileSdkVersion
 }
 

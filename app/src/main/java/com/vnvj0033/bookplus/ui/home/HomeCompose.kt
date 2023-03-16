@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.model.Constant
-import com.example.model.MainBook
+import com.vnvj0033.bookplus.data.model.Constant
+import com.vnvj0033.bookplus.data.model.MainBook
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.bookdetail.BookDetailActivity
 import com.vnvj0033.bookplus.ui.component.BookList

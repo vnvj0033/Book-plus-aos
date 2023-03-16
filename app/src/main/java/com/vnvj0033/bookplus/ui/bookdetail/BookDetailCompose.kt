@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.model.MainBook
+import com.vnvj0033.bookplus.data.model.MainBook
 import com.vnvj0033.bookplus.R
 import com.vnvj0033.bookplus.ui.AppTheme
 

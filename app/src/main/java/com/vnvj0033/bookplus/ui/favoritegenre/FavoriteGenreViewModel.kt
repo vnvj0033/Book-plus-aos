@@ -2,10 +2,10 @@ package com.vnvj0033.bookplus.ui.favoritegenre
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.model.Book
-import com.example.model.MainBook
-import com.example.model.toMainBook
-import com.example.repository.BookRepository
+import com.vnvj0033.bookplus.data.model.Book
+import com.vnvj0033.bookplus.data.model.MainBook
+import com.vnvj0033.bookplus.data.model.toMainBook
+import com.vnvj0033.bookplus.data.repository.BookRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -37,7 +37,7 @@ class FavoriteGenreViewModel @Inject constructor(
 
 
 private fun favoriteGenreUiState(
-    genresFlow: Flow<List<String>> ,
+    genresFlow: Flow<List<String>>,
     booksFlow: Flow<List<Book>>,
 ) = combine(genresFlow, booksFlow) { genres, books ->
     val stateData = FavoriteGenreStateData(

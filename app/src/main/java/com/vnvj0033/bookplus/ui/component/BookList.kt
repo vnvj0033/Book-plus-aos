@@ -16,7 +16,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.model.MainBook
+import com.vnvj0033.bookplus.data.model.MainBook
 import com.vnvj0033.bookplus.R
 import com.vnvj0033.bookplus.ui.AppTheme
 

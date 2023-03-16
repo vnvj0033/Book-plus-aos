@@ -1,6 +1,6 @@
 package com.vnvj0033.bookplus.ui.component.state
 
-import com.example.model.Constant
+import com.vnvj0033.bookplus.data.model.Constant
 import com.vnvj0033.bookplus.R
 
 data class PlatformsState(

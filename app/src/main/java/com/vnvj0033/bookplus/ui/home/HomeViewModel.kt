@@ -2,10 +2,10 @@ package com.vnvj0033.bookplus.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.model.Book
-import com.example.model.MainBook
-import com.example.model.toMainBook
-import com.example.repository.BookRepository
+import com.vnvj0033.bookplus.data.model.Book
+import com.vnvj0033.bookplus.data.model.MainBook
+import com.vnvj0033.bookplus.data.model.toMainBook
+import com.vnvj0033.bookplus.data.repository.BookRepository
 import com.vnvj0033.bookplus.ui.component.state.PlatformsState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*

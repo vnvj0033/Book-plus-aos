@@ -1,4 +1,4 @@
-package com.example.repository
+package com.vnvj0033.bookplus.data.repository
 
 import dagger.Binds
 import dagger.Module

@@ -1,4 +1,4 @@
-package com.example.model
+package com.vnvj0033.bookplus.data.model
 
 object Constant {
     object Platform {
