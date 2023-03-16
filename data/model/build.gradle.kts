@@ -5,8 +5,11 @@ plugins {
 
 android {
     namespace = "com.example.model"
+    compileSdk = Apps.compileSdkVersion
 }
 
 dependencies {
+
+    implementation(Lib.coreKtx)
 
 }

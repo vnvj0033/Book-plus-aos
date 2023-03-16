@@ -7,6 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.repository"
+    compileSdk = Apps.compileSdkVersion
 }
 
 dependencies {
