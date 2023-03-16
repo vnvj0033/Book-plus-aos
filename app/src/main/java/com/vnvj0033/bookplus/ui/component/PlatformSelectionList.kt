@@ -20,7 +20,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vnvj0033.bookplus.R
-import com.vnvj0033.bookplus.domain.model.Constant
+import com.vnvj0033.bookplus.data.model.Constant
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.component.state.PlatformSelectionState
 import com.vnvj0033.bookplus.ui.component.state.PlatformsState
