@@ -2,9 +2,9 @@ package com.vnvj0033.bookplus.data.model
 
 object Constant {
     object Platform {
-        val KYOBO = "KYOBO"
-        val YES24 = "YES24"
-        val ALADIN = "ALADIN"
+        const val KYOBO = "KYOBO"
+        const val YES24 = "YES24"
+        const val ALADIN = "ALADIN"
 
         fun loadItems() = listOf(
             KYOBO, YES24, ALADIN

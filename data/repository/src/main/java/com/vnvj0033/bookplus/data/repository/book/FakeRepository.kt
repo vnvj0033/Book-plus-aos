@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.data.repository
+package com.vnvj0033.bookplus.data.repository.book
 
 import com.vnvj0033.bookplus.data.model.Book
 import com.vnvj0033.bookplus.data.model.Constant
