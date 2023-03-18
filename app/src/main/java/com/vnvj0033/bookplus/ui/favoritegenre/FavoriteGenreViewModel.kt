@@ -26,11 +26,11 @@ class FavoriteGenreViewModel @Inject constructor(
         )
 
     fun loadUserFavoriteGenres() {
-        genre.value = bookRepository.loadGenreForUserId("")
+//        genre.value = bookRepository.loadGenreForUserId("")
     }
 
     fun refreshListWithFilter(genre: String) {
-        books.value = bookRepository.loadBooksForGenre(genre)
+//        books.value = bookRepository.loadBooksForGenre(genre)
     }
 
 }

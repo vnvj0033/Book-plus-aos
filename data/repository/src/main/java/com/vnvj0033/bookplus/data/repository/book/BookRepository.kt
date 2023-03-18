@@ -3,11 +3,6 @@ package com.vnvj0033.bookplus.data.repository.book
 import com.vnvj0033.bookplus.data.model.Book
 
 interface BookRepository {
-    val genres: List<String>
-    val books: List<Book>
-
-    fun loadGenreForPlatform(platform: String): List<String>
-    fun loadGenreForUserId(userId: String): List<String>
-    fun loadBooksForGenre(genre: String): List<Book>
-    fun loadBooksForUserId(userId: String): List<Book>
+    fun saveFavorite(userId: String, books: List<Book>): List<Book>
+    fun loadFavorite(userId: String): List<Book>
 }
