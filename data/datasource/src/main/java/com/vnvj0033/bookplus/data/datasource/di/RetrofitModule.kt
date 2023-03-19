@@ -1,5 +1,6 @@
 package com.vnvj0033.bookplus.data.datasource.di
 
+import com.vnvj0033.bookplus.data.datasource.api.UserApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,5 +37,10 @@ object RetrofitModule {
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
+    @Provides
+    @Singleton
+    fun provideUserApi(retrofit: Retrofit): UserApi =
+        retrofit.create(UserApi::class.java)
 
 }
