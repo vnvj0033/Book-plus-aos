@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.data.datasource
+package com.vnvj0033.bookplus.data.datasource.di
 
 import dagger.Module
 import dagger.Provides

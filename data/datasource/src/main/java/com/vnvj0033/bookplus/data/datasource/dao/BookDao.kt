@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.data.datasource.db
+package com.vnvj0033.bookplus.data.datasource.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -14,6 +14,6 @@ interface BookDao {
     @Insert
     fun insert(book: Book)
 
-    @Query("DELETE FROM Book WHERE bookId = :bookId")
-    fun delete(bookId: String)
+    @Query("DELETE FROM Book WHERE title=:title")
+    fun delete(title: String)
 }
