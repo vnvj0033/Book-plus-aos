@@ -55,6 +55,7 @@ android {
 dependencies {
     implementation(project(":data:model"))
     implementation(project(":data:repository"))
+    implementation(project(":ui"))
 
     implementation(Lib.coreKtx)
     testImplementation(Lib.junit)

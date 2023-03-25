@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.ui.component
+package com.vnvj0033.bookplus.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,7 +15,6 @@ import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.MeasurePolicy
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.vnvj0033.bookplus.ui.AppTheme
 
 @Composable
 fun GenreToggleList(
@@ -114,16 +113,15 @@ private fun ToggleItem(
 @Preview
 @Composable
 private fun PreviewGenreSelectionList() {
-    AppTheme {
-        ToggleItem("컴퓨터/IT", true)
-    }
+    ToggleItem("컴퓨터/IT", true)
+
 }
 
 @Preview
 @Composable
 private fun PreviewGenreSelection() {
     val options = listOf("12345", "234", "2345", "45", "12213345", "234", "2345", "45", "12345", "234", "2345", "45")
-    AppTheme {
-        GenreToggleList(options)
-    }
+
+    GenreToggleList(options)
+
 }

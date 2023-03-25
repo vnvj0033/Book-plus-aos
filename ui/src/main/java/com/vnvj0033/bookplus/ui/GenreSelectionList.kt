@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.ui.component
+package com.vnvj0033.bookplus.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,7 +15,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.vnvj0033.bookplus.ui.AppTheme
 
 /**
  * 클릭시 장르만 변경, 이벤트는 호이스팅
@@ -85,16 +84,16 @@ private fun GenreSelection(
 @Preview
 @Composable
 private fun PreviewGenreSelectionList() {
-    AppTheme {
-        GenreSelection("컴퓨터/IT", true)
-    }
+
+    GenreSelection("컴퓨터/IT", true)
+
 }
 
 @Preview
 @Composable
 private fun PreviewGenreSelection() {
     val options = listOf("123", "234", "345", "456")
-    AppTheme {
-        GenreSelectionList(options)
-    }
+
+    GenreSelectionList(options)
+
 }
