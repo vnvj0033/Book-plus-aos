@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.ui.component
+package com.vnvj0033.bookplus.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -17,8 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vnvj0033.bookplus.data.model.MainBook
-import com.vnvj0033.bookplus.R
-import com.vnvj0033.bookplus.ui.AppTheme
 
 @Composable
 fun BookList(
@@ -27,15 +25,12 @@ fun BookList(
 ) {
 
     LazyColumn(
-        modifier = Modifier
-            .padding(top = 8.dp),
+        modifier = Modifier.padding(top = 8.dp),
         contentPadding = PaddingValues(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(books) { book ->
-            Book(book) {
-                click.invoke(book)
-            }
+            Book(book, click)
         }
     }
 }
@@ -43,7 +38,7 @@ fun BookList(
 @Composable
 fun Book(
     book: MainBook,
-    click: () -> Unit = {}
+    click: (MainBook) -> Unit = {}
 ) {
 
     val maxHeight = 112.dp
@@ -54,7 +49,7 @@ fun Book(
             .sizeIn(maxHeight = maxHeight),
         shape = MaterialTheme.shapes.small
     ) {
-        Row(Modifier.clickable { click.invoke() }) {
+        Row(Modifier.clickable { click.invoke(book) }) {
             Image(
                 modifier = Modifier.size(112.dp),
                 painter = painterResource(R.drawable.ic_blank_profile),
@@ -90,15 +85,11 @@ private fun PreviewBookList() {
         MainBook("", "title", "writer", "summery"),
         MainBook("", "title", "writer", "summery")
     )
-    AppTheme {
-        BookList(list)
-    }
+    BookList(list)
 }
 
 @Composable
 @Preview
 private fun PreviewBook() {
-    AppTheme {
-        Book(MainBook("","","", ""))
-    }
+    Book(MainBook("", "", "", ""))
 }

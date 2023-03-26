@@ -9,12 +9,22 @@ android {
     namespace = "com.vnvj0033.bookplus.ui"
     compileSdk = Apps.compileSdkVersion
 
+    defaultConfig {
+        minSdk = Apps.minSdkVersion
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.3.2"
+    }
+
     buildFeatures {
         compose = true
     }
 }
 
 dependencies {
+    implementation(project(":data:model"))
+
     // Compose Material Design 3
     implementation(Lib.composeMaterial3)
     // Android Studio Preview support

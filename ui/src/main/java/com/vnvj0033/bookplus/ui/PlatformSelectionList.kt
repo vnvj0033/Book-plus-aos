@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.ui.component
+package com.vnvj0033.bookplus.ui
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
@@ -19,21 +19,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.vnvj0033.bookplus.R
 import com.vnvj0033.bookplus.data.model.Constant
-import com.vnvj0033.bookplus.ui.AppTheme
-import com.vnvj0033.bookplus.ui.component.state.PlatformSelectionState
-import com.vnvj0033.bookplus.ui.component.state.PlatformsState
 
 /**
  * 클릭시 배경 변경, 이벤트는 외부로 호이스팅
  * */
 @Composable
 fun PlatformSelectionList(
-    state: PlatformsState,
+    initialPlatform: PlatformSelectionState = platforms[0],
     click : (String) -> Unit = {}
 ) {
-    var selectedTitle by remember { mutableStateOf(state.selectedTitle) }
+    var selectedTitle by remember { mutableStateOf(initialPlatform.title) }
 
     Column {
         Text(
@@ -103,6 +99,11 @@ fun PlatformSelection(
     }
 }
 
+data class PlatformSelectionState(
+    var title: String,
+    var imageResource: Int
+)
+
 private val platforms: List<PlatformSelectionState> =
     listOf(
         PlatformSelectionState(Constant.Platform.KYOBO, R.drawable.logo_kyobo),
@@ -113,17 +114,13 @@ private val platforms: List<PlatformSelectionState> =
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 private fun PreviewPlatformSelectionList() {
-    AppTheme {
-        PlatformSelectionList(PlatformsState())
-    }
+        PlatformSelectionList()
 }
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 private fun PreviewPlatformSelection() {
     val kyobo = PlatformSelectionState(Constant.Platform.KYOBO, R.drawable.logo_kyobo)
+    PlatformSelection(kyobo)
 
-    AppTheme {
-        PlatformSelection(kyobo)
-    }
 }
