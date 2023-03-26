@@ -8,8 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.GenreToggleList
-import com.vnvj0033.bookplus.ui.component.PlatformSelectionList
-import com.vnvj0033.bookplus.ui.component.state.PlatformsState
+import com.vnvj0033.bookplus.ui.PlatformSelectionList
 
 @Composable
 fun SubscriptCompose() {
@@ -25,7 +24,7 @@ private fun SubscriptCompose(name: String) {
     }
 
     Column(Modifier.fillMaxHeight()) {
-        PlatformSelectionList(PlatformsState()) { platform ->
+        PlatformSelectionList { platform ->
             if (selectedList.contains(platform)) {
                 selectedList.remove(platform)
             } else {

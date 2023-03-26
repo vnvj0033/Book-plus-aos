@@ -6,7 +6,6 @@ import com.vnvj0033.bookplus.data.model.Book
 import com.vnvj0033.bookplus.data.model.MainBook
 import com.vnvj0033.bookplus.data.model.toMainBook
 import com.vnvj0033.bookplus.data.repository.book.BookRepository
-import com.vnvj0033.bookplus.ui.component.state.PlatformsState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -47,7 +46,6 @@ private fun homeUiState(
         if (listOfGenre.isNotEmpty() && listOfBook.isNotEmpty()) {
             HomeUiState.Success(
                 HomeStateData(
-                    PlatformsState(),
                     listOfGenre,
                     listOfBook.map { it.toMainBook() }
                 )
@@ -59,7 +57,6 @@ private fun homeUiState(
 }
 
 data class HomeStateData(
-    var platformState: PlatformsState,
     val genres: List<String>,
     val books: List<MainBook>
 )

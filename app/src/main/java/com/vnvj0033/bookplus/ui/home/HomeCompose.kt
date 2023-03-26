@@ -13,11 +13,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.vnvj0033.bookplus.data.model.Constant
 import com.vnvj0033.bookplus.data.model.MainBook
 import com.vnvj0033.bookplus.ui.AppTheme
+import com.vnvj0033.bookplus.ui.BookList
+import com.vnvj0033.bookplus.ui.GenreSelectionList
+import com.vnvj0033.bookplus.ui.PlatformSelectionList
 import com.vnvj0033.bookplus.ui.bookdetail.BookDetailActivity
-import com.vnvj0033.bookplus.ui.component.BookList
-import com.vnvj0033.bookplus.ui.component.GenreSelectionList
-import com.vnvj0033.bookplus.ui.component.PlatformSelectionList
-import com.vnvj0033.bookplus.ui.component.state.PlatformsState
 
 @Composable
 fun HomeCompose(
@@ -55,7 +54,7 @@ fun HomeScreen(
     Column(
         modifier = Modifier.fillMaxHeight()
     ) {
-        PlatformSelectionList(state.platformState) { selectedTitle ->
+        PlatformSelectionList { selectedTitle ->
             updateGenre.invoke(selectedTitle)
         }
         GenreSelectionList(options = state.genres) { genre ->
@@ -72,7 +71,7 @@ private fun Loading() {
     Column(
         modifier = Modifier.fillMaxHeight()
     ) {
-        PlatformSelectionList(PlatformsState())
+        PlatformSelectionList()
         GenreSelectionList(listOf())
         BookList()
     }
@@ -83,7 +82,6 @@ private fun Loading() {
 @Composable
 private fun PreviewHomeScreen() {
     val state = HomeStateData(
-        PlatformsState(),
         listOf("123", "234"),
         listOf(MainBook("", "", "", ""))
     )
