@@ -38,7 +38,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun updateBooks(newGenre: String) {
-        books.value = bookRepository.loadFavorite(newGenre)
+        books.value = bookRepository.loadBookForGenre(newGenre)
     }
 }
 

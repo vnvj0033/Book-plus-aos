@@ -15,21 +15,21 @@ class FakeGenreRepository @Inject constructor() : GenreRepository {
 
     override fun loadGenresForPlatform(platform: String): List<String> =
         when (platform) {
-            Constant.Platform.KYOBO -> listOf(
+            Constant.Genre.kyobo1 -> listOf(
                 Constant.Genre.kyobo1,
                 Constant.Genre.kyobo2,
                 Constant.Genre.kyobo3,
                 Constant.Genre.kyobo4,
                 Constant.Genre.kyobo5,
             )
-            Constant.Platform.ALADIN -> listOf(
+            Constant.Genre.aladin1 -> listOf(
                 Constant.Genre.aladin1,
                 Constant.Genre.aladin2,
                 Constant.Genre.aladin3,
                 Constant.Genre.aladin4,
                 Constant.Genre.aladin5,
             )
-            Constant.Platform.YES24 -> listOf(
+            Constant.Genre.yes24a -> listOf(
                 Constant.Genre.yes24a,
                 Constant.Genre.yes24b,
                 Constant.Genre.yes24c,
