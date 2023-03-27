@@ -1,6 +1,8 @@
 package com.vnvj0033.bookplus.data.repository.genre
 
 interface GenreRepository {
-    fun saveGenres(userId: String, genre: List<String>)
-    fun loadGenres(userId: String): List<String>
+    fun saveGenresForId(userId: String, genre: List<String>)
+    fun loadGenresForId(userId: String): List<String>
+
+    fun loadGenresForPlatform(platform: String): List<String>
 }

@@ -54,12 +54,10 @@ fun HomeScreen(
     Column(
         modifier = Modifier.fillMaxHeight()
     ) {
-        PlatformSelectionList { selectedTitle ->
-            updateGenre.invoke(selectedTitle)
-        }
-        GenreSelectionList(options = state.genres) { genre ->
-            updateBooks.invoke(genre)
-        }
+        PlatformSelectionList(click = updateGenre)
+        GenreSelectionList(
+            options = state.genres,
+            click = updateBooks)
         BookList(state.books) { books ->
             BookDetailActivity.openBookDetail(context, books)
         }
