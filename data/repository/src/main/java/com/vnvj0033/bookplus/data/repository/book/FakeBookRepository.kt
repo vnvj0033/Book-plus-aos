@@ -16,21 +16,21 @@ class FakeBookRepository @Inject constructor() : BookRepository {
 
     override fun loadBookForGenre(genre: String): List<Book> =
         when (genre) {
-            Constant.Platform.KYOBO -> listOf(
+            Constant.Genre.kyobo1 -> listOf(
                 Book(0, "url", "kyobo1", "writer", "summary"),
                 Book(0, "url", "kyobo2", "writer", "summary"),
                 Book(0, "url", "kyobo3", "writer", "summary"),
                 Book(0, "url", "kyobo4", "writer", "summary"),
                 Book(0, "url", "kyobo5", "writer", "summary")
             )
-            Constant.Platform.ALADIN -> listOf(
+            Constant.Genre.aladin1 -> listOf(
                 Book(0, "url", "aladin1", "writer", "summary"),
                 Book(0, "url", "aladin2", "writer", "summary"),
                 Book(0, "url", "aladin3", "writer", "summary"),
                 Book(0, "url", "aladin4", "writer", "summary"),
                 Book(0, "url", "aladin5", "writer", "summary")
             )
-            Constant.Platform.YES24 -> listOf(
+            Constant.Genre.yes24a -> listOf(
                 Book(0, "url", "yes24a", "writer", "summary"),
                 Book(0, "url", "yes24b", "writer", "summary"),
                 Book(0, "url", "yes24c", "writer", "summary"),

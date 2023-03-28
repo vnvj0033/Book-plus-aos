@@ -47,16 +47,17 @@ private fun homeUiState(
     books: Flow<List<Book>>
 ): Flow<HomeUiState> {
     return combine(genres, books) { listOfGenre, listOfBook ->
-        if (listOfGenre.isNotEmpty() && listOfBook.isNotEmpty()) {
-            HomeUiState.Success(
-                HomeStateData(
-                    listOfGenre,
-                    listOfBook.map { it.toMainBook() }
-                )
+        HomeUiState.Success(
+            HomeStateData(
+                listOfGenre,
+                listOfBook.map { it.toMainBook() }
             )
-        } else {
-            HomeUiState.Loading
-        }
+        )
+//        if (listOfGenre.isNotEmpty() && listOfBook.isNotEmpty()) {
+//
+//        } else {
+//            HomeUiState.Loading
+//        }
     }
 }
 
