@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun GenreToggleList(
     options: List<String>,
-    toggle: (List<String>) -> Unit = {},
-    selectedList: List<String> = emptyList()
+    selectedList: Set<String> = emptySet(),
+    toggle: (Set<String>) -> Unit = {}
 ) {
 
     val list = selectedList.toMutableStateList()
@@ -38,7 +38,7 @@ fun GenreToggleList(
                 } else {
                     list.add(selectedGenre)
                 }
-                toggle.invoke(list)
+                toggle.invoke(list.toSet())
             }
         }
     }
