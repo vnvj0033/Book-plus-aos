@@ -18,20 +18,11 @@ class SubscriptViewModel @Inject constructor(
         )
     )
     val selectedGenreState = MutableStateFlow(
-        setOf(
-            "abc",
-            "bdds",
-            "abc123",
-            "baasddds",
-            "오나라라",
-            "오나라라ㅏ라",
-            "아주나라라라",
-            "동해물과백두산이마르고닭도록하느님이보우하사우리나라만세무궁화삼천리화려강산",
-            "대한사람 대한으로 길이보전하세"
-        )
+        genreRepository.loadGenresForId("test_id").toSet()
     )
 
     fun updateSelectedGenre(set: Set<String>) {
+        genreRepository.saveGenresForId("test_id", set.toList())
         selectedGenreState.value = set
     }
 

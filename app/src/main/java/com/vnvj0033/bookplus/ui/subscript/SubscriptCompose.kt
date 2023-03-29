@@ -14,8 +14,8 @@ import com.vnvj0033.bookplus.ui.PlatformSelectionList
 @Composable
 fun SubscriptCompose(viewModel: SubscriptViewModel = hiltViewModel()) {
 
-    val selectedSet = viewModel.selectedGenreState.collectAsState()
     val options = viewModel.options.collectAsState()
+    val selectedSet = viewModel.selectedGenreState.collectAsState()
 
     Column(Modifier.fillMaxHeight()) {
         PlatformSelectionList { platform ->
@@ -28,7 +28,6 @@ fun SubscriptCompose(viewModel: SubscriptViewModel = hiltViewModel()) {
         ) { set ->
             viewModel.updateSelectedGenre(set)
         }
-
     }
 
 }
