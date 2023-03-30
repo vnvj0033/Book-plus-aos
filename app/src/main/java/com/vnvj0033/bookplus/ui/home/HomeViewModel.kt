@@ -29,11 +29,13 @@ class HomeViewModel @Inject constructor(
         )
 
     fun updateGenre(inputPlatform: String) {
-        val platform = Constant.Platform.loadItems().find { it == inputPlatform } ?: ""
+        val platform = Constant.Platform.loadItems().find { it == inputPlatform } ?: throw Exception("inputPlatform is not a valid")
         genres.value = genreRepository.loadGenresForPlatform(platform)
 
         if (genres.value.isNotEmpty()) {
             updateBooks(genres.value[0])
+        } else {
+            throw Exception("genres is empty")
         }
     }
 
@@ -47,17 +49,13 @@ private fun homeUiState(
     books: Flow<List<Book>>
 ): Flow<HomeUiState> {
     return combine(genres, books) { listOfGenre, listOfBook ->
-        HomeUiState.Success(
-            HomeStateData(
-                listOfGenre,
-                listOfBook.map { it.toMainBook() }
-            )
-        )
-//        if (listOfGenre.isNotEmpty() && listOfBook.isNotEmpty()) {
-//
-//        } else {
-//            HomeUiState.Loading
-//        }
+        if (listOfGenre.isNotEmpty()) {
+            val mainBook = listOfBook.map { it.toMainBook() }
+
+            HomeUiState.Success(HomeStateData(listOfGenre, mainBook))
+        } else {
+            HomeUiState.Loading
+        }
     }
 }
 
