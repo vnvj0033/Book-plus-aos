@@ -1,7 +1,7 @@
 package com.vnvj0033.bookplus.ui.subscript
 
 import androidx.lifecycle.ViewModel
-import com.vnvj0033.bookplus.data.model.Constant
+import com.vnvj0033.bookplus.data.model.Platform
 import com.vnvj0033.bookplus.data.repository.genre.GenreRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +14,7 @@ class SubscriptViewModel @Inject constructor(
 
     val options = MutableStateFlow(
         genreRepository.loadGenresForPlatform(
-            Constant.Platform.loadItems().first()
+            Platform.KYOBO
         )
     )
     val selectedGenreState = MutableStateFlow(
@@ -26,7 +26,7 @@ class SubscriptViewModel @Inject constructor(
         selectedGenreState.value = set
     }
 
-    fun updateOptions(platform: String) {
+    fun updateOptions(platform: Platform) {
         options.value = genreRepository.loadGenresForPlatform(platform)
     }
 }

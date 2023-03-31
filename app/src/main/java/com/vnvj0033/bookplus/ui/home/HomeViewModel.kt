@@ -2,10 +2,7 @@ package com.vnvj0033.bookplus.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vnvj0033.bookplus.data.model.Book
-import com.vnvj0033.bookplus.data.model.Constant
-import com.vnvj0033.bookplus.data.model.MainBook
-import com.vnvj0033.bookplus.data.model.toMainBook
+import com.vnvj0033.bookplus.data.model.*
 import com.vnvj0033.bookplus.data.repository.book.BookRepository
 import com.vnvj0033.bookplus.data.repository.genre.GenreRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,8 +25,7 @@ class HomeViewModel @Inject constructor(
             initialValue = HomeUiState.Loading
         )
 
-    fun updateGenre(inputPlatform: String) {
-        val platform = Constant.Platform.loadItems().find { it == inputPlatform } ?: throw Exception("inputPlatform is not a valid")
+    fun updateGenre(platform: Platform) {
         genres.value = genreRepository.loadGenresForPlatform(platform)
 
         if (genres.value.isNotEmpty()) {

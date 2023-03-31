@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.vnvj0033.bookplus.data.model.Constant
 import com.vnvj0033.bookplus.data.model.MainBook
+import com.vnvj0033.bookplus.data.model.Platform
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.BookList
 import com.vnvj0033.bookplus.ui.GenreSelectionList
@@ -38,7 +38,7 @@ fun HomeCompose(
     }
 
     LaunchedEffect(true) {
-        viewModel.updateGenre(Constant.Platform.KYOBO)
+        viewModel.updateGenre(Platform.KYOBO)
     }
 
 }
@@ -46,7 +46,7 @@ fun HomeCompose(
 @Composable
 fun HomeScreen(
     state: HomeStateData,
-    updateGenre: (String) -> Unit = {},
+    updateGenre: (Platform) -> Unit = {},
     updateBooks: (String) -> Unit = {}
 ) {
     val context = LocalContext.current

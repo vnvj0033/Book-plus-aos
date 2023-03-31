@@ -1,6 +1,6 @@
 package com.vnvj0033.bookplus.data.repository.genre
 
-import com.vnvj0033.bookplus.data.model.Constant
+import com.vnvj0033.bookplus.data.model.Platform
 import javax.inject.Inject
 
 class FakeGenreRepository @Inject constructor() : GenreRepository {
@@ -13,28 +13,28 @@ class FakeGenreRepository @Inject constructor() : GenreRepository {
     override fun loadGenresForId(userId: String): List<String> =
         genreDb[userId] ?: emptyList()
 
-    override fun loadGenresForPlatform(platform: String): List<String> =
+    override fun loadGenresForPlatform(platform: Platform): List<String> =
         when (platform) {
-            Constant.Platform.KYOBO -> listOf(
-                Constant.Genre.kyobo1,
-                Constant.Genre.kyobo2,
-                Constant.Genre.kyobo3,
-                Constant.Genre.kyobo4,
-                Constant.Genre.kyobo5,
+            Platform.KYOBO -> listOf(
+                Platform.KYOBO.kyobo1,
+                Platform.KYOBO.kyobo2,
+                Platform.KYOBO.kyobo3,
+                Platform.KYOBO.kyobo4,
+                Platform.KYOBO.kyobo5,
             )
-            Constant.Platform.ALADIN -> listOf(
-                Constant.Genre.aladin1,
-                Constant.Genre.aladin2,
-                Constant.Genre.aladin3,
-                Constant.Genre.aladin4,
-                Constant.Genre.aladin5,
+            Platform.ALADIN -> listOf(
+                Platform.ALADIN.aladin1,
+                Platform.ALADIN.aladin2,
+                Platform.ALADIN.aladin3,
+                Platform.ALADIN.aladin4,
+                Platform.ALADIN.aladin5,
             )
-            Constant.Platform.YES24 -> listOf(
-                Constant.Genre.yes24a,
-                Constant.Genre.yes24b,
-                Constant.Genre.yes24c,
-                Constant.Genre.yes24d,
-                Constant.Genre.yes24e,
+            Platform.YES24 -> listOf(
+                Platform.YES24.yes24a,
+                Platform.YES24.yes24b,
+                Platform.YES24.yes24c,
+                Platform.YES24.yes24d,
+                Platform.YES24.yes24e,
             )
             else -> listOf()
         }
