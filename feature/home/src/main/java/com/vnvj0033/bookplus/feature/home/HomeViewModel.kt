@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.ui.home
+package com.vnvj0033.bookplus.feature.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

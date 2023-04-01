@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.ui.home
+package com.vnvj0033.bookplus.feature.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -16,7 +16,6 @@ import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.BookList
 import com.vnvj0033.bookplus.ui.GenreSelectionList
 import com.vnvj0033.bookplus.ui.PlatformSelectionList
-import com.vnvj0033.bookplus.ui.bookdetail.BookDetailActivity
 
 @Composable
 fun HomeCompose(
@@ -59,7 +58,8 @@ fun HomeScreen(
             options = state.genres,
             click = updateBooks)
         BookList(state.books) { books ->
-            BookDetailActivity.openBookDetail(context, books)
+            //TODO: goto detail
+//            BookDetailActivity.openBookDetail(context, books)
         }
     }
 }

@@ -53,6 +53,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature:home"))
+
+
     implementation(project(":data:model"))
     implementation(project(":data:repository"))
     implementation(project(":ui"))
