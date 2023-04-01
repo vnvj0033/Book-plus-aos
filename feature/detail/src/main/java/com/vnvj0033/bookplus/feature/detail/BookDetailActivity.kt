@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.ui.bookdetail
+package com.vnvj0033.bookplus.feature.detail
 
 import android.content.Context
 import android.content.Intent
@@ -7,7 +7,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import com.vnvj0033.bookplus.data.model.MainBook
-import com.vnvj0033.bookplus.util.serializable
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

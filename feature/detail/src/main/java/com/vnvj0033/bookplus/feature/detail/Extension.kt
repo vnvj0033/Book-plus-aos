@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.util
+package com.vnvj0033.bookplus.feature.detail
 
 import android.content.Intent
 import android.os.Build

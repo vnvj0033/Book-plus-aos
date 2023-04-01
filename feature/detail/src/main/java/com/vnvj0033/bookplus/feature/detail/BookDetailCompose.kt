@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.ui.bookdetail
+package com.vnvj0033.bookplus.feature.detail
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
@@ -11,7 +11,7 @@ import com.vnvj0033.bookplus.ui.BookCover
 
 
 @Composable
-fun BookDetailCompose(
+internal fun BookDetailCompose(
     viewModel: BookDetailViewModel = hiltViewModel()
 ) {
     val book = viewModel.book.collectAsState()

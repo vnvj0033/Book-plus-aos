@@ -1,9 +1,8 @@
-package com.vnvj0033.bookplus.ui.bookdetail
+package com.vnvj0033.bookplus.feature.detail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.vnvj0033.bookplus.data.model.MainBook
-import com.vnvj0033.bookplus.util.getSavableMutableStateFlow
 import javax.inject.Inject
 
 class BookDetailViewModel @Inject constructor(

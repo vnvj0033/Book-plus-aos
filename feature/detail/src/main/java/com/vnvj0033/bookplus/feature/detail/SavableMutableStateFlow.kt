@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.util
+package com.vnvj0033.bookplus.feature.detail
 
 import androidx.lifecycle.SavedStateHandle
 import kotlinx.coroutines.flow.StateFlow

@@ -13,10 +13,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.vnvj0033.bookplus.feature.detail.BookDetailActivity
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.BookList
 import com.vnvj0033.bookplus.ui.Filter
-import com.vnvj0033.bookplus.ui.bookdetail.BookDetailActivity
 import kotlinx.coroutines.launch
 
 @Composable

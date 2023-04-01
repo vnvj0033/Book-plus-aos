@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.vnvj0033.bookplus.feature.home"
+    namespace = "com.vnvj0033.bookplus.feature.detail"
     compileSdk = Apps.compileSdkVersion
 
     defaultConfig {
@@ -24,10 +24,10 @@ android {
 }
 
 dependencies {
+
     implementation(project(":data:model"))
     implementation(project(":ui"))
     implementation(project(":data:repository"))
-    implementation(project(":feature:detail"))
 
     // Compose Material Design 3
     implementation(Lib.composeMaterial3)
