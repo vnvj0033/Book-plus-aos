@@ -29,6 +29,10 @@ dependencies {
     implementation(project(":data:repository"))
     implementation(project(":feature:detail"))
 
+    // dagger hilt
+    implementation (Lib.hilt)
+    kapt (Lib.hiltCompiler)
+
     // Compose Material Design 3
     implementation(Lib.composeMaterial3)
     // Android Studio Preview support
