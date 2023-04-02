@@ -29,7 +29,7 @@ fun PlatformSelectionList(
     platform: Platform = platforms[0],
     click : (Platform) -> Unit = {}
 ) {
-    var selectedTitle by remember { mutableStateOf(platform.name) }
+    var selectedTitle by remember { mutableStateOf(platform.name()) }
 
     Column {
         Text(
@@ -41,14 +41,14 @@ fun PlatformSelectionList(
         )
         LazyRow(Modifier.fillMaxWidth()) {
             items(platforms) { platform ->
-                val isSelected = selectedTitle == platform.name
+                val isSelected = selectedTitle == platform.name()
 
                 PlatformSelection(
                     platform = platform,
                     isSelected = isSelected
                 ) { selectedPlatform ->
                     click.invoke(selectedPlatform)
-                    selectedTitle = selectedPlatform.name
+                    selectedTitle = selectedPlatform.name()
                 }
             }
         }
@@ -88,7 +88,7 @@ fun PlatformSelection(
                 .background(imageBackground)
         )
         Text(
-            text = platform.name.uppercase(),
+            text = platform.name().uppercase(),
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
             style = MaterialTheme.typography.labelLarge,

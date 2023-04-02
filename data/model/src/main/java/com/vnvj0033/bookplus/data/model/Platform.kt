@@ -1,11 +1,10 @@
 package com.vnvj0033.bookplus.data.model
 
 interface Platform {
-    val name: String
+    fun name(): String = this.javaClass.simpleName
     val resource: Int
 
     object KYOBO : Platform {
-        override val name = "KYOBO"
         override val resource = R.drawable.logo_kyobo
 
         object kyobo1 : Genre
@@ -16,7 +15,6 @@ interface Platform {
     }
 
     object YES24 : Platform {
-        override val name = "YES24"
         override val resource = R.drawable.logo_yes24
 
         object yes24a : Genre
@@ -27,7 +25,6 @@ interface Platform {
     }
 
     object ALADIN : Platform {
-        override val name = "ALADIN"
         override val resource = R.drawable.logo_aladin
 
         object aladin1 : Genre
