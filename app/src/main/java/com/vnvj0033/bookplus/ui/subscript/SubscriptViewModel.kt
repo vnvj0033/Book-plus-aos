@@ -13,9 +13,7 @@ class SubscriptViewModel @Inject constructor(
 ) : ViewModel() {
 
     val options = MutableStateFlow(
-        genreRepository.loadGenresForPlatform(
-            Platform.KYOBO
-        )
+        genreRepository.loadGenresForPlatform(Platform.KYOBO)
     )
     val selectedGenreState = MutableStateFlow(
         genreRepository.loadGenresForId("test_id").toSet()

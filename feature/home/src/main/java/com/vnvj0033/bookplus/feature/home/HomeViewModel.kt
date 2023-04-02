@@ -15,7 +15,7 @@ class HomeViewModel @Inject constructor(
     private val genreRepository: GenreRepository
 ): ViewModel() {
 
-    private val genres = MutableStateFlow(emptyList<String>())
+    private val genres = MutableStateFlow(emptyList<Platform.Genre>())
     private val books = MutableStateFlow(emptyList<Book>())
 
     val uiState: StateFlow<HomeUiState> =
@@ -35,13 +35,13 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun updateBooks(newGenre: String) {
+    fun updateBooks(newGenre: Platform.Genre) {
         books.value = bookRepository.loadBookForGenre(newGenre)
     }
 }
 
 private fun homeUiState(
-    genres: Flow<List<String>>,
+    genres: Flow<List<Platform.Genre>>,
     books: Flow<List<Book>>
 ): Flow<HomeUiState> {
     return combine(genres, books) { listOfGenre, listOfBook ->
@@ -56,7 +56,7 @@ private fun homeUiState(
 }
 
 data class HomeStateData(
-    val genres: List<String>,
+    val genres: List<Platform.Genre>,
     val books: List<MainBook>
 )
 

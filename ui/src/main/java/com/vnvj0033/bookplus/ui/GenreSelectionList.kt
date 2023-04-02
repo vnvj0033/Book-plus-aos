@@ -15,34 +15,37 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.vnvj0033.bookplus.data.model.Platform
 
 /**
  * 클릭시 장르만 변경, 이벤트는 호이스팅
  * */
 @Composable
 fun GenreSelectionList(
-    options: List<String>,
-    click: (String) -> Unit = {}
+    options: List<Platform.Genre>,
+    click: (Platform.Genre) -> Unit = {}
 ) {
+    if (options.isEmpty()) {
+        return
+    }
+
     val scrollState = rememberLazyListState()
-    var selectedGenre: String by remember { mutableStateOf("") }
+    var selectedGenre: Platform.Genre by remember { mutableStateOf(options[0]) }
 
     LaunchedEffect(options) {
-        if (!options.contains(selectedGenre) && options.isNotEmpty()) {
-            selectedGenre = options[0]
-            scrollState.scrollToItem(0)
-        }
+        selectedGenre = options[0]
+        scrollState.scrollToItem(0)
     }
 
     LazyRow(
         modifier = Modifier.padding(top = 8.dp),
         state = scrollState
     ) {
-        items(options) { text ->
-            val isSelected = selectedGenre == text
+        items(options) { genre ->
+            val isSelected = selectedGenre == genre
 
             GenreSelection(
-                text = text,
+                genre = genre,
                 isSelected = isSelected
             ) { selectGenre ->
                 selectedGenre = selectGenre
@@ -54,9 +57,9 @@ fun GenreSelectionList(
 
 @Composable
 private fun GenreSelection(
-    text: String,
+    genre: Platform.Genre,
     isSelected: Boolean = false,
-    click: (String) -> Unit = {}
+    click: (Platform.Genre) -> Unit = {}
 ) {
 
     val background = if (isSelected) {
@@ -67,11 +70,11 @@ private fun GenreSelection(
 
     Box(modifier = Modifier.padding(4.dp)) {
         Text(
-            text = text,
+            text = genre.name(),
             color = Color.White,
             modifier = Modifier
                 .clip(RoundedCornerShape(24.dp))
-                .clickable { click.invoke(text) }
+                .clickable { click.invoke(genre) }
                 .background(background)
                 .padding(
                     vertical = 12.dp,
@@ -80,19 +83,28 @@ private fun GenreSelection(
         )
     }
 }
+private object compoterAndIT : Platform.Genre {
+    override fun name(): String = "컴퓨터/IT"
+}
+private object abc : Platform.Genre {
+    override fun name(): String = "123"
+}
+private object bcd : Platform.Genre {
+    override fun name(): String = "456"
+}
 
 @Preview
 @Composable
 private fun PreviewGenreSelectionList() {
 
-    GenreSelection("컴퓨터/IT", true)
+    GenreSelection(compoterAndIT, true)
 
 }
 
 @Preview
 @Composable
 private fun PreviewGenreSelection() {
-    val options = listOf("123", "234", "345", "456")
+    val options = listOf(compoterAndIT, abc, bcd)
 
     GenreSelectionList(options)
 

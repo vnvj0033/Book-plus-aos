@@ -47,7 +47,7 @@ fun HomeCompose(
 fun HomeScreen(
     state: HomeStateData,
     updateGenre: (Platform) -> Unit = {},
-    updateBooks: (String) -> Unit = {}
+    updateBooks: (Platform.Genre) -> Unit = {}
 ) {
     val context = LocalContext.current
 
@@ -80,7 +80,7 @@ private fun Loading() {
 @Composable
 private fun PreviewHomeScreen() {
     val state = HomeStateData(
-        listOf("123", "234"),
+        listOf(Platform.KYOBO.kyobo1),
         listOf(MainBook("", "", "", ""))
     )
 

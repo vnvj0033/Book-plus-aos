@@ -13,7 +13,7 @@ class FakeGenreRepository @Inject constructor() : GenreRepository {
     override fun loadGenresForId(userId: String): List<String> =
         genreDb[userId] ?: emptyList()
 
-    override fun loadGenresForPlatform(platform: Platform): List<String> =
+    override fun loadGenresForPlatform(platform: Platform): List<Platform.Genre> =
         when (platform) {
             Platform.KYOBO -> listOf(
                 Platform.KYOBO.kyobo1,

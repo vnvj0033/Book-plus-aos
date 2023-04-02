@@ -14,7 +14,7 @@ class FakeBookRepository @Inject constructor() : BookRepository {
     override fun loadBookForId(userId: String): List<Book> =
         userDb[userId] ?: emptyList()
 
-    override fun loadBookForGenre(genre: String): List<Book> =
+    override fun loadBookForGenre(genre: Platform.Genre): List<Book> =
         when (genre) {
             Platform.KYOBO.kyobo1 -> listOf(
                 Book(0, "url", "kyobo1", "writer", "summary"),
