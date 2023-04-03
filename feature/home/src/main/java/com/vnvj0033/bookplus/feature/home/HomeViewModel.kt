@@ -6,17 +6,26 @@ import com.vnvj0033.bookplus.data.model.*
 import com.vnvj0033.bookplus.data.repository.book.BookRepository
 import com.vnvj0033.bookplus.data.repository.genre.GenreRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val bookRepository: BookRepository,
     private val genreRepository: GenreRepository
-): ViewModel() {
+) : ViewModel() {
 
-    private val genres = MutableStateFlow(emptyList<Platform.Genre>())
-    private val books = MutableStateFlow(emptyList<Book>())
+    private val platform = MutableSharedFlow<Platform>()
+    private val genres: Flow<List<Platform.Genre>> = platform.flatMapLatest {
+        genreRepository.fetchGenresForPlatform(it)
+    }
+    private val selectedGenre = MutableSharedFlow<Platform.Genre>()
+    private val books = selectedGenre.flatMapLatest {
+        bookRepository.fetchBookForGenre(it)
+    }
 
     val uiState: StateFlow<HomeUiState> =
         homeUiState(genres, books).stateIn(
@@ -25,18 +34,16 @@ class HomeViewModel @Inject constructor(
             initialValue = HomeUiState.Loading
         )
 
-    fun updateGenre(platform: Platform) {
-        genres.value = genreRepository.loadGenresForPlatform(platform)
-
-        if (genres.value.isNotEmpty()) {
-            updateBooks(genres.value[0])
-        } else {
-            throw Exception("genres is empty")
+    fun updateGenre(newPlatform: Platform) {
+        viewModelScope.launch {
+            platform.emit(newPlatform)
         }
     }
 
     fun updateBooks(newGenre: Platform.Genre) {
-        books.value = bookRepository.loadBookForGenre(newGenre)
+        viewModelScope.launch {
+            selectedGenre.emit(newGenre)
+        }
     }
 }
 

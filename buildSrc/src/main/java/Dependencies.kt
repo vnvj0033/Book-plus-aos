@@ -36,6 +36,7 @@ object Lib {
 
     const val room = "androidx.room:room-runtime:${Ver.roomVersion}"
     const val roomCompiler = "androidx.room:room-compiler:${Ver.roomVersion}"
+    const val roomKtx = "androidx.room:room-ktx:${Ver.roomVersion}"
 
     const val retrofit2 = "com.squareup.retrofit2:retrofit:${Ver.retrofitVersion}"
     const val gson = "com.squareup.retrofit2:converter-gson:${Ver.retrofitVersion}"
@@ -50,4 +51,6 @@ object Lib {
     const val hiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0"
 
     const val splashScreen = "androidx.core:core-splashscreen:1.0.0"
+
+    const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
 }

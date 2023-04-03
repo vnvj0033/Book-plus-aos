@@ -14,4 +14,7 @@ dependencies {
     implementation(project(":data:model"))
     implementation(Lib.hilt)
     kapt(Lib.hiltCompiler)
+
+    // coroutine
+    implementation(Lib.coroutine)
 }

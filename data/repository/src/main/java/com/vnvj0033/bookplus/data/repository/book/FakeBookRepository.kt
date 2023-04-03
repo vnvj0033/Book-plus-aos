@@ -2,19 +2,22 @@ package com.vnvj0033.bookplus.data.repository.book
 
 import com.vnvj0033.bookplus.data.model.Book
 import com.vnvj0033.bookplus.data.model.Platform
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 class FakeBookRepository @Inject constructor() : BookRepository {
     private val userDb = hashMapOf<String, List<Book>>()
 
-    override fun saveBookForId(userId: String, books: List<Book>) {
+    override fun sendBookForId(userId: String, books: List<Book>) {
         userDb[userId] = books
     }
 
-    override fun loadBookForId(userId: String): List<Book> =
+    override fun fetchBookForId(userId: String): Flow<List<Book>> = flowOf(
         userDb[userId] ?: emptyList()
+    )
 
-    override fun loadBookForGenre(genre: Platform.Genre): List<Book> =
+    override fun fetchBookForGenre(genre: Platform.Genre): Flow<List<Book>> = flowOf(
         when (genre) {
             Platform.KYOBO.kyobo1 -> listOf(
                 Book(0, "url", "kyobo1", "writer", "summary"),
@@ -39,6 +42,7 @@ class FakeBookRepository @Inject constructor() : BookRepository {
             )
             else -> listOf()
         }
+    )
 
 
 }

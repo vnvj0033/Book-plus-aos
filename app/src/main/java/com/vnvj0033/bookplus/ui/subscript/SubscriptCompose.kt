@@ -14,8 +14,8 @@ import com.vnvj0033.bookplus.ui.PlatformSelectionList
 @Composable
 fun SubscriptCompose(viewModel: SubscriptViewModel = hiltViewModel()) {
 
-    val options = viewModel.options.collectAsState()
-    val selectedSet = viewModel.selectedGenreState.collectAsState()
+    val options = viewModel.options.collectAsState(emptyList())
+    val selectedSet = viewModel.genres.collectAsState(emptyList())
 
     Column(Modifier.fillMaxHeight()) {
         PlatformSelectionList { platform ->
@@ -23,10 +23,10 @@ fun SubscriptCompose(viewModel: SubscriptViewModel = hiltViewModel()) {
         }
 
         GenreToggleList(
-            options = options.value.map { it.name() },
-            selectedList = selectedSet.value
+            options = options.value.map { it },
+            selectedList = selectedSet.value.toSet()
         ) { set ->
-            viewModel.updateSelectedGenre(set)
+            viewModel.updateGenre(set)
         }
     }
 

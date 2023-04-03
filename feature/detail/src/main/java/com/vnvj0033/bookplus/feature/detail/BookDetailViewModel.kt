@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class BookDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
-): ViewModel() {
+) : ViewModel() {
     private var _book = savedStateHandle.getSavableMutableStateFlow("book", MainBook())
     val book = _book.asStateFlow()
 

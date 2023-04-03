@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class FavoriteGenreViewModel @Inject constructor(
     private val bookRepository: BookRepository
-): ViewModel() {
+) : ViewModel() {
 
     private val genre = MutableStateFlow(emptyList<String>())
     private val books = MutableStateFlow(emptyList<Book>())

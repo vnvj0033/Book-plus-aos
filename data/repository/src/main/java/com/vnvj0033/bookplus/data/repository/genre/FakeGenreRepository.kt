@@ -1,19 +1,21 @@
 package com.vnvj0033.bookplus.data.repository.genre
 
 import com.vnvj0033.bookplus.data.model.Platform
+import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 class FakeGenreRepository @Inject constructor() : GenreRepository {
     private val genreDb = hashMapOf<String, List<String>>()
 
-    override fun saveGenresForId(userId: String, genre: List<String>) {
+    override fun sendGenresForId(userId: String, genre: List<String>) {
         genreDb[userId] = genre
     }
 
-    override fun loadGenresForId(userId: String): List<String> =
+    override fun fetchGenresForId(userId: String) = flowOf(
         genreDb[userId] ?: emptyList()
+    )
 
-    override fun loadGenresForPlatform(platform: Platform): List<Platform.Genre> =
+    override fun fetchGenresForPlatform(platform: Platform) = flowOf(
         when (platform) {
             Platform.KYOBO -> listOf(
                 Platform.KYOBO.kyobo1,
@@ -38,5 +40,6 @@ class FakeGenreRepository @Inject constructor() : GenreRepository {
             )
             else -> listOf()
         }
+    )
 
 }

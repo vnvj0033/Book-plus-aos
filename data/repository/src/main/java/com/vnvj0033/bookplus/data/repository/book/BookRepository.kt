@@ -2,10 +2,11 @@ package com.vnvj0033.bookplus.data.repository.book
 
 import com.vnvj0033.bookplus.data.model.Book
 import com.vnvj0033.bookplus.data.model.Platform
+import kotlinx.coroutines.flow.Flow
 
 interface BookRepository {
-    fun saveBookForId(userId: String, books: List<Book>)
-    fun loadBookForId(userId: String): List<Book>
+    fun sendBookForId(userId: String, books: List<Book>)
+    fun fetchBookForId(userId: String): Flow<List<Book>>
 
-    fun loadBookForGenre(genre: Platform.Genre): List<Book>
+    fun fetchBookForGenre(genre: Platform.Genre): Flow<List<Book>>
 }
