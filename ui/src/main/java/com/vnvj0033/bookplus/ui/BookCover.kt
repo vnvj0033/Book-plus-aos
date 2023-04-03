@@ -7,6 +7,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -15,7 +16,7 @@ import com.vnvj0033.bookplus.data.model.MainBook
 
 @Composable
 fun BookCover(book: MainBook) {
-    Row(modifier = Modifier.fillMaxSize()) {
+    Row(modifier = Modifier.fillMaxWidth()) {
         AsyncImage(
             modifier = Modifier.width(128.dp),
             placeholder = painterResource(R.drawable.ic_blank_profile),
@@ -28,7 +29,7 @@ fun BookCover(book: MainBook) {
 
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .padding(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -62,5 +63,13 @@ private fun TableText(
             modifier = Modifier.weight(weight))
         Text(text = value,
             modifier = Modifier.weight(1 - weight))
+    }
+}
+
+@Composable
+@Preview
+private fun Preeview() {
+    AppTheme {
+        BookCover(MainBook())
     }
 }
