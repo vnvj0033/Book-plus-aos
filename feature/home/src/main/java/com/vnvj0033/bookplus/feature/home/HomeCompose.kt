@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.vnvj0033.bookplus.data.model.MainBook
 import com.vnvj0033.bookplus.data.model.Platform
-import com.vnvj0033.bookplus.feature.detail.BookDetailActivity
+import com.vnvj0033.bookplus.navigate.Navigator
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.BookList
 import com.vnvj0033.bookplus.ui.GenreSelectionList
@@ -59,7 +59,7 @@ fun HomeScreen(
             options = state.genres,
             click = updateBooks)
         BookList(state.books) { books ->
-            BookDetailActivity.openBookDetail(context, books)
+            Navigator.openDetailActivity(context, books)
         }
     }
 }

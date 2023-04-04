@@ -27,7 +27,7 @@ dependencies {
     implementation(project(":data:model"))
     implementation(project(":ui"))
     implementation(project(":data:repository"))
-    implementation(project(":feature:detail"))
+    implementation(project(":navigate"))
 
     // dagger hilt
     implementation (Lib.hilt)
