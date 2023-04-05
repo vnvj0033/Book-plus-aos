@@ -2,6 +2,7 @@ package com.vnvj0033.bookplus.feature.detail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.vnvj0033.bookplus.common.feature.getSavableMutableStateFlow
 import com.vnvj0033.bookplus.data.model.MainBook
 import javax.inject.Inject
 
