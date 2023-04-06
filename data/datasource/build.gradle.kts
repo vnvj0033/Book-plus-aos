@@ -26,5 +26,9 @@ dependencies {
     implementation(Lib.hilt)
     kapt(Lib.hiltCompiler)
 
+
     implementation(Lib.coroutine)
+
+    // datastore preferences
+    implementation (Lib.datastore)
 }
