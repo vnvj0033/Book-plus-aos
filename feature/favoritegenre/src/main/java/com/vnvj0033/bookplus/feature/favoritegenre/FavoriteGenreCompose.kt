@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.ui.favoritegenre
+package com.vnvj0033.bookplus.feature.favoritegenre
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Divider
@@ -13,7 +13,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.vnvj0033.bookplus.feature.detail.BookDetailActivity
+import com.vnvj0033.bookplus.navigate.Navigator
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.BookList
 import com.vnvj0033.bookplus.ui.Filter
@@ -72,7 +72,7 @@ private fun FavoriteGenreCompose(
         }
         Divider()
         BookList(state.books) { book ->
-            BookDetailActivity.openBookDetail(context, book)
+            Navigator.openDetailActivity(context, book)
         }
     }
 }

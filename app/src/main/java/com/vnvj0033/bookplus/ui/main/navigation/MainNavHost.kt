@@ -5,9 +5,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.vnvj0033.bookplus.feature.favoritegenre.FavoriteGenreCompose
 import com.vnvj0033.bookplus.feature.home.HomeCompose
-import com.vnvj0033.bookplus.ui.favoritegenre.FavoriteGenreCompose
-import com.vnvj0033.bookplus.ui.subscript.SubscriptCompose
+import com.vnvj0033.bookplus.feature.subscript.SubscriptCompose
 
 const val routeNameHome = "route_name_home"
 const val routeNameFavoriteGenre = "route_name_favorite_genre"

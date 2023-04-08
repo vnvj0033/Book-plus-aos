@@ -55,6 +55,8 @@ android {
 dependencies {
     implementation(project(":feature:home"))
     implementation(project(":feature:detail"))
+    implementation(project(":feature:subscript"))
+    implementation(project(":feature:favoritegenre"))
 
 
     implementation(project(":data:model"))

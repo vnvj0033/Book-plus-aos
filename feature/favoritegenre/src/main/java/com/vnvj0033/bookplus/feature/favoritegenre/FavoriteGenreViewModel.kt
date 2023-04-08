@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.ui.favoritegenre
+package com.vnvj0033.bookplus.feature.favoritegenre
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
