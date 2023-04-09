@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.ui.main.navigation
+package com.vnvj0033.bookplus.navigate
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,7 +14,7 @@ const val routeNameFavoriteGenre = "route_name_favorite_genre"
 const val routeNameSubscript = "routeNameSubscript"
 
 @Composable
-fun MainNavHost(
+fun BookPlusNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
     startDestination: String = routeNameHome

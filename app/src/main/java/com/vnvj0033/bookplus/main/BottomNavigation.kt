@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.ui.component
+package com.vnvj0033.bookplus.main
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -14,10 +14,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.vnvj0033.bookplus.navigate.routeNameFavoriteGenre
+import com.vnvj0033.bookplus.navigate.routeNameHome
+import com.vnvj0033.bookplus.navigate.routeNameSubscript
 import com.vnvj0033.bookplus.ui.AppTheme
-import com.vnvj0033.bookplus.ui.main.navigation.routeNameFavoriteGenre
-import com.vnvj0033.bookplus.ui.main.navigation.routeNameHome
-import com.vnvj0033.bookplus.ui.main.navigation.routeNameSubscript
 
 @Composable
 fun BottomNavigation(navController: NavHostController) {

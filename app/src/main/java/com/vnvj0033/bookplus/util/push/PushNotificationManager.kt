@@ -8,9 +8,7 @@ import android.media.RingtoneManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.vnvj0033.bookplus.R
-
-
-import com.vnvj0033.bookplus.ui.main.MainActivity
+import com.vnvj0033.bookplus.main.MainActivity
 
 class PushNotificationManager {
 
@@ -34,11 +32,13 @@ class PushNotificationManager {
             .setDefaults(Notification.DEFAULT_SOUND)
             .build()
 
-        val notificationManager = service.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager =
+            service.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         // 오레오 버전 이후에는 채널이 필요
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            val channel = NotificationChannel(channelId, "Notice", NotificationManager.IMPORTANCE_HIGH)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel =
+                NotificationChannel(channelId, "Notice", NotificationManager.IMPORTANCE_HIGH)
             notificationManager.createNotificationChannel(channel)
         }
 
@@ -49,10 +49,17 @@ class PushNotificationManager {
     @SuppressLint("UnspecifiedImmutableFlag")
     private fun createPendingIntent(context: Context, intent: Intent) =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getActivity(
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            )
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            PendingIntent.getActivity(context, 0, intent,
-                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getActivity(
+                context, 0, intent,
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            )
         } else {
             PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         }

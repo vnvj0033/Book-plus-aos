@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.ui.main
+package com.vnvj0033.bookplus.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
