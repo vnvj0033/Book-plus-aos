@@ -62,7 +62,6 @@ dependencies {
     implementation(project(":data:model"))
     implementation(project(":data:repository"))
     implementation(project(":ui"))
-    implementation(project(":navigate"))
 
     implementation(Lib.coreKtx)
     testImplementation(Lib.junit)

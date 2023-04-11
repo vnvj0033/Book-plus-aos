@@ -14,9 +14,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.vnvj0033.bookplus.navigate.routeNameFavoriteGenre
-import com.vnvj0033.bookplus.navigate.routeNameHome
-import com.vnvj0033.bookplus.navigate.routeNameSubscript
 import com.vnvj0033.bookplus.ui.AppTheme
 
 @Composable

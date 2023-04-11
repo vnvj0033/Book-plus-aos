@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.navigate
+package com.vnvj0033.bookplus.main
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
