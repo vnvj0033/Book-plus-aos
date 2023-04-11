@@ -27,6 +27,7 @@ dependencies {
     implementation(project(":feature:home"))
     implementation(project(":feature:favoritegenre"))
     implementation(project(":feature:subscript"))
+    implementation(project(":feature:detail"))
 
     implementation(Lib.coreKtx)
 
