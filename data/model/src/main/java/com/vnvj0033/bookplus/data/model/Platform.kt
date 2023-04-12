@@ -1,6 +1,6 @@
 package com.vnvj0033.bookplus.data.model
 
-interface Platform {
+sealed interface Platform {
     fun name(): String = this.javaClass.simpleName
     val resource: Int
 
@@ -34,7 +34,7 @@ interface Platform {
         object aladin5 : Genre
     }
 
-    interface Genre {
+    sealed interface Genre {
         fun name(): String = this.javaClass.simpleName
     }
 }
