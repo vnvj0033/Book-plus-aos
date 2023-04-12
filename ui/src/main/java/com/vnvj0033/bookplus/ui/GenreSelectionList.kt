@@ -83,28 +83,19 @@ private fun GenreSelection(
         )
     }
 }
-private object compoterAndIT : Platform.Genre {
-    override fun name(): String = "컴퓨터/IT"
-}
-private object abc : Platform.Genre {
-    override fun name(): String = "123"
-}
-private object bcd : Platform.Genre {
-    override fun name(): String = "456"
-}
 
 @Preview
 @Composable
 private fun PreviewGenreSelectionList() {
 
-    GenreSelection(compoterAndIT, true)
+    GenreSelection(Platform.KYOBO.kyobo1, true)
 
 }
 
 @Preview
 @Composable
 private fun PreviewGenreSelection() {
-    val options = listOf(compoterAndIT, abc, bcd)
+    val options = listOf(Platform.KYOBO.kyobo1, Platform.ALADIN.aladin1, Platform.YES24.yes24a)
 
     GenreSelectionList(options)
 
