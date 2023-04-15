@@ -1,17 +1,16 @@
 package com.vnvj0033.bookplus.data.datasource.datastore
 
-import android.content.Context
-import dagger.hilt.android.qualifiers.ApplicationContext
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import javax.inject.Inject
 
 class PreferenceDatasource @Inject constructor(
-    @ApplicationContext context: Context
+    dataStore: DataStore<Preferences>
 ) {
-    private var fcmToken = context.typeablePreferences(PreferenceKeys.FCM_TOKEN, "")
-    
-    suspend fun loadFcmToken(): String = fcmToken.loadValue()
-    
-    suspend fun saveFcmToken(token: String) {
-        fcmToken.saveValue(token)
-    }
+    val fcmTokenWrapper = dataStore.wrapper(
+        PreferenceKeys.FCM_TOKEN,
+        ""
+    )
+
 }
+
