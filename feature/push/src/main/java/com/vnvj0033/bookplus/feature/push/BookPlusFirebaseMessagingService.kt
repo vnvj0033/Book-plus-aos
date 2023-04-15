@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.util.push
+package com.vnvj0033.bookplus.feature.push
 
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessaging
@@ -6,9 +6,9 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
 
-class CatsFirebaseMessagingService : FirebaseMessagingService() {
+class BookPlusFirebaseMessagingService : FirebaseMessagingService() {
     companion object {
-        private val TAG = CatsFirebaseMessagingService::class.java.simpleName
+        private val TAG = BookPlusFirebaseMessagingService::class.java.simpleName
     }
 
     override fun onNewToken(token: String) {

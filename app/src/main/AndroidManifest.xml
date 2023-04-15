@@ -27,10 +27,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.bookdetail.BookDetailActivity" />
+        <activity android:name=".feature.detail.BookDetailActivity" />
 
         <service
-            android:name=".util.push.CatsFirebaseMessagingService"
+            android:name=".feature.push.BookPlusFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

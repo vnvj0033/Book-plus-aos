@@ -57,6 +57,7 @@ dependencies {
     implementation(project(":feature:detail"))
     implementation(project(":feature:subscript"))
     implementation(project(":feature:favoritegenre"))
+    implementation(project(":feature:push"))
 
 
     implementation(project(":data:model"))
@@ -73,10 +74,6 @@ dependencies {
 
     // datastore preferences
     implementation (Lib.datastore)
-
-    // firebase
-    implementation(platform(Lib.firebaseBom))
-    implementation(Lib.firebaseMessagingKtx)
 
     // dagger hilt
     implementation (Lib.hilt)
