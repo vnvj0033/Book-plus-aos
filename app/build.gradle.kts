@@ -53,6 +53,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":appmain"))
     implementation(project(":feature:home"))
     implementation(project(":feature:detail"))
     implementation(project(":feature:subscript"))
