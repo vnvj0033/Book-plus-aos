@@ -53,12 +53,12 @@ android {
 }
 
 dependencies {
-    implementation(project(":appmain"))
+    implementation(project(":main"))
     implementation(project(":feature:home"))
     implementation(project(":feature:detail"))
     implementation(project(":feature:subscript"))
     implementation(project(":feature:favoritegenre"))
-    implementation(project(":feature:push"))
+    implementation(project(":service:push"))
 
 
     implementation(project(":data:model"))

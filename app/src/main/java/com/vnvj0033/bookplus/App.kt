@@ -1,8 +1,7 @@
 package com.vnvj0033.bookplus
 
 import android.app.Application
-import android.util.Log
-import com.vnvj0033.bookplus.feature.push.FirebaseMessagingHelper
+import com.vnvj0033.bookplus.service.push.FirebaseMessagingHelper
 import dagger.hilt.EntryPoint
 import dagger.hilt.EntryPoints
 import dagger.hilt.InstallIn

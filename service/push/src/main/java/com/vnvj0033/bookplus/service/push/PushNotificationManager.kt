@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.feature.push
+package com.vnvj0033.bookplus.service.push
 
 import android.annotation.SuppressLint
 import android.app.*

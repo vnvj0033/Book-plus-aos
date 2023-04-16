@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.feature.push
+package com.vnvj0033.bookplus.service.push
 
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessaging
