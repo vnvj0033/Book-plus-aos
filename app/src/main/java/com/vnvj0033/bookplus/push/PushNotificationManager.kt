@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.service.push
+package com.vnvj0033.bookplus.push
 
 import android.annotation.SuppressLint
 import android.app.*
@@ -7,26 +7,28 @@ import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import com.vnvj0033.bookplus.R
+import com.vnvj0033.bookplus.main.MainActivity
 
-class PushNotificationManager {
+internal class PushNotificationManager {
 
     fun sendNotification(service: Service, title: String, body: String) {
-//        val intent = Intent(service, MainActivity::class.java).apply {
-//            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) // 액티비티 중복 생성 방지
-//        }
+        val intent = Intent(service, MainActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) // 액티비티 중복 생성 방지
+        }
 
-//        val pendingIntent = createPendingIntent(service, intent)
+        val pendingIntent = createPendingIntent(service, intent)
 
         val channelId = "DEFAULT_NOTIFICATION_CHANNEL_ID"
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION) // 소리
 
         val notification = NotificationCompat.Builder(service, channelId)
-//            .setSmallIcon(R.mipmap.ic_launcher)
+            .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
             .setContentText(body)
             .setAutoCancel(true)
             .setSound(defaultSoundUri)
-//            .setContentIntent(pendingIntent)
+            .setContentIntent(pendingIntent)
             .setDefaults(Notification.DEFAULT_SOUND)
             .build()
 

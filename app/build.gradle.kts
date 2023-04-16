@@ -58,7 +58,7 @@ dependencies {
     implementation(project(":feature:detail"))
     implementation(project(":feature:subscript"))
     implementation(project(":feature:favoritegenre"))
-    implementation(project(":service:push"))
+    implementation(project(":service:fcm"))
 
 
     implementation(project(":data:model"))
@@ -70,6 +70,10 @@ dependencies {
     androidTestImplementation(Lib.junitExt)
     androidTestImplementation(Lib.espresso)
 
+    // firebase
+    implementation(platform(Lib.firebaseBom))
+    implementation(Lib.firebaseMessagingKtx)
+    
     // splash screen
     implementation(Lib.splashScreen)
 

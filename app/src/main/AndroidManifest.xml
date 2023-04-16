@@ -30,7 +30,7 @@
         <activity android:name=".feature.detail.BookDetailActivity" />
 
         <service
-            android:name=".service.push.BookPlusFirebaseMessagingService"
+            android:name=".push.BookPlusFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

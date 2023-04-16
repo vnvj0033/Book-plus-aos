@@ -1,7 +1,7 @@
 package com.vnvj0033.bookplus
 
 import android.app.Application
-import com.vnvj0033.bookplus.service.push.FirebaseMessagingHelper
+import com.vnvj0033.bookplus.service.fcm.FirebaseMessagingServiceModel
 import dagger.hilt.EntryPoint
 import dagger.hilt.EntryPoints
 import dagger.hilt.InstallIn
@@ -19,19 +19,19 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        val fcmHelper = EntryPoints.get(applicationContext, AppEntryPoints::class.java)
-            .firebaseMessagingHelper
+        val fcmModel = EntryPoints.get(applicationContext, AppEntryPoints::class.java)
+            .firebaseMessagingServiceModel
 
-        GlobalScope.launch(CoroutineExceptionHandler{ c, t ->
+        GlobalScope.launch(CoroutineExceptionHandler{ _, t ->
             t.printStackTrace()
         }) {
-            fcmHelper.updateToken()
+            fcmModel.updateToken()
         }
     }
 
     @EntryPoint
     @InstallIn(SingletonComponent::class)
     interface AppEntryPoints {
-        val firebaseMessagingHelper: FirebaseMessagingHelper
+        val firebaseMessagingServiceModel: FirebaseMessagingServiceModel
     }
 }

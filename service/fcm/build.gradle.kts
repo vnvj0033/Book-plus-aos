@@ -6,6 +6,10 @@ plugins {
 android {
     namespace = "com.vnvj0033.bookplus.service.push"
     compileSdk = Apps.compileSdkVersion
+
+    defaultConfig {
+        minSdk = Apps.minSdkVersion
+    }
 }
 
 dependencies {
