@@ -3,7 +3,7 @@ package com.vnvj0033.bookplus.data.datasource.datastore
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.flow.map
 
 
@@ -15,7 +15,7 @@ class WrapperDataStore <T> (
     suspend fun loadData() =
         dataStore.data.map {
             it[key] ?: initValue
-        }.first()
+        }.last()
 
     suspend fun saveData(value: T) {
         dataStore.edit { it[key] = value }
