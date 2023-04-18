@@ -6,10 +6,10 @@ plugins {
     id("com.google.gms.google-services")
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
-    id("kotlin-parcelize")
 }
 
 android {
+    namespace = "com.vnvj0033.bookplus"
     compileSdk = Apps.compileSdkVersion
 
     defaultConfig {
@@ -36,15 +36,6 @@ android {
         }
     }
 
-    buildFeatures {
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
-    }
-
-    namespace = "com.vnvj0033.bookplus"
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -54,18 +45,9 @@ android {
 
 dependencies {
     implementation(project(":main"))
-    implementation(project(":feature:home"))
-    implementation(project(":feature:detail"))
-    implementation(project(":feature:subscript"))
-    implementation(project(":feature:favoritegenre"))
+
     implementation(project(":service:fcm"))
 
-
-    implementation(project(":data:model"))
-    implementation(project(":data:repository"))
-    implementation(project(":ui"))
-
-    implementation(Lib.coreKtx)
     testImplementation(Lib.junit)
     androidTestImplementation(Lib.junitExt)
     androidTestImplementation(Lib.espresso)
@@ -84,28 +66,4 @@ dependencies {
     implementation (Lib.hilt)
     kapt (Lib.hiltCompiler)
 
-    // Room
-    implementation (Lib.room)
-    annotationProcessor(Lib.roomCompiler)
-    kapt (Lib.roomCompiler)
-
-    // Retrofit2
-    implementation (Lib.retrofit2)
-    implementation (Lib.gson)
-
-    // Compose Material Design 3
-    implementation(Lib.composeMaterial3)
-    // Android Studio Preview support
-    implementation(Lib.composePreview)
-    debugImplementation(Lib.composeUi)
-    // Compose coil
-    implementation(Lib.coilCompose)
-    // Compose Integration with activities
-    implementation(Lib.activityCompose)
-    // Compose ViewModel
-    implementation(Lib.viewmodelCompose)
-    // Compose Navigation
-    implementation(Lib.navigationCompose)
-    // Compose Hilt
-    implementation(Lib.hiltNavigationCompose)
 }
