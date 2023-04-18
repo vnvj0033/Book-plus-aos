@@ -1,7 +1,10 @@
 package com.vnvj0033.bookplus.push
 
-import android.annotation.SuppressLint
-import android.app.*
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
@@ -45,22 +48,18 @@ internal class PushNotificationManager {
         notificationManager.notify(0, notification)
     }
 
-
-    @SuppressLint("UnspecifiedImmutableFlag")
-    private fun createPendingIntent(context: Context, intent: Intent) =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            PendingIntent.getActivity(
-                context,
-                0,
-                intent,
+    private fun createPendingIntent(context: Context, intent: Intent): PendingIntent {
+        val pendingFlag = when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ->
                 PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-            )
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            PendingIntent.getActivity(
-                context, 0, intent,
+
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ->
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-            )
-        } else {
-            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+            else ->
+                PendingIntent.FLAG_UPDATE_CURRENT
         }
+
+        return PendingIntent.getActivity(context, 0, intent, pendingFlag)
+    }
 }
