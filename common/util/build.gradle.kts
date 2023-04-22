@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.vnvj0033.bookplus.common.feature"
+    namespace = "com.vnvj0033.bookplus.common.util"
     compileSdk = Apps.compileSdkVersion
 }
 
