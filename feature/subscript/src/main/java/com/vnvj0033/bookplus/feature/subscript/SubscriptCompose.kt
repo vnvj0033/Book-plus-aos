@@ -14,8 +14,8 @@ import com.vnvj0033.bookplus.ui.PlatformSelectionList
 @Composable
 fun SubscriptCompose(viewModel: SubscriptViewModel = hiltViewModel()) {
 
-    val options = viewModel.options.collectAsState(emptyList())
-    val selectedSet = viewModel.genres.collectAsState(emptyList())
+    val options = viewModel.genres.collectAsState(emptyList())
+    val selectedSet = viewModel.userGenres.collectAsState(emptyList())
 
     Column(Modifier.fillMaxHeight()) {
         PlatformSelectionList { platform ->

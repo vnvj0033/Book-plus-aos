@@ -22,16 +22,18 @@ class SubscriptViewModel @Inject constructor(
     private val platform = MutableSharedFlow<Platform>()
     private val userId = MutableStateFlow(userRepository.userInfo.userId)
 
-    val options: Flow<List<String>> = platform.flatMapLatest { mapPlatform ->
+    val genres: StateFlow<List<String>> = platform.flatMapLatest { mapPlatform ->
         genreRepository.fetchGenresForPlatform(mapPlatform)
     }.map { genres -> genres.map { it.name() } }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
-    val genres: Flow<List<String>> = userId.flatMapLatest {
+    val userGenres: Flow<List<String>> = userId.flatMapLatest {
         genreRepository.fetchGenresForId(it)
-    }
+    }.map { genres -> genres.map { it.name() } }
 
     fun updateGenre(set: Set<String>) {
-        genreRepository.sendGenresForId(userId.value, set.toList())
+
+//        genreRepository.sendGenresForId(userId.value, genreSet)
     }
 
     fun updateOptions(newPlatform: Platform) {
