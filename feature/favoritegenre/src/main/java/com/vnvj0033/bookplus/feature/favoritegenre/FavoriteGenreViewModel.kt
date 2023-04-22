@@ -4,18 +4,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vnvj0033.bookplus.data.model.Book
 import com.vnvj0033.bookplus.data.model.MainBook
+import com.vnvj0033.bookplus.data.model.Platform
 import com.vnvj0033.bookplus.data.model.toMainBook
 import com.vnvj0033.bookplus.data.repository.book.BookRepository
+import com.vnvj0033.bookplus.data.repository.genre.GenreRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class FavoriteGenreViewModel @Inject constructor(
-    private val bookRepository: BookRepository
+    private val bookRepository: BookRepository,
+    private val genreRepository: GenreRepository
 ) : ViewModel() {
 
-    private val genre = MutableStateFlow(emptyList<String>())
+    private val genre = MutableStateFlow(emptyList<Platform.Genre>())
     private val books = MutableStateFlow(emptyList<Book>())
 
     val uiState: StateFlow<FavoriteGenreUiState> =
@@ -25,19 +29,23 @@ class FavoriteGenreViewModel @Inject constructor(
             initialValue = FavoriteGenreUiState.Loading
         )
 
-    fun loadUserFavoriteGenres() {
-//        genre.value = bookRepository.loadGenreForUserId("")
+    fun loadUserFavoriteGenres() = viewModelScope.launch {
+        genreRepository.fetchGenresForId("").collect {
+            genre.value = it
+        }
     }
 
-    fun refreshListWithFilter(genre: String) {
-//        books.value = bookRepository.loadBooksForGenre(genre)
+    fun refreshListWithFilter(genre: Platform.Genre) = viewModelScope.launch {
+        bookRepository.fetchBookForGenre(genre).collect {
+            books.value = it
+        }
     }
 
 }
 
 
 private fun favoriteGenreUiState(
-    genresFlow: Flow<List<String>>,
+    genresFlow: Flow<List<Platform.Genre>>,
     booksFlow: Flow<List<Book>>,
 ) = combine(genresFlow, booksFlow) { genres, books ->
     val stateData = FavoriteGenreStateData(
@@ -54,7 +62,7 @@ private fun favoriteGenreUiState(
 
 
 data class FavoriteGenreStateData(
-    val filterOption: List<String> = listOf("1", "2", "3", "4", "5", "6", "7", "8"),
+    val filterOption: List<Platform.Genre> = listOf(Platform.KYOBO.kyobo1, Platform.ALADIN.aladin1),
     var books: List<MainBook> = emptyList()
 )
 

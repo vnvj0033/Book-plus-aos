@@ -26,7 +26,7 @@ fun HomeCompose(
 
     when(uiState) {
         is HomeUiState.Loading -> {
-            Loading()
+            Loading(viewModel::updateGenre)
         }
         is HomeUiState.Success -> {
             HomeScreen(
@@ -66,13 +66,11 @@ fun HomeScreen(
 }
 
 @Composable
-private fun Loading() {
+private fun Loading(updateGenre: (Platform) -> Unit = {},) {
     Column(
         modifier = Modifier.fillMaxHeight()
     ) {
-        PlatformSelectionList()
-        GenreSelectionList(listOf())
-        BookList()
+        PlatformSelectionList(click = updateGenre)
     }
 }
 

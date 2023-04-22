@@ -5,9 +5,9 @@ import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 class FakeGenreRepository @Inject constructor() : GenreRepository {
-    private val genreDb = hashMapOf<String, List<String>>()
+    private val genreDb = hashMapOf<String, List<Platform.Genre>>()
 
-    override fun sendGenresForId(userId: String, genre: List<String>) {
+    override fun sendGenresForId(userId: String, genre: List<Platform.Genre>) {
         genreDb[userId] = genre
     }
 

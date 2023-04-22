@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.vnvj0033.bookplus.common.feature.BookDetailActivity
+import com.vnvj0033.bookplus.data.model.MainBook
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.BookList
 import com.vnvj0033.bookplus.ui.Filter
@@ -91,7 +92,9 @@ private fun Loading() {
 @Preview
 private fun PreviewSuccess() {
     AppTheme {
-        FavoriteGenreCompose(FavoriteGenreStateData())
+        FavoriteGenreCompose(FavoriteGenreStateData().apply {
+            this.books = listOf(MainBook(), MainBook())
+        })
     }
 }
 

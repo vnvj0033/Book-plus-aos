@@ -45,7 +45,6 @@ android {
 
 dependencies {
     implementation(project(":main"))
-
     implementation(project(":service:fcm"))
 
     testImplementation(Lib.junit)
@@ -58,9 +57,6 @@ dependencies {
     
     // splash screen
     implementation(Lib.splashScreen)
-
-    // datastore preferences
-    implementation (Lib.datastore)
 
     // dagger hilt
     implementation (Lib.hilt)

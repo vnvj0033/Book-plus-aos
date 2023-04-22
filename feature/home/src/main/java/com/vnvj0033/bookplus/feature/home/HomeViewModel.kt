@@ -18,11 +18,11 @@ class HomeViewModel @Inject constructor(
     private val genreRepository: GenreRepository
 ) : ViewModel() {
 
-    private val platform = MutableSharedFlow<Platform>()
+    private val platform = MutableStateFlow<Platform>(Platform.KYOBO)
     private val genres: Flow<List<Platform.Genre>> = platform.flatMapLatest {
         genreRepository.fetchGenresForPlatform(it)
     }
-    private val selectedGenre = MutableSharedFlow<Platform.Genre>()
+    private val selectedGenre = MutableStateFlow<Platform.Genre>(Platform.KYOBO.kyobo1)
     private val books = selectedGenre.flatMapLatest {
         bookRepository.fetchBookForGenre(it)
     }
@@ -30,7 +30,7 @@ class HomeViewModel @Inject constructor(
     val uiState: StateFlow<HomeUiState> =
         homeUiState(genres, books).stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
+            started = SharingStarted.WhileSubscribed(),
             initialValue = HomeUiState.Loading
         )
 
