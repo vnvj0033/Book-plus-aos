@@ -88,3 +88,5 @@ lint/tmp/
 .idea/git_toolbox_prj.xml
 .idea/deploymentTargetDropDown.xml
 .idea/jarRepositories.xml
+
+.DS_Store
