@@ -28,6 +28,7 @@ dependencies {
     implementation(project(":ui"))
     implementation(project(":data:repository"))
     implementation(project(":common:util"))
+    implementation(project(":common:feature"))
 
     // Compose Material Design 3
     implementation(Lib.composeMaterial3)

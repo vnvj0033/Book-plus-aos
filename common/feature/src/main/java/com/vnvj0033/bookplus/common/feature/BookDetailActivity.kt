@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.feature.detail
+package com.vnvj0033.bookplus.common.feature
 
 import android.content.Context
 import android.content.Intent
@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import com.vnvj0033.bookplus.common.feature.serializable
 import com.vnvj0033.bookplus.data.model.MainBook
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,7 +14,7 @@ class BookDetailActivity : ComponentActivity() {
     companion object {
         private const val BUNDLE_KEY_NAME_BOOK = "BUNDLE_KEY_NAME_BOOK"
 
-        fun openBookDetail(context: Context, book: MainBook) {
+        fun startBookDetail(context: Context, book: MainBook) {
             val intent = Intent(context, BookDetailActivity::class.java)
             intent.putExtra(BUNDLE_KEY_NAME_BOOK, book)
             context.startActivity(intent)

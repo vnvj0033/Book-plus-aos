@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.vnvj0033.bookplus.common.feature.BookDetailActivity
 import com.vnvj0033.bookplus.data.model.MainBook
 import com.vnvj0033.bookplus.data.model.Platform
 import com.vnvj0033.bookplus.ui.AppTheme
@@ -58,7 +59,8 @@ fun HomeScreen(
             options = state.genres,
             click = updateBooks)
         BookList(state.books) { books ->
-//            Navigator.openDetailActivity(context, books)
+            // 순환 참조 문제 module 에서 module 호출
+            BookDetailActivity.startBookDetail(context, books)
         }
     }
 }

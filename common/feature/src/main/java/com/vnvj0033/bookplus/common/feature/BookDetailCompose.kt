@@ -1,4 +1,4 @@
-package com.vnvj0033.bookplus.feature.detail
+package com.vnvj0033.bookplus.common.feature
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
