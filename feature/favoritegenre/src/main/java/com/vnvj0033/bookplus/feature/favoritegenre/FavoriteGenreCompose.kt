@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.vnvj0033.bookplus.common.feature.BookDetailActivity
 import com.vnvj0033.bookplus.data.model.MainBook
+import com.vnvj0033.bookplus.data.model.Platform
 import com.vnvj0033.bookplus.ui.AppTheme
 import com.vnvj0033.bookplus.ui.BookList
 import com.vnvj0033.bookplus.ui.Filter
@@ -48,12 +49,12 @@ fun FavoriteGenreCompose(
 @Composable
 private fun FavoriteGenreCompose(
     state: FavoriteGenreStateData,
-    refreshListWithFilter: (String) -> Unit = {}
+    refreshListWithFilter: (Platform.Genre) -> Unit = {}
 ) {
     val composeScope = rememberCoroutineScope()
     val context = LocalContext.current
     
-    val option = state.filterOption
+    val option = state.filterOption.map { it.name() }
 
     Column {
         Row(
@@ -67,7 +68,8 @@ private fun FavoriteGenreCompose(
                 text = "SUBSCRIPT")
             Filter(option) { filterGenre ->
                 composeScope.launch {
-                    refreshListWithFilter(filterGenre)
+                    val filter = filterGenre.toGenre() ?: return@launch
+                    refreshListWithFilter(filter)
                 }
             }
         }
@@ -77,6 +79,14 @@ private fun FavoriteGenreCompose(
         }
     }
 }
+
+private fun String.toGenre(): Platform.Genre? = when(this) {
+    Platform.KYOBO.kyobo1.name() -> Platform.KYOBO.kyobo1
+    Platform.YES24.yes24a.name() -> Platform.YES24.yes24a
+    Platform.ALADIN.aladin1.name() -> Platform.ALADIN.aladin1
+    else -> null
+}
+
 
 @Composable
 private fun Loading() {
