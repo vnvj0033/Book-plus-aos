@@ -37,6 +37,9 @@ class HomeViewModel @Inject constructor(
     fun updateGenre(newPlatform: Platform) {
         viewModelScope.launch {
             platform.emit(newPlatform)
+            genres.collectLatest {
+                selectedGenre.value = it.first()
+            }
         }
     }
 
