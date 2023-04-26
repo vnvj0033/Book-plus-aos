@@ -2,7 +2,7 @@ package com.vnvj0033.bookplus.data.model
 
 sealed interface Platform {
     fun name(): String = this.javaClass.simpleName
-    fun list() = this.javaClass::class.java.classes
+    fun genres() = this::class.java.declaredClasses.map { it.name }
     val resource: Int
 
     object KYOBO : Platform {
