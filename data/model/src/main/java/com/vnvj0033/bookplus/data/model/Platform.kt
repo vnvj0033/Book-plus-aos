@@ -8,11 +8,11 @@ sealed interface Platform {
     object KYOBO : Platform {
         override val resource = R.drawable.logo_kyobo
 
-        object kyobo1 : Genre
-        object kyobo2 : Genre
-        object kyobo3 : Genre
-        object kyobo4 : Genre
-        object kyobo5 : Genre
+        object `생활` : Genre
+        object `국문` : Genre
+        object `영문` : Genre
+        object `컴퓨터_과학` : Genre
+        object `인문학` : Genre
     }
 
     object YES24 : Platform {
