@@ -18,11 +18,11 @@ class FakeGenreRepository @Inject constructor() : GenreRepository {
     override fun fetchGenresForPlatform(platform: Platform) = flowOf(
         when (platform) {
             Platform.KYOBO -> listOf(
-                Platform.KYOBO.kyobo1,
-                Platform.KYOBO.kyobo2,
-                Platform.KYOBO.kyobo3,
-                Platform.KYOBO.kyobo4,
-                Platform.KYOBO.kyobo5,
+                Platform.KYOBO.국문,
+                Platform.KYOBO.인문학,
+                Platform.KYOBO.생활,
+                Platform.KYOBO.영문,
+                Platform.KYOBO.컴퓨터_과학,
             )
             Platform.ALADIN -> listOf(
                 Platform.ALADIN.aladin1,

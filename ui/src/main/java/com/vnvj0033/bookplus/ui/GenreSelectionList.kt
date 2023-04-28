@@ -88,14 +88,14 @@ private fun GenreSelection(
 @Composable
 private fun PreviewGenreSelectionList() {
 
-    GenreSelection(Platform.KYOBO.kyobo1, true)
+    GenreSelection(Platform.KYOBO.국문, true)
 
 }
 
 @Preview
 @Composable
 private fun PreviewGenreSelection() {
-    val options = listOf(Platform.KYOBO.kyobo1, Platform.ALADIN.aladin1, Platform.YES24.yes24a)
+    val options = listOf(Platform.KYOBO.국문, Platform.ALADIN.aladin1, Platform.YES24.yes24a)
 
     GenreSelectionList(options)
 

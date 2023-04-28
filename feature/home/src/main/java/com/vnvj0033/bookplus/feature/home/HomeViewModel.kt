@@ -22,7 +22,7 @@ class HomeViewModel @Inject constructor(
     private val genres: Flow<List<Platform.Genre>> = platform.flatMapLatest {
         genreRepository.fetchGenresForPlatform(it)
     }
-    private val selectedGenre = MutableStateFlow<Platform.Genre>(Platform.KYOBO.kyobo1)
+    private val selectedGenre = MutableStateFlow<Platform.Genre>(Platform.KYOBO.국문)
     private val books = selectedGenre.flatMapLatest {
         bookRepository.fetchBookForGenre(it)
     }

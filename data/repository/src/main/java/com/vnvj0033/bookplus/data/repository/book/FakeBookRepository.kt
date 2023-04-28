@@ -19,7 +19,7 @@ class FakeBookRepository @Inject constructor() : BookRepository {
 
     override fun fetchBookForGenre(genre: Platform.Genre): Flow<List<Book>> = flowOf(
         when (genre) {
-            Platform.KYOBO.kyobo1 -> listOf(
+            Platform.KYOBO.국문 -> listOf(
                 Book(0, "url", "kyobo1", "writer", "summary"),
                 Book(0, "url", "kyobo2", "writer", "summary"),
                 Book(0, "url", "kyobo3", "writer", "summary"),

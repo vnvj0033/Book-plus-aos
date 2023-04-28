@@ -81,7 +81,7 @@ private fun FavoriteGenreCompose(
 }
 
 private fun String.toGenre(): Platform.Genre? = when(this) {
-    Platform.KYOBO.kyobo1.name() -> Platform.KYOBO.kyobo1
+    Platform.KYOBO.국문.name() -> Platform.KYOBO.국문
     Platform.YES24.yes24a.name() -> Platform.YES24.yes24a
     Platform.ALADIN.aladin1.name() -> Platform.ALADIN.aladin1
     else -> null

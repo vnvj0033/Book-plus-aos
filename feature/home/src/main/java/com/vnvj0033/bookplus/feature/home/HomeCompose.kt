@@ -79,7 +79,7 @@ private fun Loading(updateGenre: (Platform) -> Unit = {},) {
 @Composable
 private fun PreviewHomeScreen() {
     val state = HomeStateData(
-        listOf(Platform.KYOBO.kyobo1),
+        listOf(Platform.KYOBO.국문),
         listOf(MainBook("", "", "", ""))
     )
 

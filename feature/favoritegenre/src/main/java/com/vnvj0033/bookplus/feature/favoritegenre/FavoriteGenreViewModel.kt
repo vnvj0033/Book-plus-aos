@@ -62,7 +62,7 @@ private fun favoriteGenreUiState(
 
 
 data class FavoriteGenreStateData(
-    val filterOption: List<Platform.Genre> = listOf(Platform.KYOBO.kyobo1, Platform.ALADIN.aladin1),
+    val filterOption: List<Platform.Genre> = listOf(Platform.KYOBO.국문, Platform.ALADIN.aladin1),
     var books: List<MainBook> = emptyList()
 )
 
