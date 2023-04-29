@@ -9,6 +9,16 @@ sealed interface Platform {
     }
 
     fun name(): String = this.javaClass.simpleName
+    fun genres() =
+        this::class.nestedClasses.mapNotNull {
+            if (Genre::class.java.isAssignableFrom(it.java)) {
+                it.objectInstance as Genre
+            } else {
+                null
+            }
+        }
+
+
     val resource: Int
 
     object KYOBO : Platform {
