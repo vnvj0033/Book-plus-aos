@@ -1,5 +1,6 @@
 package com.vnvj0033.bookplus.feature.home
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.runtime.Composable
@@ -23,6 +24,11 @@ fun HomeCompose(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
+
+    val platforms = Platform.platforms()
+    platforms.forEach {
+        Log.d("testPlatform", it.name())
+    }
 
     when(uiState) {
         is HomeUiState.Loading -> {

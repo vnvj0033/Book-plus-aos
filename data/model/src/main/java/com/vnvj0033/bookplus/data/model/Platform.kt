@@ -1,8 +1,14 @@
 package com.vnvj0033.bookplus.data.model
 
 sealed interface Platform {
+
+    companion object {
+        fun platforms() = Platform::class.sealedSubclasses.mapNotNull {
+            it.objectInstance
+        }
+    }
+
     fun name(): String = this.javaClass.simpleName
-    fun genres() = this::class.java.declaredClasses.map { it.name }
     val resource: Int
 
     object KYOBO : Platform {
