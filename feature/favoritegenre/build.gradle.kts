@@ -3,6 +3,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -29,6 +31,10 @@ dependencies {
     implementation(project(":data:repository"))
     implementation(project(":common:util"))
     implementation(project(":common:feature"))
+
+    // hilt
+    implementation(Lib.hilt)
+    kapt(Lib.hiltCompiler)
 
     // Compose Material Design 3
     implementation(Lib.composeMaterial3)
