@@ -25,11 +25,6 @@ fun HomeCompose(
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
-    val platforms = Platform.KYOBO.genres()
-    platforms.forEach {
-        Log.d("testPlatform", it.name())
-    }
-
     when(uiState) {
         is HomeUiState.Loading -> {
             Loading(viewModel::updateGenre)

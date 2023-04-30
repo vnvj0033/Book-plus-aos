@@ -16,4 +16,5 @@ dependencies {
     implementation (Lib.room)
     annotationProcessor(Lib.roomCompiler)
     kapt (Lib.roomCompiler)
+    implementation(kotlin("reflect"))
 }

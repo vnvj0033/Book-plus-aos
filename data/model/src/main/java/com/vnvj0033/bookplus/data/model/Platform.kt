@@ -10,12 +10,10 @@ sealed interface Platform {
 
     fun name(): String = this.javaClass.simpleName
     fun genres() =
-        this::class.nestedClasses.mapNotNull {
-            if (Genre::class.java.isAssignableFrom(it.java)) {
-                it.objectInstance as Genre
-            } else {
-                null
-            }
+        this::class.nestedClasses.filter {
+            Genre::class.java.isAssignableFrom(it.java)
+        }.mapNotNull {
+            it.objectInstance as Genre
         }
 
 
