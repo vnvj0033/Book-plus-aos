@@ -8,36 +8,39 @@ import com.vnvj0033.bookplus.data.model.Platform
 import com.vnvj0033.bookplus.data.model.toMainBook
 import com.vnvj0033.bookplus.data.repository.book.BookRepository
 import com.vnvj0033.bookplus.data.repository.genre.GenreRepository
+import com.vnvj0033.bookplus.data.repository.user.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class FavoriteGenreViewModel @Inject constructor(
     private val bookRepository: BookRepository,
-    private val genreRepository: GenreRepository
+    private val genreRepository: GenreRepository,
+    userRepository: UserRepository
 ) : ViewModel() {
 
-    private val genre = MutableStateFlow(emptyList<Platform.Genre>())
-    private val books = MutableStateFlow(emptyList<Book>())
+    private val userId = MutableStateFlow(userRepository.userInfo.userId)
+
+    private val genres = userId.flatMapLatest {
+        genreRepository.fetchGenresForId(it)
+    }
+
+    private val books = MutableStateFlow<List<Book>>(emptyList())
 
     val uiState: StateFlow<FavoriteGenreUiState> =
-        favoriteGenreUiState(genre, books).stateIn(
+        favoriteGenreUiState(genres, books).stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(),
             initialValue = FavoriteGenreUiState.Loading
         )
 
-    fun loadUserFavoriteGenres() = viewModelScope.launch {
-        genreRepository.fetchGenresForId("").collect {
-            genre.value = it
-        }
-    }
-
     fun refreshListWithFilter(genre: Platform.Genre) = viewModelScope.launch {
-        bookRepository.fetchBookForGenre(genre).collect {
-            books.value = it
+        bookRepository.fetchBookForGenre(genre).collectLatest {
+            it.filter { book -> book.genre == genre.name() }
         }
     }
 

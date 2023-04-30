@@ -29,7 +29,6 @@ fun FavoriteGenreCompose(
 
     when (uiState) {
         is FavoriteGenreUiState.Loading -> {
-            viewModel.loadUserFavoriteGenres()
             Loading()
         }
         is FavoriteGenreUiState.Success -> {

@@ -12,5 +12,6 @@ data class Book(
     val imgUtl: String = "",
     val title: String = "title",
     val writer: String = "writer",
-    val summary: String = "summary"
+    val summary: String = "summary",
+    val genre: String = "summary",
 )
