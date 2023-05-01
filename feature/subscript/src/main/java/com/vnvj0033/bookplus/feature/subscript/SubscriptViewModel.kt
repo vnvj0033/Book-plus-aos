@@ -31,9 +31,17 @@ class SubscriptViewModel @Inject constructor(
         genreRepository.fetchGenresForId(it)
     }.map { genres -> genres.map { it.name() } }
 
-    fun updateGenre(set: Set<String>) {
+    fun updateGenre(strGenres: Set<String>) {
+        val genres = arrayListOf<Platform.Genre>()
+        Platform.platforms().forEach {
+            it.genres().forEach { genre ->
+                if (strGenres.contains(genre.name())) {
+                    genres.add(genre)
+                }
+            }
+        }
 
-//        genreRepository.sendGenresForId(userId.value, genreSet)
+        genreRepository.sendGenresForId(userId.value, genres)
     }
 
     fun updateOptions(newPlatform: Platform) {
