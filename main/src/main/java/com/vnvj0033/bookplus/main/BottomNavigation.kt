@@ -67,7 +67,6 @@ fun BottomNavigation(navController: NavHostController) {
                     contentDescription = null) },
             label = { Text("설정") })
     }
-
 }
 
 

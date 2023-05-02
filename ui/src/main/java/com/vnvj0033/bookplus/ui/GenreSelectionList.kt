@@ -87,9 +87,7 @@ private fun GenreSelection(
 @Preview
 @Composable
 private fun PreviewGenreSelectionList() {
-
     GenreSelection(Platform.KYOBO.국문, true)
-
 }
 
 @Preview
@@ -98,5 +96,4 @@ private fun PreviewGenreSelection() {
     val options = listOf(Platform.KYOBO.국문, Platform.ALADIN.aladin1, Platform.YES24.yes24a)
 
     GenreSelectionList(options)
-
 }

@@ -27,7 +27,6 @@ fun MainUI() {
     }
 }
 
-
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, showSystemUi = true, showBackground = true)
 @Composable
 private fun Preview() {

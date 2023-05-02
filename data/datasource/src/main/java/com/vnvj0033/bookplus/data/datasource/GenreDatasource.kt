@@ -6,5 +6,4 @@ class GenreDatasource {
     fun updateGenre(platform: String) {
 
     }
-
 }

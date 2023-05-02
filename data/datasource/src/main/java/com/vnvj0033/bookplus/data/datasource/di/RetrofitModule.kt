@@ -42,5 +42,4 @@ object RetrofitModule {
     @Singleton
     fun provideUserApi(retrofit: Retrofit): UserApi =
         retrofit.create(UserApi::class.java)
-
 }

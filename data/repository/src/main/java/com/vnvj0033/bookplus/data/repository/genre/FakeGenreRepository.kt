@@ -41,5 +41,4 @@ class FakeGenreRepository @Inject constructor() : GenreRepository {
             else -> listOf()
         }
     )
-
 }

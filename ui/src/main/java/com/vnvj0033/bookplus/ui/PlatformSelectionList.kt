@@ -53,7 +53,6 @@ fun PlatformSelectionList(
             }
         }
     }
-
 }
 
 
@@ -116,5 +115,4 @@ private fun PreviewPlatformSelectionList() {
 @Composable
 private fun PreviewPlatformSelection() {
     PlatformSelection(platforms[0])
-
 }

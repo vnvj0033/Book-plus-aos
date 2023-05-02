@@ -18,7 +18,6 @@ class SubscriptViewModel @Inject constructor(
     userRepository: UserRepository
 ) : ViewModel() {
 
-
     private val platform = MutableSharedFlow<Platform>()
     private val userId = MutableStateFlow(userRepository.userInfo.userId)
 

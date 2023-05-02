@@ -114,7 +114,6 @@ private fun ToggleItem(
 @Composable
 private fun PreviewGenreSelectionList() {
     ToggleItem("컴퓨터/IT", true)
-
 }
 
 @Preview
@@ -123,5 +122,4 @@ private fun PreviewGenreSelection() {
     val options = listOf("12345", "234", "2345", "45", "12213345", "234", "2345", "45", "12345", "234", "2345", "45")
 
     GenreToggleList(options)
-
 }

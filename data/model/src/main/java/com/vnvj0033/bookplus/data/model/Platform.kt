@@ -12,10 +12,9 @@ sealed interface Platform {
     fun genres() =
         this::class.nestedClasses.filter {
             Genre::class.java.isAssignableFrom(it.java)
-        }.mapNotNull {
+        }.map {
             it.objectInstance as Genre
         }
-
 
     val resource: Int
 

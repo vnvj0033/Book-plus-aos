@@ -43,7 +43,6 @@ class FavoriteGenreViewModel @Inject constructor(
             it.filter { book -> book.genre == genre.name() }
         }
     }
-
 }
 
 

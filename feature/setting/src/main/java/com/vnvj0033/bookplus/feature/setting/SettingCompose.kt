@@ -34,7 +34,6 @@ fun SettingCompose(
 @Composable
 private fun Section(text: String) {
 
-
     var checked by remember { mutableStateOf(true) }
 
     Row(modifier = Modifier
@@ -47,7 +46,6 @@ private fun Section(text: String) {
         Text(text = text)
         Switch(checked = checked,
             onCheckedChange = null
-
         )
     }
 }

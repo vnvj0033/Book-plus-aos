@@ -68,7 +68,7 @@ private fun TableText(
 
 @Composable
 @Preview
-private fun Preeview() {
+private fun Preview() {
     AppTheme {
         BookCover(MainBook())
     }

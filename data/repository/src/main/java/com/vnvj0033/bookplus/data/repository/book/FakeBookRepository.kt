@@ -43,6 +43,4 @@ class FakeBookRepository @Inject constructor() : BookRepository {
             else -> listOf()
         }
     )
-
-
 }

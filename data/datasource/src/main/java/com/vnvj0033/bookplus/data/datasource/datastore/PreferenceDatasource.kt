@@ -11,6 +11,5 @@ class PreferenceDatasource @Inject constructor(
         PreferenceKeys.FCM_TOKEN,
         ""
     )
-
 }
 

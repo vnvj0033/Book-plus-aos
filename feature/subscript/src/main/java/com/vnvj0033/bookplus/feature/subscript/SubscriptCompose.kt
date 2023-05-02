@@ -29,7 +29,6 @@ fun SubscriptCompose(viewModel: SubscriptViewModel = hiltViewModel()) {
             viewModel.updateGenre(set)
         }
     }
-
 }
 
 @Composable

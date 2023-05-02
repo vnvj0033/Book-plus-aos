@@ -19,9 +19,7 @@ object DatastoreModule {
     @Singleton
     fun provideDatastore(@ApplicationContext context: Context): DataStore<Preferences> =
         context.appDataStore
-
 }
-
 
 private val Context.appDataStore by preferencesDataStore(
     name = "AppPreferences"
