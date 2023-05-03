@@ -35,7 +35,7 @@ class FavoriteGenreViewModel @Inject constructor(
         favoriteGenreUiState(genres, books).stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = FavoriteGenreUiState.Loading
+            initialValue = FavoriteGenreUiState.Empty
         )
 
     fun refreshListWithFilter(genre: Platform.Genre) = viewModelScope.launch {
@@ -58,7 +58,7 @@ private fun favoriteGenreUiState(
     if (genres.isNotEmpty() || books.isNotEmpty()) {
         FavoriteGenreUiState.Success(stateData)
     } else {
-        FavoriteGenreUiState.Loading
+        FavoriteGenreUiState.Empty
     }
 }
 
@@ -70,5 +70,5 @@ data class FavoriteGenreStateData(
 
 sealed interface FavoriteGenreUiState {
     data class Success(val favoriteGenreStateData: FavoriteGenreStateData) : FavoriteGenreUiState
-    object Loading : FavoriteGenreUiState
+    object Empty : FavoriteGenreUiState
 }

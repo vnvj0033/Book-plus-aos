@@ -28,7 +28,7 @@ fun FavoriteGenreCompose(
     val uiState by viewModel.uiState.collectAsState()
 
     when (uiState) {
-        is FavoriteGenreUiState.Loading -> {
+        is FavoriteGenreUiState.Empty -> {
             Loading()
         }
         is FavoriteGenreUiState.Success -> {
