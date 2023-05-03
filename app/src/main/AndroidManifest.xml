@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".feature.detail.BookDetailActivity" />
+        <activity android:name=".common.feature.BookDetailActivity" />
 
         <service
             android:name=".push.BookPlusFirebaseMessagingService"
