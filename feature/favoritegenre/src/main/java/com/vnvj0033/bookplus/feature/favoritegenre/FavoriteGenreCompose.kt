@@ -29,7 +29,7 @@ fun FavoriteGenreCompose(
 
     when (uiState) {
         is FavoriteGenreUiState.Empty -> {
-            Loading()
+            Empty()
         }
         is FavoriteGenreUiState.Success -> {
             val state = (uiState as FavoriteGenreUiState.Success).favoriteGenreStateData
@@ -88,12 +88,12 @@ private fun String.toGenre(): Platform.Genre? = when(this) {
 
 
 @Composable
-private fun Loading() {
+private fun Empty() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = "LOADING...")
+        Text(text = "EMPTY...")
     }
 }
 
@@ -111,6 +111,6 @@ private fun PreviewSuccess() {
 @Preview
 private fun PreviewLoading() {
     AppTheme {
-        Loading()
+        Empty()
     }
 }
