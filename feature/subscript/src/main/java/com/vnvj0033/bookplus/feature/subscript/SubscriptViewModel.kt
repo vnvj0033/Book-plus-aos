@@ -18,8 +18,9 @@ class SubscriptViewModel @Inject constructor(
     userRepository: UserRepository
 ) : ViewModel() {
 
-    private val platform = MutableSharedFlow<Platform>()
     private val userId = MutableStateFlow(userRepository.userInfo.userId)
+
+    val platform = MutableStateFlow<Platform>(Platform.KYOBO)
 
     val genres: StateFlow<List<String>> = platform.flatMapLatest { mapPlatform ->
         genreRepository.fetchGenresForPlatform(mapPlatform)

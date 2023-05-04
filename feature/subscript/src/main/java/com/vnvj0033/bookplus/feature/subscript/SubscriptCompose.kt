@@ -16,9 +16,10 @@ fun SubscriptCompose(viewModel: SubscriptViewModel = hiltViewModel()) {
 
     val options = viewModel.genres.collectAsState(emptyList())
     val selectedSet = viewModel.userGenres.collectAsState(emptyList())
+    val platform = viewModel.platform.collectAsState()
 
     Column(Modifier.fillMaxHeight()) {
-        PlatformSelectionList { platform ->
+        PlatformSelectionList(platform = platform.value) { platform ->
             viewModel.updateOptions(platform)
         }
 
