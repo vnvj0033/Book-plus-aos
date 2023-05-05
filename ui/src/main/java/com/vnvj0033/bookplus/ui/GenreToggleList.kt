@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.toMutableStateList
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -19,26 +19,28 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun GenreToggleList(
     options: List<String>,
-    selectedList: Set<String> = emptySet(),
+    selected: Set<String> = emptySet(),
     toggle: (Set<String>) -> Unit = {}
 ) {
 
-    val list = selectedList.toMutableStateList()
+    val selectedList = selected.toMutableList()
 
     FlowLayout {
-        for (option in options) {
-            val isSelected = selectedList.contains(option)
+        options.forEach { option ->
+
+            val isSelected = mutableStateOf(selectedList.contains(option))
 
             ToggleItem(
                 text = option,
-                isSelected = isSelected
+                isSelected = isSelected.value
             ) { selectedGenre ->
-                if (isSelected) {
-                    list.remove(selectedGenre)
+                if (isSelected.value) {
+                    selectedList -= selectedGenre
                 } else {
-                    list.add(selectedGenre)
+                    selectedList += selectedGenre
                 }
-                toggle.invoke(list.toSet())
+                isSelected.value = !isSelected.value
+                toggle.invoke(selectedList.toSet())
             }
         }
     }
@@ -48,9 +50,9 @@ fun GenreToggleList(
 private fun FlowLayout(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
-){
-    val measurePolicy = MeasurePolicy{ measurables,constraints ->
-        layout(constraints.maxWidth,constraints.maxHeight){
+) {
+    val measurePolicy = MeasurePolicy { measurables, constraints ->
+        layout(constraints.maxWidth, constraints.maxHeight) {
             val placeables = measurables.map { measurable ->
                 measurable.measure(constraints)
             }
@@ -76,9 +78,11 @@ private fun FlowLayout(
             }
         }
     }
-    Layout(measurePolicy = measurePolicy,
+    Layout(
+        measurePolicy = measurePolicy,
         content = content,
-        modifier = modifier )
+        modifier = modifier
+    )
 }
 
 @Composable
@@ -88,11 +92,12 @@ private fun ToggleItem(
     click: (String) -> Unit = {}
 ) {
 
-    val background = if (isSelected) {
-        Color(145, 208, 187)
-    } else {
-        Color.LightGray
-    }
+    val background =
+        if (isSelected) {
+            Color(145, 208, 187)
+        } else {
+            Color.LightGray
+        }
 
     Box(modifier = Modifier.padding(4.dp)) {
         Text(

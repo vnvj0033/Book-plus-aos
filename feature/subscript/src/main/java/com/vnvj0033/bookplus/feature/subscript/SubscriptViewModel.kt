@@ -31,7 +31,7 @@ class SubscriptViewModel @Inject constructor(
         genreRepository.fetchGenresForId(it)
     }.map { genres -> genres.map { it.name() } }
 
-    fun updateGenre(strGenres: Set<String>) {
+    fun updateGenre(strGenres: Set<String>) = viewModelScope.launch {
         val genres = arrayListOf<Platform.Genre>()
         Platform.platforms().forEach {
             it.genres().forEach { genre ->
@@ -42,11 +42,11 @@ class SubscriptViewModel @Inject constructor(
         }
 
         genreRepository.sendGenresForId(userId.value, genres)
+        userId.emit(userId.value)
     }
 
-    fun updateOptions(newPlatform: Platform) {
-        viewModelScope.launch {
-            platform.emit(newPlatform)
-        }
+    fun updateOptions(newPlatform: Platform) = viewModelScope.launch {
+        platform.emit(newPlatform)
     }
+
 }

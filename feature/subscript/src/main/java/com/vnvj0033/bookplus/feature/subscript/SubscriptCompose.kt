@@ -24,8 +24,8 @@ fun SubscriptCompose(viewModel: SubscriptViewModel = hiltViewModel()) {
         }
 
         GenreToggleList(
-            options = options.value.map { it },
-            selectedList = selectedSet.value.toSet()
+            options = options.value,
+            selected = selectedSet.value.toSet()
         ) { set ->
             viewModel.updateGenre(set)
         }
