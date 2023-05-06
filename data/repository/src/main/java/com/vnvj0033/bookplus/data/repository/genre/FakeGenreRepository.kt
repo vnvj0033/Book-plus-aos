@@ -1,19 +1,28 @@
 package com.vnvj0033.bookplus.data.repository.genre
 
 import com.vnvj0033.bookplus.data.model.Platform
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 class FakeGenreRepository @Inject constructor() : GenreRepository {
-    private val genreDb = hashMapOf<String, List<Platform.Genre>>()
+    private val genreDb = hashMapOf<String, MutableStateFlow<List<Platform.Genre>>>()
 
     override fun sendGenresForId(userId: String, genre: List<Platform.Genre>) {
-        genreDb[userId] = genre
+        if (genreDb[userId] == null) {
+            genreDb[userId] = MutableStateFlow(genre)
+        } else {
+            genreDb[userId]?.value = genre
+        }
     }
 
-    override fun fetchGenresForId(userId: String) = flowOf(
-        genreDb[userId] ?: emptyList()
-    )
+    override fun fetchGenresForId(userId: String) =
+        if (genreDb[userId] == null) {
+            genreDb[userId] = MutableStateFlow(emptyList())
+            requireNotNull(genreDb[userId])
+        } else {
+            requireNotNull(genreDb[userId])
+        }
 
     override fun fetchGenresForPlatform(platform: Platform) = flowOf(
         when (platform) {
