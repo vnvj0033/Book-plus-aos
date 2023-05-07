@@ -12,5 +12,5 @@ data class Book(
     val title: String = "title",
     val writer: String = "writer",
     val summary: String = "summary",
-    val genre: String = "summary",
+    val genre: String = "genre",
 )

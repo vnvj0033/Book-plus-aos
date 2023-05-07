@@ -40,7 +40,7 @@ class FavoriteGenreViewModel @Inject constructor(
 
     fun refreshListWithFilter(genre: Platform.Genre) = viewModelScope.launch {
         bookRepository.fetchBookForGenre(genre).collectLatest {
-            it.filter { book -> book.genre == genre.name() }
+            books.value = it.filter { book -> book.genre == genre.name() }
         }
     }
 }
@@ -64,7 +64,7 @@ private fun favoriteGenreUiState(
 
 
 data class FavoriteGenreStateData(
-    val filterOption: List<Platform.Genre> = listOf(Platform.KYOBO.국문, Platform.ALADIN.aladin1),
+    val filterOption: List<Platform.Genre> = emptyList(),
     var books: List<MainBook> = emptyList()
 )
 

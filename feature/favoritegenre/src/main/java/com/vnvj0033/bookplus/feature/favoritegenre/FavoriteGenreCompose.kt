@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
@@ -33,13 +34,15 @@ fun FavoriteGenreCompose(
         }
         is FavoriteGenreUiState.Success -> {
             val state = (uiState as FavoriteGenreUiState.Success).favoriteGenreStateData
-            if (state.filterOption.isNotEmpty()) {
-                viewModel.refreshListWithFilter(state.filterOption[0])
-            }
             FavoriteGenreCompose(
                 state,
                 viewModel::refreshListWithFilter
             )
+            LaunchedEffect(state.filterOption) {
+                if (state.filterOption.isNotEmpty()) {
+                    viewModel.refreshListWithFilter(state.filterOption[0])
+                }
+            }
         }
     }
     
@@ -67,8 +70,18 @@ private fun FavoriteGenreCompose(
                 text = "SUBSCRIPT")
             Filter(option) { filterGenre ->
                 composeScope.launch {
-                    val filter = filterGenre.toGenre() ?: return@launch
-                    refreshListWithFilter(filter)
+                    var filter: Platform.Genre?
+
+                    Platform.platforms().forEach { genres ->
+                        filter = genres.genres().firstOrNull {
+                            it.name() == filterGenre
+                        }
+                        filter?.let{
+                            refreshListWithFilter(it)
+                            return@forEach
+                        }
+                    }
+
                 }
             }
         }
@@ -77,13 +90,6 @@ private fun FavoriteGenreCompose(
             BookDetailActivity.startBookDetail(context, book)
         }
     }
-}
-
-private fun String.toGenre(): Platform.Genre? = when(this) {
-    Platform.KYOBO.국문.name() -> Platform.KYOBO.국문
-    Platform.YES24.yes24a.name() -> Platform.YES24.yes24a
-    Platform.ALADIN.aladin1.name() -> Platform.ALADIN.aladin1
-    else -> null
 }
 
 

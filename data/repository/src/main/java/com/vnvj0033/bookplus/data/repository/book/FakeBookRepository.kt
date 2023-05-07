@@ -20,25 +20,25 @@ class FakeBookRepository @Inject constructor() : BookRepository {
     override fun fetchBookForGenre(genre: Platform.Genre): Flow<List<Book>> = flowOf(
         when (genre) {
             Platform.KYOBO.국문 -> listOf(
-                Book(0, "url", "kyobo1", "writer", "summary"),
-                Book(0, "url", "kyobo2", "writer", "summary"),
-                Book(0, "url", "kyobo3", "writer", "summary"),
-                Book(0, "url", "kyobo4", "writer", "summary"),
-                Book(0, "url", "kyobo5", "writer", "summary")
+                Book(0, "url", "kyobo1", "writer", "summary", "국문"),
+                Book(0, "url", "kyobo2", "writer", "summary", "국문"),
+                Book(0, "url", "kyobo3", "writer", "summary", "국문"),
+                Book(0, "url", "kyobo4", "writer", "summary", "국문"),
+                Book(0, "url", "kyobo5", "writer", "summary", "국문")
             )
             Platform.ALADIN.aladin1 -> listOf(
-                Book(0, "url", "aladin1", "writer", "summary"),
-                Book(0, "url", "aladin2", "writer", "summary"),
-                Book(0, "url", "aladin3", "writer", "summary"),
-                Book(0, "url", "aladin4", "writer", "summary"),
-                Book(0, "url", "aladin5", "writer", "summary")
+                Book(0, "url", "aladin1", "writer", "summary", "aladin1"),
+                Book(0, "url", "aladin2", "writer", "summary", "aladin1"),
+                Book(0, "url", "aladin3", "writer", "summary", "aladin1"),
+                Book(0, "url", "aladin4", "writer", "summary", "aladin1"),
+                Book(0, "url", "aladin5", "writer", "summary", "aladin1")
             )
             Platform.YES24.yes24a -> listOf(
-                Book(0, "url", "yes24a", "writer", "summary"),
-                Book(0, "url", "yes24b", "writer", "summary"),
-                Book(0, "url", "yes24c", "writer", "summary"),
-                Book(0, "url", "yes24d", "writer", "summary"),
-                Book(0, "url", "yes24e", "writer", "summary"),
+                Book(0, "url", "yes24a", "writer", "summary", "yes24a"),
+                Book(0, "url", "yes24b", "writer", "summary", "yes24a"),
+                Book(0, "url", "yes24c", "writer", "summary", "yes24a"),
+                Book(0, "url", "yes24d", "writer", "summary", "yes24a"),
+                Book(0, "url", "yes24e", "writer", "summary", "yes24a"),
             )
             else -> listOf()
         }
