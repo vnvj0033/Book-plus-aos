@@ -1,5 +1,7 @@
 package com.vnvj0033.bookplus.data.datasource.di
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
+import com.vnvj0033.bookplus.data.datasource.api.BookApi
 import com.vnvj0033.bookplus.data.datasource.api.UserApi
 import dagger.Module
 import dagger.Provides
@@ -36,10 +38,17 @@ object RetrofitModule {
             .baseUrl("https://localhost:3000/")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
 
     @Provides
     @Singleton
     fun provideUserApi(retrofit: Retrofit): UserApi =
         retrofit.create(UserApi::class.java)
+
+
+    @Provides
+    @Singleton
+    fun provideBookApi(retrofit: Retrofit): BookApi =
+        retrofit.create(BookApi::class.java)
 }

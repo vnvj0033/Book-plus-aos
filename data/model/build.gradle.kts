@@ -17,4 +17,6 @@ dependencies {
     annotationProcessor(Lib.roomCompiler)
     kapt (Lib.roomCompiler)
     implementation(kotlin("reflect"))
+
+    implementation(Lib.gson)
 }

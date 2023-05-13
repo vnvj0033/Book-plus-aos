@@ -12,6 +12,7 @@ android {
 
 dependencies {
     implementation(project(":data:model"))
+    implementation(project(":data:datasource"))
     implementation(Lib.hilt)
     kapt(Lib.hiltCompiler)
 

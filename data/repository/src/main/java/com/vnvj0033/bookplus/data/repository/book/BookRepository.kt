@@ -8,5 +8,5 @@ interface BookRepository {
     fun sendBookForId(userId: String, books: List<Book>)
     fun fetchBookForId(userId: String): Flow<List<Book>>
 
-    fun fetchBookForGenre(genre: Platform.Genre): Flow<List<Book>>
+    suspend fun fetchBookForGenre(genre: Platform.Genre): Flow<List<Book>>
 }

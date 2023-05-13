@@ -9,4 +9,4 @@ data class MainBook(
     val summery: String = ""
 ): Serializable
 
-fun Book.toMainBook() = MainBook(imgUtl, title, writer, summary)
+fun Book.toMainBook() = MainBook(imgUrl, title, writer, summary)
