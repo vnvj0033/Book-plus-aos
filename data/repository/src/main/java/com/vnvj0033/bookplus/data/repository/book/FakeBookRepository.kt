@@ -20,7 +20,8 @@ class FakeBookRepository @Inject constructor(
         userDb[userId] ?: emptyList()
     )
 
-    override suspend fun fetchBookForGenre(genre: Platform.Genre): Flow<List<Book>> = bookApi.getBooks("kyobo")
+    override suspend fun fetchBookForGenre(genre: Platform.Genre): Flow<List<Book>> =
+        flowOf(bookApi.getBooks("kyobo"))
 //        flowOf(
 //        when (genre) {
 //            Platform.KYOBO.국문 -> listOf(

@@ -21,7 +21,6 @@ dependencies {
     // Retrofit2
     implementation (Lib.retrofit2)
     implementation (Lib.gson)
-    implementation(Lib.retrofitCoroutinesAdapter)
 
     // hilt
     implementation(Lib.hilt)

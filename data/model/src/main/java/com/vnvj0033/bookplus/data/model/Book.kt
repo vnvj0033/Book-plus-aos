@@ -9,10 +9,10 @@ import com.google.gson.annotations.SerializedName
 @Entity
 data class Book(
     @PrimaryKey val id: Int,
-    @SerializedName("rank") val rank: Int,
-    @SerializedName("imageUrl") val imgUrl: String = "",
+    @SerializedName("rank") val rank: Int = -1,
+    @SerializedName("image_url") val imgUrl: String = "image_url",
     @SerializedName("title") val title: String = "title",
-    @SerializedName("wirter") val writer: String = "writer",
-    val summary: String = "summary",
-    val genre: String = "genre",
+    @SerializedName("writer") val writer: String = "writer",
+    @SerializedName("summary") val summary: String = "summary",
+    @SerializedName("genre") val genre: String = "genre",
 )

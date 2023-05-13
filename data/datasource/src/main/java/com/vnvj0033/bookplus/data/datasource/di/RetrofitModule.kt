@@ -1,6 +1,5 @@
 package com.vnvj0033.bookplus.data.datasource.di
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 import com.vnvj0033.bookplus.data.datasource.api.BookApi
 import com.vnvj0033.bookplus.data.datasource.api.UserApi
 import dagger.Module
@@ -35,10 +34,9 @@ object RetrofitModule {
     @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl("https://localhost:3000/")
+            .baseUrl("http://10.0.2.2:3000/")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
 
     @Provides
