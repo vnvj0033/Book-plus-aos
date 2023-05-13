@@ -40,7 +40,6 @@ object Lib {
 
     const val retrofit2 = "com.squareup.retrofit2:retrofit:${Ver.retrofitVersion}"
     const val gson = "com.squareup.retrofit2:converter-gson:${Ver.retrofitVersion}"
-    const val retrofitCoroutinesAdapter = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0"
 
     const val composeMaterial3 = "androidx.compose.material3:material3:1.1.0-alpha03"
     const val composePreview = "androidx.compose.ui:ui-tooling-preview:1.4.0-alpha03"
