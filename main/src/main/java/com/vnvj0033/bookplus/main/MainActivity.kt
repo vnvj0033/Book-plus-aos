@@ -1,5 +1,7 @@
 package com.vnvj0033.bookplus.main
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,6 +18,13 @@ class MainActivity : ComponentActivity() {
             AppTheme {
                 MainUI()
             }
+        }
+    }
+
+    companion object {
+        fun start(context: Context) {
+            val intent = Intent(context, MainActivity::class.java)
+            context.startActivity(intent)
         }
     }
 }
