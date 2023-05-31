@@ -16,9 +16,7 @@ import com.vnvj0033.bookplus.main.MainActivity
 internal class PushNotificationManager {
 
     fun sendNotification(service: Service, title: String, body: String) {
-        val intent = Intent(service, MainActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) // 액티비티 중복 생성 방지
-        }
+        val intent = Intent(service, MainActivity::class.java)
 
         val pendingIntent = createPendingIntent(service, intent)
 
